@@ -1,0 +1,7 @@
+F:\praveenaProjects\NewDCLABAPP\digno\digno\digno\bin\digno.dll
+F:\praveenaProjects\NewDCLABAPP\digno\digno\digno\bin\digno.pdb
+F:\praveenaProjects\NewDCLABAPP\digno\digno\digno\bin\ClassLibrary1.dll
+F:\praveenaProjects\NewDCLABAPP\digno\digno\digno\bin\ClassLibrary1.pdb
+F:\praveenaProjects\NewDCLABAPP\digno\digno\digno\obj\Release\digno.csprojResolveAssemblyReference.cache
+F:\praveenaProjects\NewDCLABAPP\digno\digno\digno\obj\Release\digno.dll
+F:\praveenaProjects\NewDCLABAPP\digno\digno\digno\obj\Release\digno.pdb
