@@ -7,7 +7,7 @@ namespace digno
 {
     public class BL
     {
-
+        //hi
         public string User_name { get; set; }
         private string _Id;
         private string _password;
