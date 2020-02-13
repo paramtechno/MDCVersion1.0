@@ -148,26 +148,24 @@ namespace digno
 
 
 
-        [System.Web.Services.WebMethod]  
-        public void Addorg(BL emp)  
-        {  
-           
+        [System.Web.Services.WebMethod]
+        public static string Orginformation(OrgBLO emp)
+        {
+            OrgBLO objBE = new OrgBLO();
+            objBE.Org_name = emp.Org_name;
+            objBE.Reg_no = emp.Reg_no;
+            objBE.Status = "a";
+            objBE.Email = emp.Email;
+            objBE.Mobile_no = emp.Mobile_no;
+            objBE.Password = emp.Password;
+            objBE.Exp_type = 1;
+            objBE.Subscription_type = "Monthly";
+            objBE.Error = emp.Error;
 
-            BL objBE=new BL();
-               objBE.orgname =emp.orgname ;
-               objBE.mobile= emp.mobile ;
-              objBE.orgname = emp.labno; 
-             // objBE.orgname = emp.Email ;
-             // objBE.orgname = emp.Password1 ;
-            //  objBE.orgname = emp.Password2;
-                DataSet ds = new DataSet();
-                BLO bl = new BLO();
-             //   ds = bl.UserLogin(obJBE);
-  
-
-
-         
-        }  
+            OrgBL bl = new OrgBL();
+            string status = bl.OrgInfo(objBE);
+            return status;
+        }
 
     }
 }
