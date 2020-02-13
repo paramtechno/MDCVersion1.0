@@ -276,6 +276,9 @@
     <Compile Include="neworder.aspx.designer.cs">
       <DependentUpon>neworder.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OrgBL.cs" />
+    <Compile Include="OrgBLO.cs" />
+    <Compile Include="OrgDTO.cs" />
     <Compile Include="Org_Creation.aspx.cs">
       <DependentUpon>Org_Creation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

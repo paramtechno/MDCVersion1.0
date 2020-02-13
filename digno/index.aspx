@@ -677,9 +677,9 @@ doctors & book appointment
 
 
 
-        function validateForm(e) {
+   function validateForm(e) {
             var at = document.getElementById("inputEmail").value.indexOf("@");
-            var orgname = document.getElementById("inputLabname").value;
+            var labname = document.getElementById("inputLabname").value;
             var Mobile = document.getElementById("inputMobile").value;
             var Labno = document.getElementById("inputLabNo").value;
             var Email = document.getElementById("inputEmail").value;
@@ -687,8 +687,8 @@ doctors & book appointment
             var Password2 = document.getElementById("inputSignupPassword2").value;
             submitOK = "true";
 
-            if (orgname =="") {
-                alert("The name may have no more than 10 characters");
+            if (labname == "") {
+                alert("PLEASE ENTER LABNAME NAME");
                 submitOK = "false";
             }
 
@@ -696,20 +696,23 @@ doctors & book appointment
                 alert("Please enter the Mobile No");
                 submitOK = "false";
             }
-            if (Labno == "") {
-                alert("The age must be a number between 1 and 100");
+            if (Mobile.length != 10) {
+                alert("Mobile number should be 10 digits");
                 submitOK = "false";
-
             }
+
             if (Email == "") {
-                alert("The age must be a number between 1 and 100");
+                alert("Please eneter mail id");
                 submitOK = "false";
             }
-            if (Password1 == "" || Password2=="") {
-                alert("The age must be a number between 1 and 100");
+            if (Password1 == "" || Password2 == "") {
+                alert("password should be entered");
                 submitOK = "false";
             }
-
+            if (Password1 != Password2) {
+                alert("Password did not matched");
+                submitOK = "false";
+            }
 
             if (at == -1) {
                 alert("Not a valid e-mail!");
@@ -720,25 +723,31 @@ doctors & book appointment
 
                 return false;
             }
-            if (submitOK == "True") {
+            if (submitOK == "true") {
                 var org = {};
-                org.orgname = orgname;
-                org.Mobile = Mobile;
-                org.Labno = Labno;
+                org.Org_name = labname;
+                org.Mobile_no = Mobile;
+                org.Reg_no = Labno;
                 org.Email = Email;
-                org.Password1 = Password1;
+                org.Password = Password1;
                 org.Password2 = Password2;
 
                 $.ajax({
-                    url: 'index.aspx/Addorg',
-                    method: 'post',
+                    type: 'POST',
+                    url: 'index.aspx/Orginformation',
                     data: '{emp: ' + JSON.stringify(org) + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function () {
-                        // getAllEmployees();
-                        alert("ok");
-                        console.log(data);
+                    success: function (e) {
+                        alert("entered");
+                        //if (e.d == '0') {
+                            alert("Organization/Lab created successfully Please login using your MailID/Password");
+                           // $("#mySignin").addClass("modal styled hide fade in");
+                            $("#mySignin").css("display", "block");
+                           //// $("#mySignup").addClass("modal styled hide");
+                            $("#mySignup").css("display", "none");
+                            console.log(data);
+                        //}
                     },
                     error: function (err) {
                         alert("notok");
@@ -747,12 +756,12 @@ doctors & book appointment
                 });
 
 
-                
+
             }
 
 
 
-            e.preventDefault();
+            
         }
     </script>
   
