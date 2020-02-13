@@ -21,12 +21,22 @@
           <div class="row">
               <div class="col-md-12">
             
-                <div class="col-md-3">
+                <%--<div class="col-md-3">
               <div class="form-group">
                 <label>Type</label>
                  <input class="form-control input-sm" type="text" placeholder=""/>
               </div>
-                    </div>
+                    </div>--%>
+                       <div class="col-md-2">
+              <div class="form-group">
+                <label>Test Category</label>
+                  <select id="Select1" class="form-control select2 ">
+                      <option selected="selected">Select Test</option>
+                  <option>test1</option>
+                  <option>test2</option>
+                                    </select>
+              </div>
+                </div>
                    <div class="col-md-3">
               <div class="form-group">
                 <label>Test</label>
