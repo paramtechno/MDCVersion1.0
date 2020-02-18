@@ -294,6 +294,9 @@
     <Compile Include="TestCreation.aspx.designer.cs">
       <DependentUpon>TestCreation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TestCreationBL.cs" />
+    <Compile Include="TestCreationBLO.cs" />
+    <Compile Include="TestCreationDTO.cs" />
     <Compile Include="Testtype.aspx.cs">
       <DependentUpon>Testtype.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

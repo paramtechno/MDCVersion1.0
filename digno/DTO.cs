@@ -28,9 +28,6 @@ namespace digno
             da.Fill(ds);
             con.Close();
             return ds;
-
-           
-
         }  
          public DataSet insertORG(BL orginfo)
         {

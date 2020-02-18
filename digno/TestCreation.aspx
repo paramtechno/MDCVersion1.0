@@ -30,7 +30,7 @@
                        <div class="col-md-2">
               <div class="form-group">
                 <label>Test Category</label>
-                  <select id="Select1" class="form-control select2 ">
+                  <select id="Testcateg" class="form-control select2 " runat="server">
                       <option selected="selected">Select Test</option>
                   <option>test1</option>
                   <option>test2</option>
