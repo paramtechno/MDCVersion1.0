@@ -16,7 +16,32 @@ namespace digno
         private int _Exp_type;
         private string _Subscription_type;
         private string _Error;
+        private string _categoryname;
+        private int _orderby;
+        private string _Branch_Id;
+        private int _Org_Id;
 
+        public string Branch_Id
+        {
+            get { return _Branch_Id; }
+            set { _Branch_Id = value; }
+        }
+        public int Org_Id
+        {
+            get { return _Org_Id; }
+            set { _Org_Id = value; }
+        }
+
+        public string categoryname
+        {
+            get { return _categoryname; }
+            set { _categoryname = value; }
+        }
+        public int orderby
+        {
+            get { return _orderby; }
+            set { _orderby = value; }
+        }
         public string Org_name
         {
             get { return _Org_name; }

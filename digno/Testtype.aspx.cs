@@ -17,22 +17,25 @@ namespace digno
 
 
         [System.Web.Services.WebMethod]
-        public void SaveType(BL emp)
+        public static string SaveType(BL cat)
         {
 
 
-            BL objBE = new BL();
-            objBE.orgname = emp.orgname;
-            objBE.mobile = emp.mobile;
-            objBE.orgname = emp.labno;
-            // objBE.orgname = emp.Email ;
-            // objBE.orgname = emp.Password1 ;
-            //  objBE.orgname = emp.Password2;
-            DataSet ds = new DataSet();
-            BLO bl = new BLO();
-            //   ds = bl.UserLogin(obJBE);
+            OrgBLO objBE = new OrgBLO();
+            BL objuser = new BL();
+            objBE.categoryname = cat.categoryname;
+            objBE.orderby = cat.orderby;
+            
+            objuser = (BL)HttpContext.Current.Session["userinfo"];
 
+            objBE.Org_Id = objuser.Org_Id;
+            objBE.Branch_Id = objuser.Branch_Id;
+            objBE.Email = objuser.Id;
+            objBE.Error = "";
 
+            OrgBL bl = new OrgBL();
+            string status = Convert.ToString(bl.savecategoryinfo(objBE));
+            return status;
 
 
         }

@@ -20,5 +20,17 @@ namespace digno
                 throw;
             }
         }
+
+        public string savecategoryinfo(OrgBLO saveinfo)
+        {
+            try
+            {
+                return OBJ.savecategoryinfo(saveinfo);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

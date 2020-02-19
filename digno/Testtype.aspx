@@ -25,18 +25,18 @@
                 <div class="col-md-2">
               <div class="form-group">
                 <label>Test Type</label>
-                 <input class="form-control input-sm" type="text" placeholder="Test Type Name"/>
+                 <input id="inputcategory" class="form-control input-sm" type="text" placeholder="Test Type Name"/>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group">
                 <label>Order TO Dispaly</label>
-                 <input class="form-control input-sm" type="text" placeholder="Order no"/>
+                 <input id="inputorderby" class="form-control input-sm" type="text" placeholder="Order no"/>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group" style="margin-top:23px">
-               <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i> Save</button>
+               <button type="submit" class="btn btn-primary" onclick="validateForm(this)"> <i class="fa fa-save"></i> Save</button>
                   
                
               
@@ -126,7 +126,55 @@
             //Initialize Select2 Elements
             $('.select2').select2()
         })
+        function validateForm(e) {
+            
+            var categoryname = document.getElementById("inputcategory").value;
+            var orderby = document.getElementById("inputorderby").value;
+            submitOK = "true";
 
+            if (categoryname == "") {
+                alert("PLEASE ENTER Category NAME");
+                submitOK = "false";
+            }
+
+            if (isNaN(orderby) || orderby == "") {
+                alert("Please enter the order by");
+                submitOK = "false";
+            }
+
+            if (submitOK == "false") {
+
+                return false;
+            }
+            if (submitOK == "true") {
+                var cat = {};
+                cat.categoryname = categoryname;
+                cat.orderby = orderby;
+            
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'Testtype.aspx/SaveType',
+                    data: '{cat: ' + JSON.stringify(cat) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (e) {
+                        alert("test type");
+                    },
+                    error: function (err) {
+                        alert("notok");
+                        console.log(err);
+                    }
+                });
+
+
+
+            }
+
+
+
+
+        }
             </script>
 
 </asp:Content>

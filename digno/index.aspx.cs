@@ -84,7 +84,7 @@ namespace digno
                         {
 
                             BL objsess = new BL();
-                            objsess.Org_Id = ds.Tables[1].Rows[0][3].ToString();
+                            objsess.Org_Id = Convert.ToInt32(ds.Tables[1].Rows[0][3].ToString());
                             objsess.Branch_Id = ds.Tables[1].Rows[0][4].ToString();
                             objsess.Id = ds.Tables[1].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[1].Rows[0][1].ToString();
@@ -95,7 +95,7 @@ namespace digno
                         
                         {
                             BL objsess = new BL();
-                            objsess.Org_Id = ds.Tables[0].Rows[0][3].ToString();
+                            objsess.Org_Id = Convert.ToInt32(ds.Tables[0].Rows[0][3].ToString());
                             objsess.Branch_Id = ds.Tables[0].Rows[0][4].ToString();
                             objsess.Id = ds.Tables[0].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[0].Rows[1].ToString();
@@ -105,7 +105,7 @@ namespace digno
                         else if (ds.Tables[0].Rows[0][2].ToString() == "user")
                         {
                             BL objsess = new BL();
-                            objsess.Org_Id = ds.Tables[0].Rows[0][3].ToString();
+                            objsess.Org_Id = Convert.ToInt32(ds.Tables[0].Rows[0][3].ToString());
                             objsess.Branch_Id = ds.Tables[0].Rows[0][4].ToString();
                             objsess.Id = ds.Tables[0].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[0].Rows[1].ToString();
@@ -115,7 +115,7 @@ namespace digno
                         else if (ds.Tables[0].Rows[0][2].ToString() == "patient")
                         {
                             BL objsess = new BL();
-                            objsess.Org_Id = ds.Tables[0].Rows[0][3].ToString();
+                            objsess.Org_Id = Convert.ToInt32(ds.Tables[0].Rows[0][3].ToString());
                             objsess.Branch_Id = ds.Tables[0].Rows[0][4].ToString();
                             objsess.Id = ds.Tables[0].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[0].Rows[1].ToString();

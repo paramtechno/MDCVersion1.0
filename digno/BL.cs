@@ -11,20 +11,29 @@ namespace digno
         public string User_name { get; set; }
         private string _Id;
         private string _password;
-
-       
-         private string _Branch_Id;
-        
+        private string _categoryname;
+        private int _orderby;
+        private string _Branch_Id;
         private string _Type;
 
+        public string categoryname
+        {
+            get { return _categoryname; }
+            set { _categoryname = value; }
+        }
+        public int orderby
+        {
+            get { return _orderby; }
+            set { _orderby = value; }
+        }
         public string Type
         {
             get { return _Type; }
             set { _Type = value; }
         }
-        private string _Org_Id;
+        private int _Org_Id;
 
-        public string Org_Id
+        public int Org_Id
         {
             get { return _Org_Id; }
             set { _Org_Id = value; }
