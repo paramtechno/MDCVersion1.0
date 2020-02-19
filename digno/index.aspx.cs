@@ -160,7 +160,7 @@ namespace digno
             objBE.Password = emp.Password;
             objBE.Exp_type = 1;
             objBE.Subscription_type = "Monthly";
-            objBE.Error = emp.Error;
+            objBE.ERROR = emp.ERROR;
 
             OrgBL bl = new OrgBL();
             string status = bl.OrgInfo(objBE);

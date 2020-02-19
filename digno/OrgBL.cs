@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace digno
 {
@@ -9,6 +10,20 @@ namespace digno
     {
         OrgDTO OBJ = new OrgDTO();
 
+        public DataSet gettesttype(OrgBLO testtypedata)
+        {
+   
+            try
+            {
+
+                return OBJ.gettesttype(testtypedata);
+            }
+            catch
+            {
+                throw;
+            }
+
+      }
         public string OrgInfo(OrgBLO saveinfo)
         {
             try
@@ -21,7 +36,7 @@ namespace digno
             }
         }
 
-        public string savecategoryinfo(OrgBLO saveinfo)
+        public Int32 savecategoryinfo(OrgBLO saveinfo)
         {
             try
             {

@@ -15,9 +15,26 @@ namespace digno
 
         }
 
+        public void gettesttype()
+        {
+            DataSet ds = new DataSet();
+            BLO bl = new BLO();
+            OrgBLO objBE = new OrgBLO();
+            BL objuser = new BL();
+            objuser = (BL)HttpContext.Current.Session["userinfo"];
+            objBE.Org_Id = objuser.Org_Id;
+            objBE.Branch_Id = objuser.Branch_Id;
+            objBE.Email = objuser.Id;
+
+            OrgBL bll = new OrgBL();
+            ds = bll.gettesttype(objBE);
+            Repeater1.DataSource = ds;
+            Repeater1.DataBind();
+            
+        }
 
         [System.Web.Services.WebMethod]
-        public static string SaveType(BL cat)
+        public static Int32 SaveType(BL cat)
         {
 
 
@@ -31,10 +48,10 @@ namespace digno
             objBE.Org_Id = objuser.Org_Id;
             objBE.Branch_Id = objuser.Branch_Id;
             objBE.Email = objuser.Id;
-            objBE.Error = "";
+            objBE.ERROR = 0;
 
             OrgBL bl = new OrgBL();
-            string status = Convert.ToString(bl.savecategoryinfo(objBE));
+            Int32 status = bl.savecategoryinfo(objBE);
             return status;
 
 

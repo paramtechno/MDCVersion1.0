@@ -36,7 +36,7 @@ namespace digno
 
             return status;
         }
-        public string savecategoryinfo(OrgBLO cat)
+        public Int32 savecategoryinfo(OrgBLO cat)
         {
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
@@ -57,10 +57,31 @@ namespace digno
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
-            string status = Convert.ToString(cmd.Parameters["@ERROR"].Value);
+            int status = Convert.ToInt32(cmd.Parameters["@ERROR"].Value);
 
             return status;
         }
 
+        public DataSet gettesttype(OrgBLO belogin)
+        {
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("sp_gettestcategoryinfo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Branch_id", belogin.Branch_Id);
+            cmd.Parameters.AddWithValue("@Org_id", belogin.Org_Id);
+            cmd.Parameters.AddWithValue("@User_id", belogin.Email);
+
+            cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
+            cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            con.Close();
+            return ds;
+        }
     }
 }
