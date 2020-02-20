@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="TestCreation.aspx.cs" Inherits="digno.TestCreation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
  <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <section class="content">
@@ -46,7 +46,7 @@
                    <div class="col-md-3">
               <div class="form-group">
                 <label>Amount</label>
-                 <input class="form-control input-sm" type="text" placeholder=""/>
+                 <input class="form-control input-sm only-numeric" maxlength="5" type="text" placeholder=""/>
               </div>
                     </div>
                   <div class="col-md-3">
@@ -138,8 +138,27 @@
 <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
     <script type="text/javascript">
 
+    $(document).ready(function() {
 
+      $(".only-numeric").bind("keypress", function (e) {
 
+          var keyCode = e.which ? e.which : e.keyCode
+          if (!(keyCode >= 48 && keyCode <= 57)) {
+
+            $(".error").css("display", "inline");
+
+            return false;
+
+          }else{
+
+            $(".error").css("display", "none");
+
+          }
+
+      });
+
+    });
+   
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()

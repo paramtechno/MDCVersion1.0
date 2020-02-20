@@ -15,6 +15,7 @@ namespace digno
             BindTestCategory();
         }
 
+
         public void BindTestCategory()
         {
             try
@@ -23,7 +24,15 @@ namespace digno
                 TestCreationBL bl = new TestCreationBL();
                 objsess = (BL)HttpContext.Current.Session["Userinfo"];
                 DataTable dt = bl.TestCategorybind(objsess);
-                Testcateg.DataSource = dt;
+                if (dt.Rows.Count > 0)
+                {
+                    Testcateg.DataSource = dt;
+                    Testcateg.DataTextField = "Test_category_name";
+                    Testcateg.DataValueField = "Category_id";
+                    Testcateg.DataBind();
+                }
+                else
+                    Testcateg.DataSource = null;
                 Testcateg.DataBind();
             }
             catch(Exception e)
