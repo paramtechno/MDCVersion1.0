@@ -25,18 +25,18 @@
                 <div class="col-md-2">
               <div class="form-group">
                 <label>Test Type</label>
-                 <input class="form-control input-sm" type="text" placeholder="Test Type Name"/>
+                 <input id="inputcategory" class="form-control input-sm" type="text" placeholder="Test Type Name"/>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group">
                 <label>Order TO Dispaly</label>
-                 <input class="form-control input-sm" type="text" placeholder="Order no"/>
+                 <input id="inputorderby" class="form-control input-sm" type="text" placeholder="Order no"/>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group" style="margin-top:23px">
-               <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i> Save</button>
+               <button type="submit" class="btn btn-primary" onclick="validateForm(this)"> <i class="fa fa-save"></i> Save</button>
                   
                
               
@@ -58,6 +58,9 @@
             
             <!-- /.box-header -->
             <div class="box-body">
+                <asp:Repeater ID="Repeater1" runat="server">
+                     <HeaderTemplate>
+
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -68,10 +71,13 @@
                     <th>Active Status</th>
                 </tr>
                 </thead>
+                </HeaderTemplate>
+            <ItemTemplate>
                 <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>OPD </td>
+                  <td><%# Eval("Category_id") %></td>
+                  <td><%# Eval("Test_category_name") %> </td>
+                    <td><%# Eval("Order_by") %> </td>
                   <td><span class="label label-success">Approved</span></td>
                           <td>
                 <i class="fa fa-edit"></i> Edit
@@ -79,6 +85,7 @@
                     <td><i class="fa fa-fw fa-toggle-on"></i></td>      
                 </tr>
                 </tbody>
+                  </ItemTemplate>
                 <%--<tfoot>
                 <tr>
                   <th>No</th>
@@ -92,7 +99,11 @@
                     <th>Report Print</th>
                 </tr>
                 </tfoot>--%>
-              </table>
+              <FooterTemplate>
+        </table>
+    </FooterTemplate>
+                    </asp:Repeater>
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -126,7 +137,55 @@
             //Initialize Select2 Elements
             $('.select2').select2()
         })
+        function validateForm(e) {
+            
+            var categoryname = document.getElementById("inputcategory").value;
+            var orderby = document.getElementById("inputorderby").value;
+            submitOK = "true";
 
+            if (categoryname == "") {
+                alert("PLEASE ENTER Category NAME");
+                submitOK = "false";
+            }
+
+            if (isNaN(orderby) || orderby == "") {
+                alert("Please enter the order by");
+                submitOK = "false";
+            }
+
+            if (submitOK == "false") {
+
+                return false;
+            }
+            if (submitOK == "true") {
+                var cat = {};
+                cat.categoryname = categoryname;
+                cat.orderby = orderby;
+            
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'Testtype.aspx/SaveType',
+                    data: '{cat: ' + JSON.stringify(cat) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (e) {
+                        alert("test type");
+                    },
+                    error: function (err) {
+                        alert("notok");
+                        console.log(err);
+                    }
+                });
+
+
+
+            }
+
+
+
+
+        }
             </script>
 
 </asp:Content>
