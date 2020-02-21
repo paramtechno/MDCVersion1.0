@@ -12,7 +12,7 @@ namespace digno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            gettesttype();
         }
 
         public void gettesttype()

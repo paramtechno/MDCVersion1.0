@@ -66,7 +66,7 @@
                 <tr>
                   <th>No</th>
                   <th>TestType</th>
-                  <th>status</th>                  
+                  <th>order</th>                  
                   <th>Edit</th>
                     <th>Active Status</th>
                 </tr>
@@ -78,11 +78,11 @@
                   <td><%# Eval("Category_id") %></td>
                   <td><%# Eval("Test_category_name") %> </td>
                     <td><%# Eval("Order_by") %> </td>
-                  <td><span class="label label-success">Approved</span></td>
+                 <%-- <td><span class="label label-success">Approved</span></td>--%>
                           <td>
                 <i class="fa fa-edit"></i> Edit
               </td>   
-                    <td><i class="fa fa-fw fa-toggle-on"></i></td>      
+                    <td><i class="<%# Eval("Status").ToString() == "0" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>"></i> </td>      
                 </tr>
                 </tbody>
                   </ItemTemplate>
