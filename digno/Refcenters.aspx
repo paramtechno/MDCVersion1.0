@@ -10,7 +10,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">New Test Type</h3>
+          <h3 class="box-title">New Ref Center</h3>
 
           <%--<div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -24,13 +24,13 @@
             
                 <div class="col-md-2">
               <div class="form-group">
-                <label>Test Type</label>
+                <label>Ref Center</label>
                  <input id="inputcategory" class="form-control input-sm" type="text" placeholder="Test Type Name"/>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group">
-                <label>Order TO Dispaly</label>
+                <label>Ref Contact Person</label>
                  <input id="inputorderby" class="form-control input-sm" type="text" placeholder="Order no"/>
               </div>
                     </div>
