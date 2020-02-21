@@ -37,7 +37,6 @@ namespace digno
         public static Int32 SaveType(BL cat)
         {
 
-
             OrgBLO objBE = new OrgBLO();
             BL objuser = new BL();
             objBE.categoryname = cat.categoryname;

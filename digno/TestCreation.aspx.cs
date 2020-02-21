@@ -23,7 +23,11 @@ namespace digno
                 TestCreationBL bl = new TestCreationBL();
                 objsess = (BL)HttpContext.Current.Session["Userinfo"];
                 DataTable dt = bl.TestCategorybind(objsess);
+
                 Testcateg.DataSource = dt;
+                Testcateg.DataBind();
+                Testcateg.DataTextField = "Test_category_name";
+                Testcateg.DataValueField = "Category_id";
                 Testcateg.DataBind();
             }
             catch(Exception e)
@@ -32,5 +36,27 @@ namespace digno
                 Console.Write(e);
             }
         }
+
+
+        public void BindTest()
+        {
+            try
+            {
+                BL objsess = new BL();
+                TestCreationBL bl = new TestCreationBL();
+                objsess = (BL)HttpContext.Current.Session["Userinfo"];
+                DataTable dt = bl.Testbind(objsess);
+
+                Repeater1.DataSource = dt;
+                Repeater1.DataBind();
+               
+            }
+            catch (Exception e)
+
+            {
+                Console.Write(e);
+            }
+        }
+
     }
 }

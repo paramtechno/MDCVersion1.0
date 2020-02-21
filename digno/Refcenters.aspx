@@ -24,14 +24,44 @@
             
                 <div class="col-md-2">
               <div class="form-group">
-                <label>Ref Center</label>
-                 <input id="inputcategory" class="form-control input-sm" type="text" placeholder="Test Type Name"/>
+                <label>Ref Center Name</label>
+                 <input id="inputRefname" class="form-control input-sm" type="text" placeholder="Ref Center Name"/>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group">
-                <label>Ref Contact Person</label>
-                 <input id="inputorderby" class="form-control input-sm" type="text" placeholder="Order no"/>
+                <label>Ref Center Address</label>
+                 <input id="inputRefaddress" class="form-control input-sm" type="text" placeholder="Address"/>
+              </div>
+                    </div>
+                   <div class="col-md-2">
+              <div class="form-group">
+                <label>Ref Center Mobile Number</label>
+                 <input id="inputRefmobi" class="form-control input-sm" type="text" placeholder="Mobile Number"/>
+              </div>
+                    </div>
+                   <div class="col-md-2">
+              <div class="form-group">
+                <label>Ref Center Contact Person</label>
+                 <input id="inputRefperson" class="form-control input-sm" type="text" placeholder="Contact Person Name"/>
+              </div>
+                    </div>
+                   <div class="col-md-2">
+              <div class="form-group">
+                <label>Ref Center Date</label>
+                 <input id="inputRefdate" class="form-control input-sm" type="text" placeholder="yyyy-mm--dd"/>
+              </div>
+                    </div>
+                   <div class="col-md-2">
+              <div class="form-group">
+                <label>Ref Center isdeleted</label>
+                 <input id="inputRefisd" class="form-control input-sm" type="text" placeholder="True Or False"/>
+              </div>
+                    </div>
+                   <div class="col-md-2">
+              <div class="form-group">
+                <label>Ref Center Status</label>
+                 <input id="inputRefstatus" class="form-control input-sm" type="text" placeholder="True Or False"/>
               </div>
                     </div>
                   <div class="col-md-2">
@@ -66,20 +96,27 @@
                     
                      <thead>
                 <tr>
-                  <th>No</th>
-                  <th>TestType</th>
-                  <th>status</th>                  
-                  <th>Edit</th>
-                    <th>Active Status</th>
+                  <th>Ref Center Name</th>
+                  <th>Address</th>
+                  <th>Mobil Number</th>                  
+                  <th>Contact Person</th>
+                  <th>Created Date</th>
+                  <th>Is Deleted</th>
+                  <th>Status</th>
                 </tr>
                 </thead>
                  </HeaderTemplate>
             <ItemTemplate>
                 <tbody>
                 <tr>
-                  <td><%#Eval("Category_id")%></td>
-                  <td><%#Eval("Test_category_name")%> </td>
-                  <td><%#Eval("Order_by")%> </td>
+                  <td><%#Eval("RefCenter_name")%></td>
+                  <td><%#Eval("RefCenter_address")%> </td>
+                  <td><%#Eval("RefCenter_mobno")%> </td>
+                  <td><%#Eval("RefCenter_contact_person")%></td>
+                  <td><%#Eval("Created_date")%></td>
+                  <td><%#Eval("Isdeleted")%></td>
+                  <td><%#Eval("Status")%></td>
+
                   <td><span class="label label-success">Approved</span></td>
                   <td>
                 <i class="fa fa-edit"></i> Edit
@@ -141,17 +178,47 @@
         })
         function validateForm(e) {
             
-            var categoryname = document.getElementById("inputcategory").value;
-            var orderby = document.getElementById("inputorderby").value;
+            var Refname = document.getElementById("inputRefname").value;
+            var Refaddress = document.getElementById("inputRefaddress").value;
+            var Refmobi = document.getElementById("inputRefmobi").value;
+            var Refperson = document.getElementById("inputRefperson").value;
+            var RefDate = document.getElementById("inputRefdate").value;
+            var Refisdeleted = document.getElementById("inputRefisd").value;
+            var Refstatus = document.getElementById("inputRefstatus").value;
             submitOK = "true";
 
-            if (categoryname == "") {
-                alert("PLEASE ENTER Category NAME");
+            if (Refname == "") {
+                alert("PLEASE ENTER RefCenter NAME");
                 submitOK = "false";
             }
 
-            if (isNaN(orderby) || orderby == "") {
-                alert("Please enter the order by");
+            if (Refaddress == "") {
+                alert("Please enter the Address");
+                submitOK = "false";
+            }
+
+            if (Refmobi.length != 10) {
+                alert("Please enter Correct mobile number");
+                submitOK = "false";
+            }
+
+            if (Refperson == "") {
+                alert("Please enter the Person Name");
+                submitOK = "false";
+            }
+
+            if (RefDate == "") {
+                alert("Please enter the today's Date");
+                submitOK = "false";
+            }
+
+            if (Refisdeleted == "" || Refisdeleted == "") {
+                alert("Please enter the Deleted is True Or False");
+                submitOK = "false";
+            }
+
+            if (Refstatus == "" || Refstatus == "") {
+                alert("Please enter the Status is True Or False");
                 submitOK = "false";
             }
 
@@ -161,13 +228,17 @@
             }
             if (submitOK == "true") {
                 var cat = {};
-                cat.categoryname = categoryname;
-                cat.orderby = orderby;
-            
-
+                cat.Refname = Refname;
+                cat.Refaddress = Refaddress;
+                cat.Refmobi = Refmobi;
+                cat.Refperson = Refperson;
+                cat.RefDate = RefDate;
+                cat.Refisdeleted = Refisdeleted;
+                cat.Refstatus = Refstatus;
+          
                 $.ajax({
                     type: 'POST',
-                    url: 'Testtype.aspx/SaveType',
+                    url: 'Refcenters.aspx/saveRefCenter',
                     data: '{cat: ' + JSON.stringify(cat) + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

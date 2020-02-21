@@ -73,6 +73,8 @@
             
             <!-- /.box-header -->
             <div class="box-body">
+                 <asp:Repeater ID="Repeater1" runat="server">
+                     <HeaderTemplate>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -84,6 +86,8 @@
                     <th>Active Status</th>
                 </tr>
                 </thead>
+                   </HeaderTemplate>
+            <ItemTemplate>
                 <tbody>
                 <tr>
                   <td>1</td>
@@ -96,7 +100,8 @@
               </td>   
                     <td><i class="fa fa-fw fa-toggle-on"></i></td>      
                 </tr>
-                </tbody>
+                </tbody
+                  </ItemTemplate>
                 <%--<tfoot>
                 <tr>
                   <th>No</th>
@@ -110,7 +115,10 @@
                     <th>Report Print</th>
                 </tr>
                 </tfoot>--%>
-              </table>
+             <FooterTemplate>
+        </table>
+    </FooterTemplate>
+                    </asp:Repeater>
             </div>
             <!-- /.box-body -->
           </div>
