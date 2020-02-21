@@ -218,6 +218,7 @@
     <Content Include="login.jpg" />
     <Content Include="neworder.aspx" />
     <Content Include="Org_Creation.aspx" />
+    <Content Include="Refcenters.aspx" />
     <Content Include="TestCreation.aspx" />
     <Content Include="Testtype.aspx" />
     <Content Include="Web.config" />
@@ -287,6 +288,13 @@
       <DependentUpon>Org_Creation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Refcenters.aspx.cs">
+      <DependentUpon>Refcenters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Refcenters.aspx.designer.cs">
+      <DependentUpon>Refcenters.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TestCreation.aspx.cs">
       <DependentUpon>TestCreation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
