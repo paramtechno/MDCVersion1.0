@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeFile="Billmaster.aspx.cs" Inherits="Billmaster" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="Billmaster.aspx.cs" Inherits="Billmaster" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
@@ -42,7 +42,7 @@
             </div>--%>
             <!-- /.box-header -->
             <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12   alert-info">
           
             
 
@@ -51,7 +51,7 @@
               
                 <div class="col-md-12 col-sm-12 col-sx-12" >
                 <h3 class="box-title">TODAY'S ORDERS</h3>
-               <a class="btn btn-primary pull-right" href="../neworder.aspx" ><i class="fa fa-plus">Add New Bill</i></a>   
+               <a class="btn btn-success pull-right" href="../neworder.aspx" ><i class="fa fa-plus">Add New Bill</i></a>   
                     </div>
             </div>
             <!-- /.box-header -->
