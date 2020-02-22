@@ -165,29 +165,29 @@
         })
         function validateForm(e) {
             
-            var Refname = document.getElementById("inputRefname").value;
-            var Refaddress = document.getElementById("inputRefaddress").value;
-            var Refmobi = document.getElementById("inputRefmobi").value;
-            var Refperson = document.getElementById("inputRefperson").value;
+            var Drname = document.getElementById("inputRefname").value;
+            var Draddress = document.getElementById("inputRefaddress").value;
+            var Drmobi = document.getElementById("inputRefmobi").value;
+            var Dremail = document.getElementById("inputRefperson").value;
             
             submitOK = "true";
 
-            if (Refname == "") {
+            if (Drname == "") {
                 alert("PLEASE ENTER RefCenter NAME");
                 submitOK = "false";
             }
 
-            if (Refaddress == "") {
+            if (Draddress == "") {
                 alert("Please enter the Address");
                 submitOK = "false";
             }
 
-            if (Refmobi.length != 10) {
+            if (Drmobi.length != 10) {
                 alert("Please enter Correct mobile number");
                 submitOK = "false";
             }
 
-            if (Refperson == "") {
+            if (Dremail == "") {
                 alert("Please enter the Person Name");
                 submitOK = "false";
             }
@@ -200,10 +200,10 @@
             }
             if (submitOK == "true") {
                 var cat = {};
-                cat.Refname = Refname;
-                cat.Refaddress = Refaddress;
-                cat.Refmobi = Refmobi;
-                cat.Refperson = Refperson;
+                cat.Drname = Drname;
+                cat.Draddress = Draddress;
+                cat.Drmobi = Drmobi;
+                cat.Dremail = Dremail;
                
           
                 $.ajax({

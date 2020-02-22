@@ -29,7 +29,7 @@ namespace digno
             cmd.Parameters.AddWithValue("@Status", DBNull.Value);
 
             cmd.Parameters.AddWithValue("@RefID", DBNull.Value);
-            cmd.Parameters.AddWithValue("@RefCenter_id", DBNull.Value);
+            cmd.Parameters.AddWithValue("@RerCenter_id", DBNull.Value);
             cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
             cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
 

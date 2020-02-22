@@ -166,9 +166,7 @@
             var Refaddress = document.getElementById("inputRefaddress").value;
             var Refmobi = document.getElementById("inputRefmobi").value;
             var Refperson = document.getElementById("inputRefperson").value;
-            var RefDate = document.getElementById("inputRefdate").value;
-            var Refisdeleted = document.getElementById("inputRefisd").value;
-            var Refstatus = document.getElementById("inputRefstatus").value;
+            
             submitOK = "true";
 
             if (Refname == "") {
@@ -191,21 +189,7 @@
                 submitOK = "false";
             }
 
-            if (RefDate == "") {
-                alert("Please enter the today's Date");
-                submitOK = "false";
-            }
-
-            if (Refisdeleted == "" || Refisdeleted == "") {
-                alert("Please enter the Deleted is True Or False");
-                submitOK = "false";
-            }
-
-            if (Refstatus == "" || Refstatus == "") {
-                alert("Please enter the Status is True Or False");
-                submitOK = "false";
-            }
-
+            
             if (submitOK == "false") {
 
                 return false;
@@ -216,9 +200,7 @@
                 cat.Refaddress = Refaddress;
                 cat.Refmobi = Refmobi;
                 cat.Refperson = Refperson;
-                cat.RefDate = RefDate;
-                cat.Refisdeleted = Refisdeleted;
-                cat.Refstatus = Refstatus;
+                
           
                 $.ajax({
                     type: 'POST',

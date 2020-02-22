@@ -40,10 +40,10 @@ namespace digno
 
             DRBLO objBE = new DRBLO();
             BL objuser = new BL();
-            objBE.Refname = cat.Refname;
-            objBE.Refaddress = cat.Refaddress;
-            objBE.Refperson = cat.Refperson;
-            objBE.Refmobi = cat.Refmobi;
+            objBE.Drname = cat.Drname;
+            objBE.Draddress = cat.Draddress;
+            objBE.Dremail = cat.Dremail;
+            objBE.Drmobi = cat.Drmobi;
 
 
             objuser = (BL)HttpContext.Current.Session["userinfo"];

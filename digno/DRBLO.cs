@@ -7,13 +7,13 @@ namespace digno
 {
     public class DRBLO
     {
-        private string _Refname;
-        private string _Refaddress;
-        private bool _Refstatus;
-        private Int64 _Refmobi;
-        private string _Refperson;
-        private DateTime _RefDate;
-        private bool _Refisdeleted;
+        private string _Drname;
+        private string _Draddress;
+        private bool _Drstatus;
+        private Int64 _Drmobi;
+        private string _Dremail;
+        private DateTime _Drdate;
+        private bool _Drisdeleted;
         private string _Branch_Id;
         private int _Org_Id;
         private string _UserID;
@@ -43,46 +43,46 @@ namespace digno
             set { _Org_Id = value; }
         }
 
-        public string Refname
+        public string Drname
         {
-            get { return _Refname; }
-            set { _Refname = value; }
+            get { return _Drname; }
+            set { _Drname = value; }
         }
 
-        public string Refaddress
+        public string Draddress
         {
-            get { return _Refaddress; }
-            set { _Refaddress = value; }
+            get { return _Draddress; }
+            set { _Draddress = value; }
         }
 
-        public bool Refstatus
+        public bool Drstatus
         {
-            get { return _Refstatus; }
-            set { _Refstatus = value; }
+            get { return _Drstatus; }
+            set { _Drstatus = value; }
         }
 
-        public Int64 Refmobi
+        public Int64 Drmobi
         {
-            get { return _Refmobi; }
-            set { _Refmobi = value; }
+            get { return _Drmobi; }
+            set { _Drmobi = value; }
         }
 
-        public string Refperson
+        public string Dremail
         {
-            get { return _Refperson; }
-            set { _Refperson = value; }
+            get { return _Dremail; }
+            set { _Dremail = value; }
         }
 
-        public DateTime RefDate
+        public DateTime Drdate
         {
-            get { return _RefDate; }
-            set { _RefDate = value; }
+            get { return _Drdate; }
+            set { _Drdate = value; }
         }
 
-        public bool Refisdeleted
+        public bool Drisdeleted
         {
-            get { return _Refisdeleted; }
-            set { _Refisdeleted = value; }
+            get { return _Drisdeleted; }
+            set { _Drisdeleted = value; }
         }
 
 

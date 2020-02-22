@@ -10,20 +10,20 @@ namespace digno
 {
     public class DRDTO
     {
-        public string insertRefCenter(DRBLO Refcenter)
+        public string insertRefCenter(DRBLO Dr)
         {
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
 
             SqlCommand cmd = new SqlCommand("sp_Master_Doctor", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Dr_Name", Refcenter.Refname);
-            cmd.Parameters.AddWithValue("@Dr_Address", Refcenter.Refaddress);
-            cmd.Parameters.AddWithValue("@Dr_MailID", Refcenter.Refperson);
-            cmd.Parameters.AddWithValue("@Dr_MobNo", Refcenter.Refmobi);
-            cmd.Parameters.AddWithValue("@Org_ID", Refcenter.Org_Id);
-            cmd.Parameters.AddWithValue("@Branch_ID", Refcenter.Branch_Id);
-            cmd.Parameters.AddWithValue("@UserID", Refcenter.UserID);
+            cmd.Parameters.AddWithValue("@Dr_Name", Dr.Drname);
+            cmd.Parameters.AddWithValue("@Dr_Address", Dr.Draddress);
+            cmd.Parameters.AddWithValue("@Dr_MailID", Dr.Dremail);
+            cmd.Parameters.AddWithValue("@Dr_MobNo", Dr.Drmobi);
+            cmd.Parameters.AddWithValue("@Org_ID", Dr.Org_Id);
+            cmd.Parameters.AddWithValue("@Branch_ID", Dr.Branch_Id);
+            cmd.Parameters.AddWithValue("@UserID", Dr.UserID);
             cmd.Parameters.AddWithValue("@Created_Date", DBNull.Value);
             cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
             cmd.Parameters.AddWithValue("@Status", DBNull.Value);
