@@ -15,7 +15,13 @@ namespace digno
         private int _orderby;
         private string _Branch_Id;
         private string _Type;
+        private int _Category_id;
 
+        public int Category_id
+        {
+            get { return _Category_id; }
+            set { _Category_id = value; }
+        }
         public string categoryname
         {
             get { return _categoryname; }
