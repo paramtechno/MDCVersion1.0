@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace digno
 {
-    public partial class Refcenters : System.Web.UI.Page
+    public partial class DrCreations : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,33 +18,33 @@ namespace digno
         public void gettesttype()
         {
             DataSet ds = new DataSet();
-            RefBLO objBE = new RefBLO();
+            DRBLO objBE = new DRBLO();
             BL objuser = new BL();
             objuser = (BL)HttpContext.Current.Session["userinfo"];
             objBE.Org_Id = objuser.Org_Id;
             objBE.Branch_Id = objuser.Branch_Id;
             objBE.UserID = objuser.Id;
 
-            RefBL bll = new RefBL();
+            DRBL bll = new DRBL();
             ds = bll.gettesttype(objBE);
-            Repeater.DataSource = ds;
-            Repeater.DataBind();
+            Repeaters.DataSource = ds;
+            Repeaters.DataBind();
 
         }
 
         [System.Web.Services.WebMethod]
 
-        public static string saveRefCenter(RefBLO cat)
+        public static string saveRefCenter(DRBLO cat)
         {
 
 
-            RefBLO objBE = new RefBLO();
+            DRBLO objBE = new DRBLO();
             BL objuser = new BL();
             objBE.Refname = cat.Refname;
             objBE.Refaddress = cat.Refaddress;
             objBE.Refperson = cat.Refperson;
             objBE.Refmobi = cat.Refmobi;
-            
+
 
             objuser = (BL)HttpContext.Current.Session["userinfo"];
 
@@ -53,7 +53,7 @@ namespace digno
             objBE.UserID = objuser.Id;
             objBE.ERROR = 0;
 
-            RefBL bl = new RefBL();
+            DRBL bl = new DRBL();
             string status = bl.insertRefCenter(objBE);
             return status;
 

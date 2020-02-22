@@ -24,11 +24,12 @@ namespace digno
             cmd.Parameters.AddWithValue("@Org_ID", Refcenter.Org_Id);
             cmd.Parameters.AddWithValue("@Branch_ID", Refcenter.Branch_Id);
             cmd.Parameters.AddWithValue("@UserID", Refcenter.UserID);
-            cmd.Parameters.AddWithValue("@Created_Date", Refcenter.RefDate);
-            cmd.Parameters.AddWithValue("@Is_Deleted", Refcenter.Refisdeleted);
-            cmd.Parameters.AddWithValue("@Status", Refcenter.Refstatus);
+            cmd.Parameters.AddWithValue("@Created_Date", DBNull.Value);
+            cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
+            cmd.Parameters.AddWithValue("@Status", DBNull.Value);
 
             cmd.Parameters.AddWithValue("@RefID", DBNull.Value);
+            cmd.Parameters.AddWithValue("@RefCenter_id", DBNull.Value);
             cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
             cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
 

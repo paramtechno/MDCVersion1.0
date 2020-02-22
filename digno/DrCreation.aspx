@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="DrCreation.aspx.cs" Inherits="digno.DrCreation" %>
+﻿<!--<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="DrCreation.aspx.cs" Inherits="digno.DrCreation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
-</asp:Content>
+</asp:Content>-->
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
@@ -255,20 +255,20 @@
                 cat.Isdeleted = Isdeleted;
                 cat.Status = Status;
 
-                $.ajax({
-                    type: 'POST',
-                    url: 'DrCreation.aspx/saveDRinfo',
-                    data: '{cat: ' + JSON.stringify(cat) + '}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (e) {
-                        alert("test type");
-                    },
-                    error: function (err) {
-                        alert("notok");
-                        console.log(err);
-                    }
-                });
+                //$.ajax({
+                 //   type: 'POST',
+                //    url: 'DrCreation.aspx/saveDRinfo',
+                //    data: '{cat: ' + JSON.stringify(cat) + '}',
+                //    contentType: "application/json; charset=utf-8",
+                //    dataType: "json",
+                //    success: function (e) {
+                //        alert("test type");
+                //    },
+                //    error: function (err) {
+                //        alert("notok");
+                //        console.log(err);
+                //    }
+                //});
 
 
 

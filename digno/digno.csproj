@@ -68,6 +68,7 @@
       <DependentUpon>digno.mdf</DependentUpon>
     </Content>
     <Content Include="DrCreation.aspx" />
+    <Content Include="DrCreations.aspx" />
     <Content Include="index.aspx" />
     <Content Include="indexstyle\contactform\contactform.js" />
     <Content Include="indexstyle\contactform\Readme.txt" />
@@ -245,10 +246,16 @@
     <Compile Include="DRBLO.cs" />
     <Compile Include="DrCreation.aspx.cs">
       <DependentUpon>DrCreation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DrCreation.aspx.designer.cs">
       <DependentUpon>DrCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DrCreations.aspx.cs">
+      <DependentUpon>DrCreations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DrCreations.aspx.designer.cs">
+      <DependentUpon>DrCreations.aspx</DependentUpon>
     </Compile>
     <Compile Include="DRDTO.cs" />
     <Compile Include="DTO.cs" />
