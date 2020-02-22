@@ -396,8 +396,8 @@
           <ul class="treeview-menu">
             <li><a href="Testtype.aspx"><i class="fa fa-bars"></i>Test Master</a></li>
             <li><a href="TestCreation.aspx"><i class="fa fa-bars"></i>Test Creation</a></li>
-            <li><a href="DrCreation.aspx"><i class="fa fa-bars"></i>Docter Creation</a></li>
-              <li><a href="RefcenterCreation.aspx"><i class="fa fa-bars"></i>Ref Centers</a></li>
+            <li><a href="DrCreation.aspx"><i class="fa fa-bars"></i>Doctor Creation</a></li>
+              <li><a href="Refcenters.aspx"><i class="fa fa-bars"></i>Ref Centers</a></li>
                <li><a href="RefcenterCreation.aspx"><i class="fa fa-bars"></i>Bill Print Setting</a></li>
                <li><a href="RefcenterCreation.aspx"><i class="fa fa-bars"></i>Package Creation</a></li>
 

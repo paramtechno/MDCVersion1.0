@@ -62,6 +62,8 @@
                      <HeaderTemplate>
 
               <table id="example1" class="table table-bordered table-striped">
+              
+                    
                 <thead>
                 <tr>
                   <th>No</th>
@@ -78,7 +80,7 @@
                   <td><%# Eval("Category_id") %></td>
                   <td><%# Eval("Test_category_name") %> </td>
                     <td><%# Eval("Order_by") %> </td>
-                 <%-- <td><span class="label label-success">Approved</span></td>--%>
+                  <td><span class="label label-success">Approved</span></td>
                           <td>
                 <i class="fa fa-edit"></i> Edit
               </td>   

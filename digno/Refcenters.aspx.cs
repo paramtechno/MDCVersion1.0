@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace digno
 {
-    public partial class Testtype : System.Web.UI.Page
+    public partial class Refcenters : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,39 +18,44 @@ namespace digno
         public void gettesttype()
         {
             DataSet ds = new DataSet();
-            BLO bl = new BLO();
-            OrgBLO objBE = new OrgBLO();
+            RefBLO objBE = new RefBLO();
             BL objuser = new BL();
             objuser = (BL)HttpContext.Current.Session["userinfo"];
             objBE.Org_Id = objuser.Org_Id;
             objBE.Branch_Id = objuser.Branch_Id;
-            objBE.Email = objuser.Id;
+            objBE.UserID = objuser.Id;
 
-            OrgBL bll = new OrgBL();
+            RefBL bll = new RefBL();
             ds = bll.gettesttype(objBE);
             Repeater1.DataSource = ds;
             Repeater1.DataBind();
-            
+
         }
 
         [System.Web.Services.WebMethod]
-        public static Int32 SaveType(BL cat)
+
+        public static string saveRefCenter(RefBLO cat)
         {
 
-            OrgBLO objBE = new OrgBLO();
+
+            RefBLO objBE = new RefBLO();
             BL objuser = new BL();
-            objBE.categoryname = cat.categoryname;
-            objBE.orderby = cat.orderby;
-            
+            objBE.Refname = cat.Refname;
+            objBE.Refaddress = cat.Refaddress;
+            objBE.Refperson = cat.Refperson;
+            objBE.Refmobi = cat.Refmobi;
+            objBE.RefDate = cat.RefDate;
+            objBE.Refstatus = cat.Refstatus;
+
             objuser = (BL)HttpContext.Current.Session["userinfo"];
 
             objBE.Org_Id = objuser.Org_Id;
             objBE.Branch_Id = objuser.Branch_Id;
-            objBE.Email = objuser.Id;
+            objBE.UserID = objuser.Id;
             objBE.ERROR = 0;
 
-            OrgBL bl = new OrgBL();
-            Int32 status = bl.savecategoryinfo(objBE);
+            RefBL bl = new RefBL();
+            string status = bl.insertRefCenter(objBE);
             return status;
 
 

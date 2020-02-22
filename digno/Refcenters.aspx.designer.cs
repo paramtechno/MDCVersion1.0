@@ -10,7 +10,7 @@
 namespace digno {
     
     
-    public partial class DrCreation {
+    public partial class Refcenters {
         
         /// <summary>
         /// Repeater1 control.
