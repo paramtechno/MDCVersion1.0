@@ -18,6 +18,7 @@ namespace digno
         private int _ERROR;
         private string _categoryname;
         private int _orderby;
+        private int _Category_id;
         private string _Branch_Id;
         private int _Org_Id;
 
@@ -92,6 +93,12 @@ namespace digno
         {
             get { return _ERROR; }
             set { _ERROR = value; }
+        }
+
+        public int Category_id
+        {
+            get { return _Category_id; }
+            set { _Category_id = value; }
         }
     }
 }
