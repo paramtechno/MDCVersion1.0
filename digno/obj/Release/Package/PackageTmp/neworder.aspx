@@ -10,7 +10,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">New Order</h3>
+          <h3 class="box-title">New Ordr</h3>
 
           <%--<div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -72,132 +72,9 @@
               
               <!-- /.form-group -->
             </div>
-            <div class="row">
-              <div class="col-md-12">
-            <div class="col-md-6">
-               <div class="col-md-2">
-              <div class="form-group">
-                <label>age</label>
-                <input class="form-control input-sm" type="text" placeholder=".input-sm"/>y
-              </div></div>
-                        <div class="col-md-2">
-              <div class="form-group">
-                <label></label>
-                <input class="form-control input-sm" type="text" placeholder=".input-sm"/>m
-              </div>
-                  </div>
-                  <div class="col-md-2">
-              <div class="form-group">
-                <label></label>
-                <input class="form-control input-sm" type="text" placeholder=".input-sm"/>D
-              </div>
-                  </div>
-                </div>
-               <div class="col-md-6">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Initial</label>
-                 <input class="form-control input-sm" type="text" placeholder=""/>
-              </div>
-                </div>
-                <div class="col-md-4">
-              <div class="form-group">
-                <label>Name</label>
-                 <input class="form-control input-sm" type="text" placeholder=""/>
-              </div>
-                    </div>
-                    <div class="col-md-4">
-              <div class="form-group">
-                <label>Mobile</label>
-                <input class="form-control input-sm" type="text" placeholder=".input-sm"/>
-              </div>
-                        </div>
-                  
-                  
-                  
-                        </div>
-                  
-                        </div>
-                   
-              <!-- /.form-group -->
-              
-              <!-- /.form-group -->
-                
-            </div>
-            <div class="col-md-12">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Type</label>
-                  <select id="ddldoctor" class="form-control select2">
-                                    </select>
-              </div>
-                </div>
-                <div class="col-md-4">
-              <div class="form-group">
-                <label>TEST Name</label>
-                <select class="form-control select2" style="width: 100%;">
-                  <option selected="selected">Select Test</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              </div>
-                    </div>
-                    <div class="col-md-2">
-              <div class="form-group">
-                <label>Amount</label>
-                <input class="form-control input-sm" type="text" placeholder=".input-sm"/>
-              </div>
-                        </div>
-                  
-                  <div class="col-md-2">
-              <div class="form-group">
-               <button type="submit" class="btn btn-primary">add</button>
-              </div>
-                        </div>
-                  
-                        </div>
-             <div class="col-md-12"  >
-            <table class="table table-responsive" id="tb" style="width:100% ;">
-             <thead>
-                <tr>
-                 <th style="width:10%">Slno</th>
-                 <th >Test Name</th>
-                 <th style="width:20%">Test Amout</th>
-                 <th style="width:10%"></th>
-               </tr>
-            </thead>
-        <tbody>
-            <asp:Repeater ID="rptCustomers" runat="server">
-    <HeaderTemplate>
-        </HeaderTemplate>
-                <ItemTemplate>
-            <tr style="visibility:visible">
-            <td></td>
-            <td><%# Eval("TesteName") %></td>
-            <td class="hi"><%# Eval("TestAmt") %></td>
-                <td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td>
-                </tr></ItemTemplate>
-                </asp:Repeater>
-   </tbody>
-
-
-
-            </table>
-            <span id="orderItemError" style="color:red"></span>
-        </div>
-        <div style="padding:10px 0; text-align:left" class="col-md-12">
-          <div class="col-md-6">Total Amount :  <label id="amount">0.00</label>
-       </div>
-          
-       <div class="col-md-6">  
-          <button id="saveOrder" type="submit" class="btn btn-success">Save Order</button>
-          <button type="reset" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
-       </div>
-   </div>
+            
+            
+            
             <!-- /.col -->
             
             <!-- /.col -->
