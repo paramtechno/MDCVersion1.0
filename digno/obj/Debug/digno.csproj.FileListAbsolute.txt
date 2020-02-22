@@ -22,7 +22,6 @@ C:\Users\pravena\Source\Repos\mdcver1\digno\obj\Debug\digno.pdb
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\bin\digno.dll.config
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\bin\digno.dll
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\bin\digno.pdb
-C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\bin\ClassLibrary1.pdb
-C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\obj\Debug\digno.csprojResolveAssemblyReference.cache
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\obj\Debug\digno.dll
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\obj\Debug\digno.pdb
+C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\obj\Debug\digno.csprojResolveAssemblyReference.cache
