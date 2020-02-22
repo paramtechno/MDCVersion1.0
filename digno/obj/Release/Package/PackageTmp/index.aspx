@@ -73,12 +73,30 @@
             <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
+                <h4 id="mySignupModalLabel">Create an <strong>Dignostic Center</strong></h4>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
                   <div class="control-group">
-                    <label class="control-label" for="inputEmail">Email</label>
+                    <label class="control-label" for="inputEmail">Lab Name*</label>
+                    <div class="controls">
+                      <input type="text" id="inputLabname" placeholder="Lab Name">
+                    </div>
+                  </div>
+                    <div class="control-group">
+                    <label class="control-label" for="inputEmail">Mobile*</label>
+                    <div class="controls">
+                      <input type="text" id="inputMobile" placeholder="Mobile">
+                    </div>
+                  </div>
+                    <div class="control-group">
+                    <label class="control-label" for="inputEmail">Lab No</label>
+                    <div class="controls">
+                      <input type="text" id="inputLabNo" placeholder="Lab No">
+                    </div>
+                  </div>
+                    <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email*</label>
                     <div class="controls">
                       <input type="text" id="inputEmail" placeholder="Email">
                     </div>
@@ -97,7 +115,7 @@
                   </div>
                   <div class="control-group">
                     <div class="controls">
-                      <button type="submit" class="btn" >Sign up</button>
+                      <button type="submit" class="btn"  onclick="validateForm()" >Sign up</button>
                     </div>
                     <p class="aligncenter margintop20">
                       Already have an account? <a href="#mySignin" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Sign in</a>
@@ -366,49 +384,49 @@ doctors & book appointment
                   <!-- Item Project and Filter Name -->
                   <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
                     <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The City" href="indexstyle/img/works/full/image-01-full.jpg">
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The City" href="indexstyle/img/works/full/a1.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
                     <!-- Thumb Image and Description -->
-                    <img src="indexstyle/img/works/thumbs/image-01.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+                    <img src="indexstyle/img/works/thumbs/a1.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
                   <!-- End Item Project -->
                   <!-- Item Project and Filter Name -->
                   <li class="item-thumbs span3 design" data-id="id-1" data-type="icon">
                     <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Office" href="img/works/full/image-02-full.jpg">
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Office" href="img/works/full/a2.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
                     <!-- Thumb Image and Description -->
-                    <img src="indexstyle/img/works/thumbs/image-02.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+                    <img src="indexstyle/img/works/thumbs/a2.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
                   <!-- End Item Project -->
                   <!-- Item Project and Filter Name -->
                   <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
                     <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="indexstyle/img/works/full/image-03-full.jpg">
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="indexstyle/img/works/full/a3.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
                     <!-- Thumb Image and Description -->
-                    <img src="indexstyle/img/works/thumbs/image-03.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+                    <img src="indexstyle/img/works/thumbs/a3.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
                   <!-- End Item Project -->
                   <!-- Item Project and Filter Name -->
                   <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
                     <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="indexstyle/img/works/full/image-04-full.jpg">
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="indexstyle/img/works/full/a4.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
                     <!-- Thumb Image and Description -->
-                    <img src="indexstyle/img/works/thumbs/image-04.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+                    <img src="indexstyle/img/works/thumbs/a4.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
                   <!-- End Item Project -->
                   <!-- Item Project and Filter Name -->
-                  <li class="item-thumbs span3 photography" data-id="id-4" data-type="web">
+                 <%-- <li class="item-thumbs span3 photography" data-id="id-4" data-type="web">
                     <!-- Fancybox - Gallery Enabled - Title - Full Image -->
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Sea" href="img/works/full/image-05-full.jpg">
 						<span class="overlay-img"></span>
@@ -450,7 +468,7 @@ doctors & book appointment
                     <!-- Thumb Image and Description -->
                     <img src="indexstyle/img/works/thumbs/image-08.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
+                 --%> <!-- End Item Project -->
                 </ul>
               </section>
             </div>
@@ -472,6 +490,7 @@ doctors & book appointment
               <li>
                 <a href="#">
 					<img src="indexstyle/img/dummies/clients/client1.png" class="client-logo" alt="" />
+                    Sri manjunatha dignosis center holenersipurs
 					</a>
               </li>
               <li>
@@ -653,6 +672,98 @@ doctors & book appointment
 
   <!-- Template Custom JavaScript File -->
   <script src="indexstyle/js/custom.js"></script>
+
+    <script>
+
+
+
+   function validateForm(e) {
+            var at = document.getElementById("inputEmail").value.indexOf("@");
+            var labname = document.getElementById("inputLabname").value;
+            var Mobile = document.getElementById("inputMobile").value;
+            var Labno = document.getElementById("inputLabNo").value;
+            var Email = document.getElementById("inputEmail").value;
+            var Password1 = document.getElementById("inputSignupPassword").value;
+            var Password2 = document.getElementById("inputSignupPassword2").value;
+            submitOK = "true";
+
+            if (labname == "") {
+                alert("PLEASE ENTER LABNAME NAME");
+                submitOK = "false";
+            }
+
+            if (isNaN(Mobile) || Mobile == "") {
+                alert("Please enter the Mobile No");
+                submitOK = "false";
+            }
+            if (Mobile.length != 10) {
+                alert("Mobile number should be 10 digits");
+                submitOK = "false";
+            }
+
+            if (Email == "") {
+                alert("Please eneter mail id");
+                submitOK = "false";
+            }
+            if (Password1 == "" || Password2 == "") {
+                alert("password should be entered");
+                submitOK = "false";
+            }
+            if (Password1 != Password2) {
+                alert("Password did not matched");
+                submitOK = "false";
+            }
+
+            if (at == -1) {
+                alert("Not a valid e-mail!");
+                submitOK = "false";
+            }
+
+            if (submitOK == "false") {
+
+                return false;
+            }
+            if (submitOK == "true") {
+                var org = {};
+                org.Org_name = labname;
+                org.Mobile_no = Mobile;
+                org.Reg_no = Labno;
+                org.Email = Email;
+                org.Password = Password1;
+                org.Password2 = Password2;
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'index.aspx/Orginformation',
+                    data: '{emp: ' + JSON.stringify(org) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (e) {
+                        alert("entered");
+                        //if (e.d == '0') {
+                            alert("Organization/Lab created successfully Please login using your MailID/Password");
+                           // $("#mySignin").addClass("modal styled hide fade in");
+                            $("#mySignin").css("display", "block");
+                           //// $("#mySignup").addClass("modal styled hide");
+                            $("#mySignup").css("display", "none");
+                            console.log(data);
+                        //}
+                    },
+                    error: function (err) {
+                        alert("notok");
+                        console.log(err);
+                    }
+                });
+
+
+
+            }
+
+
+
+            
+        }
+    </script>
   
 
 </body>
