@@ -221,6 +221,7 @@
     <Content Include="TestCreation.aspx" />
     <Content Include="Testtype.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin.aspx.cs">
@@ -305,6 +306,13 @@
       <DependentUpon>Testtype.aspx</DependentUpon>
     </Compile>
     <Compile Include="TesttypeDTO.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="indexstyle\font\customicon\Icons.eot" />
