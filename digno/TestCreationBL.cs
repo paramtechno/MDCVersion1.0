@@ -22,5 +22,20 @@ namespace digno
                
             }
         }
+
+
+
+        public DataTable Testbind(BL saveinfo)
+        {
+            try
+            {
+                return tst.testbind(saveinfo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+
+            }
+        }
     }
 }

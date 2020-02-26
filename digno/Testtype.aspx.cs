@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace digno
@@ -12,7 +13,7 @@ namespace digno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            gettesttype();
         }
 
         public void gettesttype()
@@ -28,33 +29,58 @@ namespace digno
 
             OrgBL bll = new OrgBL();
             ds = bll.gettesttype(objBE);
+            ViewState["TempTable"] = ds;
             Repeater1.DataSource = ds;
             Repeater1.DataBind();
             
         }
+        //protected void ItemCommand(object source, RepeaterCommandEventArgs e)
+        //{
+        //    DataTable TempTable = new DataTable();
+        //    if (e.CommandArgument != null)
+        //    {
+        //        if (e.CommandName.Equals("Edit"))
+        //        {
+        //            //int ID = Convert.ToInt64(e.CommandArgumet);
+        //            TempTable = (DataTable)ViewState["tmbTable"];
+        //            DataRow dr = TempTable.NewRow();
+        //            DataRow[] rows = TempTable.Select("ID =" + "'" + ID + "'");
+        //            foreach (DataRow r in rows)
+        //            {
+        //                ((HtmlInputText)inputorderby.FindControl("inputorderby")).Value. = r["NAME"];
+        //                inputorderby.Text = r["AGE"];
+        //                lbl.Text = r["ID"];
+        //            }
+        //        }
+        //    }
+        //}
 
         [System.Web.Services.WebMethod]
         public static Int32 SaveType(BL cat)
         {
+            Int32 status = 0;
+            try {
+                OrgBLO objBE = new OrgBLO();
+                BL objuser = new BL();
+                objBE.categoryname = cat.categoryname.ToUpper();
+                objBE.orderby = cat.orderby;
+                objuser = (BL)HttpContext.Current.Session["userinfo"];
+                objBE.Org_Id = objuser.Org_Id;
+                objBE.Branch_Id = objuser.Branch_Id;
+                objBE.Email = objuser.Id;
+                objBE.ERROR = 0;
+                if (objBE != null)
+                {
+                    OrgBL bl = new OrgBL();
+                     status = bl.savecategoryinfo(objBE);
 
-
-            OrgBLO objBE = new OrgBLO();
-            BL objuser = new BL();
-            objBE.categoryname = cat.categoryname;
-            objBE.orderby = cat.orderby;
-            
-            objuser = (BL)HttpContext.Current.Session["userinfo"];
-
-            objBE.Org_Id = objuser.Org_Id;
-            objBE.Branch_Id = objuser.Branch_Id;
-            objBE.Email = objuser.Id;
-            objBE.ERROR = 0;
-
-            OrgBL bl = new OrgBL();
-            Int32 status = bl.savecategoryinfo(objBE);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.Write(e);
+            }
             return status;
-
-
         }
 
 

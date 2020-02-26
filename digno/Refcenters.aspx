@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="Testtype.aspx.cs" Inherits="digno.Testtype" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="Refcenters.aspx.cs" Inherits="digno.Refcenters" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
- <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <section class="content">
+        <section class="content">
 
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">New Test Type</h3>
+          <h3 class="box-title">New Ref Center</h3>
 
           <%--<div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -24,16 +24,29 @@
             
                 <div class="col-md-2">
               <div class="form-group">
-                <label>Test Type</label>
-                 <input id="inputcategory" class="form-control input-sm" type="text" runat="server" placeholder="Test Type Name"/ required>
+                <label>Ref Center Name</label>
+                 <input id="inputRefname" class="form-control input-sm" type="text" placeholder="Ref Center Name"/>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group">
-                <label>Order TO Dispaly</label>
-                 <input  class="form-control input-sm" type="text"  runat="server" id="inputorderby" placeholder="Orderno"/ required>
+                <label>Ref Center Address</label>
+                 <input id="inputRefaddress" class="form-control input-sm" type="text" placeholder="Address"/>
               </div>
                     </div>
+                   <div class="col-md-2">
+              <div class="form-group">
+                <label>Ref Center Mobile Number</label>
+                 <input id="inputRefmobi" class="form-control input-sm" type="text" placeholder="Mobile Number"/>
+              </div>
+                    </div>
+                   <div class="col-md-2">
+              <div class="form-group">
+                <label>Ref Center Contact Person</label>
+                 <input id="inputRefperson" class="form-control input-sm" type="text" placeholder="Contact Person Name"/>
+              </div>
+                    </div>
+               
                   <div class="col-md-2">
               <div class="form-group" style="margin-top:23px">
                <button type="submit" class="btn btn-primary" onclick="validateForm(this)"> <i class="fa fa-save"></i> Save</button>
@@ -58,36 +71,41 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="ItemCommand">
+                <asp:Repeater ID="Repeater" runat="server">
                      <HeaderTemplate>
 
               <table id="example1" class="table table-bordered table-striped">
               
                     
-                <thead>
+                     <thead>
                 <tr>
-                  <th>No</th>
-                  <th>TestType</th>
-                  <th>order</th>                  
-                  <th>Edit</th>
-                    <th>Active Status</th>
+                  <th>Ref Center Name</th>
+                  <th>Address</th>
+                  <th>Mobil Number</th>                  
+                  <th>Contact Person</th>
+                  <th>Created Date</th>
+                    <th>Approve Status</th>
+                    <th>Edit</th>
+                    <th>Enable/Disable</th>
+                  
                 </tr>
                 </thead>
-                </HeaderTemplate>
+                 </HeaderTemplate>
             <ItemTemplate>
                 <tbody>
                 <tr>
-                  <td><%# Container.ItemIndex + 1 %></td>
-                  <td><%# Eval("Test_category_name") %> </td>
-                    <td><%# Eval("Order_by") %> </td>
-                          <td>
-                <i class="fa fa-edit"></i> <asp:ImageButton ID="lnkEdit" runat="server"
-                                    ImageUrl="~/Images/Admin/edit.png"   ToolTip="Edit"
-                                   CommandName="Edit" CommandArgument='<%#Eval("Category_id")%>'>
-                                  </asp:ImageButton>Edit
-              </td>   
-                    <td><i class="<%# Eval("Status").ToString() == "0" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>"></i> </td>      
+                  <td><%#Eval("RefCenter_name")%></td>
+                  <td><%#Eval("RefCenter_address")%> </td>
+                  <td><%#Eval("RefCenter_mobno")%> </td>
+                  <td><%#Eval("RefCenter_contact_person")%></td>
+                  <td><%#Eval("Created_date")%></td>
+                 
 
+                  <td><span class="label label-success">Approved</span></td>
+                  <td>
+                <i class="fa fa-edit"></i> Edit
+                  </td>   
+                    <td><i class="fa fa-fw fa-toggle-on"></i></td>      
                 </tr>
                 </tbody>
                   </ItemTemplate>
@@ -144,44 +162,49 @@
         })
         function validateForm(e) {
             
-            var categoryname = document.getElementById("inputcategory").value;
-            var orderby = document.getElementById("inputorderby").value;
+            var Refname = document.getElementById("inputRefname").value;
+            var Refaddress = document.getElementById("inputRefaddress").value;
+            var Refmobi = document.getElementById("inputRefmobi").value;
+            var Refperson = document.getElementById("inputRefperson").value;
+            
             submitOK = "true";
 
-            if (categoryname == "" && orderby == "") {
-                alert("PLEASE ENTER Category NAME");
+            if (Refname == "") {
+                alert("PLEASE ENTER RefCenter NAME");
                 submitOK = "false";
-                document.getElementById("inputcategory").focus();
             }
-            else if (orderby != "" && categoryname == "") {
-                alert("PLEASE ENTER CATEGORY NAME");
+
+            if (Refaddress == "") {
+                alert("Please enter the Address");
                 submitOK = "false";
-                document.getElementById("inputcategory").focus();
             }
-            else if (categoryname != "" && orderby == "") {
-                alert("PLEASE ENTER ORDERBY");
+
+            if (Refmobi.length != 10) {
+                alert("Please enter Correct mobile number");
                 submitOK = "false";
-                document.getElementById("inputorderby").focus();
             }
-            else if (isNaN(orderby))
-            {
-                alert("Please enter valid orderby");
+
+            if (Refperson == "") {
+                alert("Please enter the Person Name");
                 submitOK = "false";
-                document.getElementById("inputorderby").focus();
             }
+
+            
             if (submitOK == "false") {
 
                 return false;
             }
             if (submitOK == "true") {
                 var cat = {};
-                cat.categoryname = categoryname;
-                cat.orderby = orderby;
-            
-
+                cat.Refname = Refname;
+                cat.Refaddress = Refaddress;
+                cat.Refmobi = Refmobi;
+                cat.Refperson = Refperson;
+                
+          
                 $.ajax({
                     type: 'POST',
-                    url: 'Testtype.aspx/SaveType',
+                    url: 'Refcenters.aspx/saveRefCenter',
                     data: '{cat: ' + JSON.stringify(cat) + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -193,9 +216,15 @@
                         console.log(err);
                     }
                 });
-            }
-        }
 
+
+
+            }
+
+
+
+
+        }
             </script>
 
 </asp:Content>
