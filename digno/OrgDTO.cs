@@ -48,9 +48,8 @@ namespace digno
             cmd.Parameters.AddWithValue("@Org_id", cat.Org_Id);
             cmd.Parameters.AddWithValue("@Branch_id", cat.Branch_Id);
             cmd.Parameters.AddWithValue("@User_id", cat.Email);
-            
-            
-
+            if(cat.isupdate==1)
+                cmd.Parameters.AddWithValue("@Category_id", cat.prvsorderid);
             cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
             cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
 

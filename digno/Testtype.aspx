@@ -2,13 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
-
+     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="content">
 
       <!-- SELECT2 EXAMPLE -->
-      <div class="box box-default">
+      <div class="box box-default" style="margin-top:12px">
         <div class="box-header with-border">
           <h3 class="box-title">New Test Type</h3>
 
@@ -25,21 +25,20 @@
                 <div class="col-md-2">
               <div class="form-group">
                 <label>Test Type</label>
-                 <input id="inputcategory" class="form-control input-sm" type="text" runat="server" placeholder="Test Type Name"/ required>
+                  <input  type="hidden" value="0" id="isupdate" runat="server" />
+                  <input  type="hidden" value="0" id="previousid" runat="server" />
+                 <input id="inputcategory" class="form-control input-sm" type="text" placeholder="Test Type Name"/ required>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group">
                 <label>Order TO Dispaly</label>
-                 <input  class="form-control input-sm" type="text"  runat="server" id="inputorderby" placeholder="Orderno"/ required>
+                 <input  class="form-control input-sm" type="text"  id="inputorderby" placeholder="Orderno"/ required>
               </div>
                     </div>
                   <div class="col-md-2">
               <div class="form-group" style="margin-top:23px">
-               <button type="submit" class="btn btn-primary" onclick="validateForm(this)"> <i class="fa fa-save"></i> Save</button>
-                  
-               
-              
+               <button type="submit" class="btn btn-primary" onclick="validateForm(this)"> <i class="fa fa-save"></i> Save</button>                                         
               </div>
                         </div>
                         </div>
@@ -58,7 +57,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="ItemCommand">
+                <asp:Repeater ID="Repeater1" runat="server">
                      <HeaderTemplate>
 
               <table id="example1" class="table table-bordered table-striped">
@@ -69,27 +68,24 @@
                   <th>No</th>
                   <th>TestType</th>
                   <th>order</th>                  
-                  <th>Edit</th>
-                    <th>Active Status</th>
+                  <th style="text-align: center; vertical-align: middle;">Edit</th>
+                    <th style="text-align: center; vertical-align: middle;">Active Status</th>
                 </tr>
                 </thead>
                 </HeaderTemplate>
             <ItemTemplate>
-                <tbody>
+                
                 <tr>
                   <td><%# Container.ItemIndex + 1 %></td>
                   <td><%# Eval("Test_category_name") %> </td>
                     <td><%# Eval("Order_by") %> </td>
-                          <td>
-                <i class="fa fa-edit"></i> <asp:ImageButton ID="lnkEdit" runat="server"
-                                    ImageUrl="~/Images/Admin/edit.png"   ToolTip="Edit"
-                                   CommandName="Edit" CommandArgument='<%#Eval("Category_id")%>'>
-                                  </asp:ImageButton>Edit
+                          <td style="text-align: center; vertical-align: middle;">
+                <div class="fa fa-edit" style="cursor:pointer" tstname="<%# Eval("Test_category_name") %>" orderby="<%# Eval("Order_by")%>" Category_id="<%# Eval("Category_id") %>"onclick ="javascript: return edit(this)"></div>
               </td>   
-                    <td><i class="<%# Eval("Status").ToString() == "0" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>"></i> </td>      
+                    <td style="text-align: center; vertical-align: middle;"><i class="<%# Eval("Status").ToString() == "0" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>"></i> </td>      
 
                 </tr>
-                </tbody>
+                
                   </ItemTemplate>
                 <%--<tfoot>
                 <tr>
@@ -129,15 +125,36 @@
         
       
         </section>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+       
     <script type="text/javascript">
+        $(document).ready(function () {
 
 
-
+            $(function () {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+        });
+        function edit(obj) {
+            $('[id$=inputcategory]').val($(obj).attr("tstname"));
+            $('[id$=inputorderby]').val($(obj).attr("orderby"));
+            $('[id$=previousid]').val($(obj).attr("Category_id"));
+            $('[id$=isupdate]').val(1);
+            document.getElementById("inputcategory").focus();
+        }
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()
@@ -177,12 +194,12 @@
                 var cat = {};
                 cat.categoryname = categoryname;
                 cat.orderby = orderby;
-            
-
+                var isupate = $('[id$=isupdate]').val();
+                var previousid = $('[id$=previousid]').val();
                 $.ajax({
                     type: 'POST',
                     url: 'Testtype.aspx/SaveType',
-                    data: '{cat: ' + JSON.stringify(cat) + '}',
+                    data: '{cat: ' + JSON.stringify(cat) + ',isupdate:' + isupate + ',prevsid:' + previousid + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (e) {
@@ -193,6 +210,7 @@
                         console.log(err);
                     }
                 });
+                $('[id$=isupdate]').val(0);
             }
         }
 

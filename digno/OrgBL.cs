@@ -42,7 +42,7 @@ namespace digno
             {
                 return OBJ.savecategoryinfo(saveinfo);
             }
-            catch
+            catch(Exception e)
             {
                 throw;
             }

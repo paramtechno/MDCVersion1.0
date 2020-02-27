@@ -34,29 +34,8 @@ namespace digno
             Repeater1.DataBind();
             
         }
-        //protected void ItemCommand(object source, RepeaterCommandEventArgs e)
-        //{
-        //    DataTable TempTable = new DataTable();
-        //    if (e.CommandArgument != null)
-        //    {
-        //        if (e.CommandName.Equals("Edit"))
-        //        {
-        //            //int ID = Convert.ToInt64(e.CommandArgumet);
-        //            TempTable = (DataTable)ViewState["tmbTable"];
-        //            DataRow dr = TempTable.NewRow();
-        //            DataRow[] rows = TempTable.Select("ID =" + "'" + ID + "'");
-        //            foreach (DataRow r in rows)
-        //            {
-        //                ((HtmlInputText)inputorderby.FindControl("inputorderby")).Value. = r["NAME"];
-        //                inputorderby.Text = r["AGE"];
-        //                lbl.Text = r["ID"];
-        //            }
-        //        }
-        //    }
-        //}
-
         [System.Web.Services.WebMethod]
-        public static Int32 SaveType(BL cat)
+        public static Int32 SaveType(BL cat,int isupdate,int prevsid)
         {
             Int32 status = 0;
             try {
@@ -69,6 +48,11 @@ namespace digno
                 objBE.Branch_Id = objuser.Branch_Id;
                 objBE.Email = objuser.Id;
                 objBE.ERROR = 0;
+                if (isupdate == 1)
+                {
+                    objBE.isupdate = isupdate;
+                    objBE.prvsorderid = prevsid;
+                }
                 if (objBE != null)
                 {
                     OrgBL bl = new OrgBL();

@@ -20,7 +20,18 @@ namespace digno
         private int _orderby;
         private string _Branch_Id;
         private int _Org_Id;
-
+        private int _isupdate;
+        public int isupdate
+        {
+            get { return _isupdate; }
+            set { _isupdate = value; }
+        }
+        private int _prvsorderid;
+        public int prvsorderid
+        {
+            get { return _prvsorderid; }
+            set { _prvsorderid = value; }
+        }
         public string Branch_Id
         {
             get { return _Branch_Id; }
