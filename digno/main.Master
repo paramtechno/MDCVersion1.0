@@ -366,7 +366,7 @@
         </li>--%>
 
             <li id="testResultId" runat="server">
-          <a href="AddTestResult.aspx" >
+          <a href="GetTestPage.aspx" >
             <i class="fa fa-bars"></i> <span>LAB Test Result</span>
            </a>
         </li>
