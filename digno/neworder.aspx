@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
+     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -24,8 +25,8 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Initial</label>
-                  <select id="Select3" class="form-control select2 ">
-                      <option selected="selected">Select Test</option>
+                  <select id="IDini" class="form-control select2 ">
+                      <option selected="selected">Select Prifix</option>
                   <option>Mr.</option>
                   <option>Miss</option>
                                     </select>
@@ -34,22 +35,22 @@
                 <div class="col-md-2">
               <div class="form-group">
                 <label>Name</label>
-                 <input class="form-control input-sm" type="text" placeholder=""/>
+                 <input class="form-control input-sm" type="text" id="IDname" placeholder=""/>
               </div>
                     </div>
                     <div class="col-md-2">
               <div class="form-group">
                 <label>Mobile</label>
-                <input class="form-control input-sm" type="text" placeholder=".input-sm"/>
+                <input class="form-control input-sm" type="text" id="IDmobile" placeholder=".input-sm"/>
               </div>
                         </div>
                   <div class="col-md-2">
               <div class="form-group">
                 <label>Gender</label>
-                <select id="Select4" class="form-control select2">
+                <select id="IDgender" class="form-control select2">
                     <option selected="selected">Male</option>
                   <option>Female</option>
-                  <option></option>
+                  <option>Other</option>
                                     </select>
               </div>
                         </div>
@@ -58,7 +59,7 @@
               
               <div class="form-group">
                 <label>Email</label>
-                <input class="form-control input-sm" type="text" placeholder=".input-sm"/>
+                <input class="form-control input-sm" type="text" id="IDemail" placeholder=".input-sm"/>
               </div>
               </div>
                    
@@ -67,8 +68,8 @@
                         <div class="col-md-2">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Age</label>
-                  <input type="Age" class="form-control" id="age" placeholder="Age" />
-                     <select id="Select2" class="form-control select2 ">
+                  <input type="Age" class="form-control" id="IDage" placeholder="Age" />
+                     <select id="IDagetype" class="form-control select2 ">
                       <option selected="selected">Select type</option>
                   <option>Month</option>
                   <option>Year</option>
@@ -79,10 +80,8 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Ref Dr</label>
-                  <select id="Select2" class="form-control select2 ">
-                      <option selected="selected">Select Dr.</option>
-                  <option>Mr.</option>
-                  <option>Miss</option>
+                  <select id="IDDr" class="form-control select2 " >
+                      
                                     </select>
                   <i class="fa fa-fw fa-plus-square"></i> ADD Dr.
               </div>
@@ -90,10 +89,8 @@
                 <div class="col-md-2">
               <div class="form-group">
                 <label>Ref Center</label>
-                  <select id="Select1" class="form-control select2 ">
-                      <option selected="selected">Select Dr.</option>
-                  <option>Mr.</option>
-                  <option>Miss</option>
+                  <select id="IDref" class="form-control select2 ">
+                      
                                     </select>
                   <i class="fa fa-fw fa-plus-square"></i> ADD Reffrence Center
               </div>
@@ -101,7 +98,7 @@
                     <div class="col-md-4">
               <div class="form-group">
                <div class="form-group" style="margin-top:23px">
-               <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#modal-default" > <i class="fa fa-save"></i> Save</button>
+               <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#modal-default" onclick="validateForm(this);"> <i class="fa fa-save"></i> Save</button>
                   
                 <button type="submit" class="btn btn-danger"> <i class="fa fa-save"></i> Cancel</button>
               
@@ -118,11 +115,77 @@
             </div>
             
             
+
+            
             
             <!-- /.col -->
             
             <!-- /.col -->
           </div>
+          <div class="row">
+        <div class="col-xs-12">
+          
+            
+
+          <div class="box">
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+                <%--<asp:Repeater ID="Repeater1" runat="server">
+                     <HeaderTemplate>--%>
+
+              <table id="example1" class="table table-bordered table-striped">
+              
+                    
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>TestType</th>
+                  <th>order</th>                  
+                  <th style="text-align: center; vertical-align: middle;">Edit</th>
+                    <th style="text-align: center; vertical-align: middle;">Active Status</th>
+                </tr>
+                </thead>
+               <%-- </HeaderTemplate>
+            <ItemTemplate>
+                --%>
+                <tr>
+                  <td>shd</td>
+                  <td>dhdsah </td>
+                    <td>shdsa</td>
+                          <td style="text-align: center; vertical-align: middle;">
+                <div class="fa fa-edit" style="cursor:pointer" tstname="<%# Eval("Test_category_name") %>" orderby="<%# Eval("Order_by")%>" Category_id="<%# Eval("Category_id") %>"onclick ="javascript: return edit(this)"></div>
+              </td>   
+                    <td style="text-align: center; vertical-align: middle;"><i class="<%# Eval("Status").ToString() == "0" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>"></i> </td>      
+
+                </tr>
+                
+                 <%-- </ItemTemplate>--%>
+                <%--<tfoot>
+                <tr>
+                  <th>No</th>
+                  <th>Type</th>
+                  <th>Regno</th>
+                  <th>Ref Dr.</th>
+                  <th>Ref Center</th>
+                    <th>Bill No</th>
+                    <th>Bill Amt</th>
+                    <th>Bill Print</th>
+                    <th>Report Print</th>
+                </tr>
+                </tfoot>--%>
+             <%-- <FooterTemplate>--%>
+        </table>
+<%--    </FooterTemplate>
+                    </asp:Repeater>--%>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
@@ -149,19 +212,156 @@
         
       
         </section>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+       
+    <script>
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "neworder.aspx/GetDoctor",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    var ddldoctor1 = $("[id*=IDDr]");
+
+
+                    ddldoctor1.empty();
+                    ddldoctor1.append($('<option/>').val('0').text('Select'));
+                    $.each(r.d, function () {
+                        ddldoctor1.append($('<option/>').val(this['Value']).text(this['Text']));
+
+                    })
+                }
+            });
+        });
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "neworder.aspx/GetRefcenter",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    var ddldoctor1 = $("[id*=IDref]");
+
+
+                    ddldoctor1.empty();
+                    ddldoctor1.append($('<option/>').val('0').text('Select'));
+                    $.each(r.d, function () {
+                        ddldoctor1.append($('<option/>').val(this['Value']).text(this['Text']));
+
+                    })
+                }
+            });
+        });
+
+       </script>
     <script type="text/javascript">
        
+        $(document).ready(function () {
 
+
+            $(function () {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+        });
 
             $(function () {
                 //Initialize Select2 Elements
                 $('.select2').select2()
             })
+
+
+            function validateForm(e) {
+
+                var init = document.getElementById("IDini").value;
+                var name = document.getElementById("IDname").value;
+                var sex = document.getElementById("IDgender").value;
+                var mobile = document.getElementById("IDmobile").value;
+                var refdr = document.getElementById("IDDr").value;
+                var refcenter = document.getElementById("IDref").value;
+                var age = document.getElementById("IDage").value;
+                var agetype = document.getElementById("IDagetype").value;
+                var email = document.getElementById("IDemail").value;
+                
+                submitOK = "true";
+
+                if (name == "") {
+                    alert("PLEASE ENTER requred filelds");
+                    submitOK = "false";
+                    document.getElementById("IDname").focus();
+                }
+               
+                else if (sex == "") {
+                    alert("PLEASE ENTER requred filelds");
+                    submitOK = "false";
+                    document.getElementById("IDgender").focus();
+                }
+                else if (mobile == "") {
+                    alert("PLEASE ENTER requred filelds");
+                    submitOK = "false";
+                    document.getElementById("IDmobile").focus();
+                }
+                else if (age == "") {
+                    alert("PLEASE ENTER requred filelds");
+                    submitOK = "false";
+                    document.getElementById("IDage").focus();
+                }
+                else if (isNaN(age)) {
+                    alert("Please enter valid age");
+                    submitOK = "false";
+                    document.getElementById("IDage").focus();
+                }
+                if (submitOK == "false") {
+
+                    return false;
+                }
+                if (submitOK == "true") {
+                    var cat = {};
+                    
+
+                    cat.initial = init;
+                    cat.name = name;
+                    cat.gender = sex;
+                    cat.mobile = mobile;
+                    cat.refdr = refdr;
+                    cat.refcenter = refcenter;
+                    cat.age = age;
+                    cat.agetype=agetype
+                    cat.email = email;
+                  //  var isupate = $('[id$=isupdate]').val();
+                   // var previousid = $('[id$=previousid]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: 'neworder.aspx/Saveneworder',
+                        data: '{cat: ' + JSON.stringify(cat) + '}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                            alert("test type");
+                        },
+                        error: function (err) {
+                            alert("notok");
+                            console.log(err);
+                        }
+                    });
+                   // $('[id$=isupdate]').val(0);
+                }
+            }
            
             </script>
    </asp:Content>
