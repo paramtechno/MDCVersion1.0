@@ -38,18 +38,20 @@ namespace digno
         }
 
 
-        public DataTable testbind(BL userinfo)
+        public DataSet subtestbind(BL userinfo)
         {
-            DataTable ds = new DataTable();
+            DataSet ds = new DataSet();
             try
             {
                 DataTable dt = new DataTable();
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
 
-                SqlCommand cmd = new SqlCommand("hunmdc.sp_SelectTest", con);
+                SqlCommand cmd = new SqlCommand("sp_gettestinfo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Org_id", userinfo.Org_Id);
                 cmd.Parameters.AddWithValue("@Branch_id", userinfo.Branch_Id);
+                cmd.Parameters.AddWithValue("@User_id", userinfo.Id);
+                cmd.Parameters.AddWithValue("@Category_id", 8);
                 //cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
                 //cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
                 SqlDataAdapter da = new SqlDataAdapter();

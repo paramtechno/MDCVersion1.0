@@ -12,6 +12,7 @@ namespace digno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            getsubtest();
             BindTestCategory();
         }
 
@@ -41,5 +42,18 @@ namespace digno
                 Console.Write(e);
             }
         }
+
+        public void getsubtest()
+        {
+            DataSet ds = new DataSet();
+            BL objsess = new BL();
+            TestCreationBL bl = new TestCreationBL();
+            objsess = (BL)HttpContext.Current.Session["Userinfo"];
+            ds = bl.subtestbind(objsess);
+            subtestrept.DataSource = ds;
+            subtestrept.DataBind();
+
+        }
     }
+
 }

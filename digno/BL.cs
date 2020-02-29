@@ -15,6 +15,13 @@ namespace digno
         private int _orderby;
         private string _Branch_Id;
         private string _Type;
+        private int _Status;
+
+        public int Status
+        {
+            get { return _Status; }
+            set { _Status = value; }
+        }
 
         public string categoryname
         {

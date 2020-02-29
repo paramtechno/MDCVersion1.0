@@ -25,7 +25,7 @@
                 <div class="col-md-2">
               <div class="form-group">
                 <label>Test Type</label>
-                  <input  type="hidden" value="0" id="isupdate" runat="server" />
+                  <input  type="hidden" value="0" id="Actions" runat="server" />
                   <input  type="hidden" value="0" id="previousid" runat="server" />
                  <input id="inputcategory" class="form-control input-sm" type="text" placeholder="Test Type Name"/ required>
               </div>
@@ -38,7 +38,7 @@
                     </div>
                   <div class="col-md-2">
               <div class="form-group" style="margin-top:23px">
-               <button type="submit" class="btn btn-primary" onclick="validateForm(this)"> <i class="fa fa-save"></i> Save</button>                                         
+               <button type="submit" id="savupdate"class="btn btn-primary"onclick="validateForm(this)"> <i class="fa fa-save"> </i> Save</button>                                         
               </div>
                         </div>
                         </div>
@@ -82,8 +82,7 @@
                           <td style="text-align: center; vertical-align: middle;">
                 <div class="fa fa-edit" style="cursor:pointer" tstname="<%# Eval("Test_category_name") %>" orderby="<%# Eval("Order_by")%>" Category_id="<%# Eval("Category_id") %>"onclick ="javascript: return edit(this)"></div>
               </td>   
-                    <td style="text-align: center; vertical-align: middle;"><i class="<%# Eval("Status").ToString() == "0" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>"></i> </td>      
-
+                    <td style="text-align: center; cursor:pointer;vertical-align: middle;"><i status="<%# Convert.ToInt32(Eval("Status")) %>" Category_id="<%# Eval("Category_id") %>" onclick="javascript: return ACTDEC(this)" class='<%# Eval("Status").ToString()  == "True" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>'> </i> </td>
                 </tr>
                 
                   </ItemTemplate>
@@ -152,9 +151,39 @@
             $('[id$=inputcategory]').val($(obj).attr("tstname"));
             $('[id$=inputorderby]').val($(obj).attr("orderby"));
             $('[id$=previousid]').val($(obj).attr("Category_id"));
-            $('[id$=isupdate]').val(1);
+            $('[id$=Actions]').val(1);
+            $("#savupdate").html('<i class="fa fa-save"> </i> Update');
             document.getElementById("inputcategory").focus();
         }
+    function  ACTDEC(ACTobj)
+        {
+        var cat = {};
+        if ($(ACTobj).attr("status") == "0")
+            cat.status = 1;
+        else
+            cat.status = 0;
+        $.ajax({
+            type: 'POST',
+            url: 'Testtype.aspx/SaveType',
+            data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + 2 + ',prevsid:' + $(ACTobj).attr("Category_id") + '}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (e) {
+                
+                window.location.reload();
+
+               if( $(ACTobj).attr("status") =='0')
+                   alert("Dectivated");
+                else
+                   alert("Activated");
+            },
+            error: function (err) {
+                alert("notok");
+                console.log(err);
+            }
+        });
+        }
+
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()
@@ -194,23 +223,23 @@
                 var cat = {};
                 cat.categoryname = categoryname;
                 cat.orderby = orderby;
-                var isupate = $('[id$=isupdate]').val();
+                var Actions = $('[id$=Actions]').val();
                 var previousid = $('[id$=previousid]').val();
                 $.ajax({
                     type: 'POST',
                     url: 'Testtype.aspx/SaveType',
-                    data: '{cat: ' + JSON.stringify(cat) + ',isupdate:' + isupate + ',prevsid:' + previousid + '}',
+                    data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + Actions + ',prevsid:' + previousid + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (e) {
-                        alert("test type");
+                        alert("Record effected");
                     },
                     error: function (err) {
                         alert("notok");
                         console.log(err);
                     }
                 });
-                $('[id$=isupdate]').val(0);
+                $('[id$=Actions]').val(0);
             }
         }
 

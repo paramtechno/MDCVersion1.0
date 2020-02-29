@@ -35,24 +35,30 @@ namespace digno
             
         }
         [System.Web.Services.WebMethod]
-        public static Int32 SaveType(BL cat,int isupdate,int prevsid)
+        public static string SaveType(BL cat,int Actions, int prevsid)
         {
-            Int32 status = 0;
+            string status = string.Empty;
             try {
                 OrgBLO objBE = new OrgBLO();
                 BL objuser = new BL();
-                objBE.categoryname = cat.categoryname.ToUpper();
-                objBE.orderby = cat.orderby;
+                if (Actions != 2)
+                {
+                    objBE.categoryname = cat.categoryname.ToUpper();
+                    objBE.orderby = cat.orderby;
+                }
                 objuser = (BL)HttpContext.Current.Session["userinfo"];
                 objBE.Org_Id = objuser.Org_Id;
                 objBE.Branch_Id = objuser.Branch_Id;
                 objBE.Email = objuser.Id;
                 objBE.ERROR = 0;
-                if (isupdate == 1)
-                {
-                    objBE.isupdate = isupdate;
+                objBE.Actions = Actions;
+
+                if (Actions == 1 || Actions==2)
                     objBE.prvsorderid = prevsid;
-                }
+
+                if (Actions == 2)
+                    objBE.activestatus = cat.Status;
+
                 if (objBE != null)
                 {
                     OrgBL bl = new OrgBL();

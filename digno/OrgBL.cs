@@ -36,7 +36,7 @@ namespace digno
             }
         }
 
-        public Int32 savecategoryinfo(OrgBLO saveinfo)
+        public string savecategoryinfo(OrgBLO saveinfo)
         {
             try
             {

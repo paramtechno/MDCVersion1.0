@@ -25,11 +25,11 @@ namespace digno
 
 
 
-        public DataTable Testbind(BL saveinfo)
+        public DataSet subtestbind(BL saveinfo)
         {
             try
             {
-                return tst.testbind(saveinfo);
+                return tst.subtestbind(saveinfo);
             }
             catch (Exception e)
             {

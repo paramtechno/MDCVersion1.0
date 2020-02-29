@@ -20,11 +20,11 @@ namespace digno
         private int _orderby;
         private string _Branch_Id;
         private int _Org_Id;
-        private int _isupdate;
-        public int isupdate
+        private int _Actions;
+        public int Actions
         {
-            get { return _isupdate; }
-            set { _isupdate = value; }
+            get { return _Actions; }
+            set { _Actions = value; }
         }
         private int _prvsorderid;
         public int prvsorderid
@@ -68,7 +68,12 @@ namespace digno
             get { return _Status; }
             set { _Status = value; }
         }
-
+        private int _activestatus;
+        public int activestatus
+        {
+            get { return _activestatus; }
+            set { _activestatus = value; }
+        }
         public string Email
         {
             get { return _Email; }

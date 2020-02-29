@@ -13,13 +13,13 @@ namespace digno {
     public partial class Testtype {
         
         /// <summary>
-        /// isupdate control.
+        /// Actions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden isupdate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden Actions;
         
         /// <summary>
         /// previousid control.
