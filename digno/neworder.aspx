@@ -27,8 +27,10 @@
                 <label>Initial</label>
                   <select id="IDini" class="form-control select2 ">
                       <option selected="selected">Select Prifix</option>
-                  <option>Mr.</option>
-                  <option>Miss</option>
+                 <option value="Ms"> Ms </option> 
+    <option value="Miss"> Miss </option> 
+    <option value="Mrs"> Mrs </option> 
+    <option value="Mr"> Mr </option> 
                                     </select>
               </div>
                 </div>
@@ -70,7 +72,7 @@
                   <label for="exampleInputPassword1">Age</label>
                   <input type="Age" class="form-control" id="IDage" placeholder="Age" />
                      <select id="IDagetype" class="form-control select2 ">
-                      <option selected="selected">Select type</option>
+                      <option selected="selected">Year</option>
                   <option>Month</option>
                   <option>Year</option>
                           <option>Day's</option>
@@ -131,8 +133,8 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-                <%--<asp:Repeater ID="Repeater1" runat="server">
-                     <HeaderTemplate>--%>
+                <asp:Repeater ID="Repeater1" runat="server">
+                     <HeaderTemplate>
 
               <table id="example1" class="table table-bordered table-striped">
               
@@ -140,27 +142,33 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>TestType</th>
-                  <th>order</th>                  
+                  <th>Patient Details</th>
+                   
+                  <th>Mobile</th> 
+                     <th>Ref Dr</th>                  
                   <th style="text-align: center; vertical-align: middle;">Edit</th>
                     <th style="text-align: center; vertical-align: middle;">Active Status</th>
                 </tr>
                 </thead>
-               <%-- </HeaderTemplate>
+                </HeaderTemplate>
             <ItemTemplate>
-                --%>
+                
                 <tr>
-                  <td>shd</td>
-                  <td>dhdsah </td>
-                    <td>shdsa</td>
+                  <td>0</td>
+                  <td> Name:<b> <%# Eval("Patient_name") %></b><br />Patient Id: <b>
+                      <%# Eval("Patient_id") %></b><br />Age: <b><%# Eval("age") %> <%# Eval("Age_type") %><b>/<i class="<%# Eval("sex").ToString().Trim() == "Male" ? " fa fa-fw fa-male" : " fa fa-fw fa-female" %>"></i></td>
+                 
+                    <td><%# Eval("Mobile") %> </td>
+                    <td><%# Eval("Ref_DR") %></td>
+                   
                           <td style="text-align: center; vertical-align: middle;">
-                <div class="fa fa-edit" style="cursor:pointer" tstname="<%# Eval("Test_category_name") %>" orderby="<%# Eval("Order_by")%>" Category_id="<%# Eval("Category_id") %>"onclick ="javascript: return edit(this)"></div>
+                <div class="fa fa-edit" style="cursor:pointer" tstname="" orderby="" Category_id=""onclick ="javascript: return edit(this)"></div>
               </td>   
                     <td style="text-align: center; vertical-align: middle;"><i class="<%# Eval("Status").ToString() == "0" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>"></i> </td>      
 
                 </tr>
                 
-                 <%-- </ItemTemplate>--%>
+                 </ItemTemplate>
                 <%--<tfoot>
                 <tr>
                   <th>No</th>
@@ -174,10 +182,10 @@
                     <th>Report Print</th>
                 </tr>
                 </tfoot>--%>
-             <%-- <FooterTemplate>--%>
+             <FooterTemplate>
         </table>
-<%--    </FooterTemplate>
-                    </asp:Repeater>--%>
+   </FooterTemplate>
+                    </asp:Repeater>
 
             </div>
             <!-- /.box-body -->
@@ -189,7 +197,7 @@
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
-         <div class="modal fade" id="modal-default">
+         <div class="modal fade" id="modal-default" >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">

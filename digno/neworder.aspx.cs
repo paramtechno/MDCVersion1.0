@@ -12,8 +12,30 @@ namespace digno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GetPatientinfo();
+        }
+
+        public void GetPatientinfo()
+        {
+            DataSet ds = new DataSet();
+            neworderBLO bl = new neworderBLO();
+            neworderBLO objBE = new neworderBLO();
+            BL objuser = new BL();
+            objuser = (BL)HttpContext.Current.Session["userinfo"];
+            objBE.Org_Id = objuser.Org_Id;
+            objBE.Branch_Id = objuser.Branch_Id;
+            objBE.Uemail = objuser.Id;
+
+            neworderBL bll = new neworderBL();
+            ds = bll.GetPatientinfo(objBE);
+            ViewState["TempTable"] = ds;
+            Repeater1.DataSource = ds;
+            Repeater1.DataBind();
 
         }
+
+
+
 
         [System.Web.Services.WebMethod]
         public static List<ListItem> GetDoctor()
