@@ -110,7 +110,11 @@ namespace digno
                 {
                     neworderBL bl = new neworderBL();
                     DataTable dt = new DataTable();
-                      dt  = bl.saveneworder(objBE);
+                    DataSet ds = new DataSet();
+                    dt  = bl.saveneworder(objBE);
+                    ds.Tables.Add(dt);
+                    var Patient_id = ds.Tables[0].Rows[0][0].ToString();
+                    var Patient_name = ds.Tables[0].Rows[0][1].ToString();
 
                 }
             }

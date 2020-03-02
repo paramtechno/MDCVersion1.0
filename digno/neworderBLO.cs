@@ -9,6 +9,9 @@ namespace digno
     {
 
         public string initial { get; set; }
+        public string Patient_id { get; set; }
+        public string Patient_name { get; set; }
+
         private string _name;
         private Int64 _mobile;
         private string _email;

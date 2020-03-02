@@ -100,7 +100,7 @@
                     <div class="col-md-4">
               <div class="form-group">
                <div class="form-group" style="margin-top:23px">
-               <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#modal-default" onclick="validateForm(this);"> <i class="fa fa-save"></i> Save</button>
+               <button type="button"class="btn btn-primary" onclick="validateForm(this);"> <i class="fa fa-save"></i> Save</button>
                   
                 <button type="submit" class="btn btn-danger"> <i class="fa fa-save"></i> Cancel</button>
               
@@ -203,10 +203,12 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Default Modal</h4>
+                <h4 class="modal-title">Successfully Registered</h4>
               </div>
               <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <!--<p>One fine body&hellip;</p>-->
+                  <label>Patient Id:<%# Eval("Patient_id") %></label>
+                  <label>Patient Name:<%# Eval("Patient_name") %></label>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -360,7 +362,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (e) {
-                            alert("test type");
+                            $('#modal-default').modal('show');
                         },
                         error: function (err) {
                             alert("notok");

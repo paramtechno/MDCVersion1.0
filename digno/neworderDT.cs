@@ -41,13 +41,13 @@ namespace digno
                 cmd.Parameters.AddWithValue("@Branch_id", userinfo.Branch_Id);
                 cmd.Parameters.AddWithValue("@User_id", userinfo.Uemail);
          
-                cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
-                cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
-                //  SqlDataAdapter da = new SqlDataAdapter();
+                //cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
+               // cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
+                  SqlDataAdapter da = new SqlDataAdapter();
                 con.Open();
-                SqlDataReader sdr = cmd.ExecuteReader();
-               // da = new SqlDataAdapter(cmd);
-              //  da.Fill(ds);
+                //SqlDataReader sdr = cmd.ExecuteReader();
+                da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
                 con.Close();
                 return ds;
             }
