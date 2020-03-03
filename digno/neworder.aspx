@@ -207,12 +207,13 @@
               </div>
               <div class="modal-body">
                 <!--<p>One fine body&hellip;</p>-->
-                  <label>Patient Id:<%# Eval("Patient_id") %></label>
-                  <label>Patient Name:<%# Eval("Patient_name") %></label>
+                  <b>Patient Id:</b> <label id="pid"></label><br />
+                  <b>Patient Name:</b> <label id="pn"></label>
+                  
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Take Patient Tests</button>
+                <button type="button" class="btn btn-primary" onclick="redirect(this)">Take Patient Tests</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -295,7 +296,10 @@
                 $('.select2').select2()
             })
 
-
+            function redirect(e)
+            {
+                window.location.href = "gettestpage.aspx";
+            }
             function validateForm(e) {
 
                 var init = document.getElementById("IDini").value;
@@ -363,6 +367,10 @@
                         dataType: "json",
                         success: function (e) {
                             $('#modal-default').modal('show');
+                            document.getElementById("pid").innerHTML = "<%= HttpContext.Current.Session["Patient_id"].ToString() %>";
+                            document.getElementById("pn").innerHTML = "<%= HttpContext.Current.Session["Patient_name"].ToString() %>";
+                            
+                            
                         },
                         error: function (err) {
                             alert("notok");
