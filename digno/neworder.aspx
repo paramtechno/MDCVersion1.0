@@ -367,8 +367,10 @@
                         dataType: "json",
                         success: function (e) {
                             $('#modal-default').modal('show');
-                            document.getElementById("pid").innerHTML = "<%= HttpContext.Current.Session["Patient_id"].ToString() %>";
-                            document.getElementById("pn").innerHTML = "<%= HttpContext.Current.Session["Patient_name"].ToString() %>";
+                            var pid = "<%= HttpContext.Current.Session["Patient_id"] %>";
+                            var pn = "<%= HttpContext.Current.Session["Patient_name"] %>";
+                            document.getElementById("pid").innerHTML = pid;
+                            document.getElementById("pn").innerHTML = pn;
                             
                             
                         },
