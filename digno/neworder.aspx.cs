@@ -115,8 +115,8 @@ namespace digno
                     DataSet ds = new DataSet();
                     dt  = bl.saveneworder(objBE);
                     ds.Tables.Add(dt);
-                    //HttpContext.Current.Session["Patient_id"] = null;
-                    //HttpContext.Current.Session["Patient_name"] = null;
+                    HttpContext.Current.Session["Patient_id"] = null;
+                    HttpContext.Current.Session["Patient_name"] = null;
                     HttpContext.Current.Session["Patient_id"] = ds.Tables[0].Rows[0][0].ToString();
                     HttpContext.Current.Session["Patient_name"] = ds.Tables[0].Rows[0][1].ToString();
 
