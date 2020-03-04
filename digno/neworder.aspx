@@ -298,7 +298,7 @@
 
             function redirect(e)
             {
-                window.location.href = "gettestpage.aspx";
+                window.location.href = "GetTestPage.aspx";
             }
             function validateForm(e) {
 
@@ -367,11 +367,10 @@
                         dataType: "json",
                         success: function (e) {
                             $('#modal-default').modal('show');
-                            var pid = "<%= HttpContext.Current.Session["Patient_id"] %>";
-                            var pn = "<%= HttpContext.Current.Session["Patient_name"] %>";
+                         var pid   = "<%= HttpContext.Current.Session["Patient_name"] %>";
+                          var pname=  "<%= HttpContext.Current.Session["Patient_id"] %>";
+                            document.getElementById("pn").innerHTML = pname;
                             document.getElementById("pid").innerHTML = pid;
-                            document.getElementById("pn").innerHTML = pn;
-                            
                             
                         },
                         error: function (err) {
