@@ -14,7 +14,7 @@ namespace digno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-        //    GetPatientinfo();
+           GetPatientinfo();
         }
 
         public void GetPatientinfo()

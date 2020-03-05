@@ -37,5 +37,30 @@ namespace digno
 
             }
         }
+
+        public DataTable GetTEST(neworderBLO getinfo)
+        {
+            try
+            {
+                return tst.GetTEST(getinfo);
+            }
+            catch (Exception e)
+            {
+                throw(e);
+            }
+        }
+
+        public DataTable GetTestAmount(neworderBLO getinfo)
+        {
+            try
+            {
+                return tst.GetTestAmount(getinfo);
+            }
+            catch (Exception e)
+            {
+                throw (e);
+            }
+        }
+
     }
 }

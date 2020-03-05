@@ -128,8 +128,8 @@ public partial class Test : System.Web.UI.Page
         DataSet ds = new DataSet();
         SqlDataAdapter da = new SqlDataAdapter(com);
         da.Fill(ds);
-        rptCustomers.DataSource = ds;
-        rptCustomers.DataBind();
+        //rptCustomers.DataSource = ds;
+        //rptCustomers.DataBind();
         conn.Close();
 
 
