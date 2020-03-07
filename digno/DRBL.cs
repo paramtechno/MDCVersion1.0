@@ -24,7 +24,7 @@ namespace digno
             }
 
         }
-        public DataSet getdoctorinfo(DRBLO testtypedata)
+        public DataSet getdoctorinfo(BL testtypedata)
         {
 
             try
@@ -32,7 +32,7 @@ namespace digno
 
                 return OBJ.getdoctorinfo(testtypedata);
             }
-            catch
+            catch(Exception e)
             {
                 throw;
             }
