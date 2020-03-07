@@ -15,7 +15,34 @@ namespace digno
         protected void Page_Load(object sender, EventArgs e)
         {
             GetPatientinfo();
+            BindTestCategory();
         }
+        public void BindTestCategory()
+        {
+            try
+            {
+                GettestBLO objsess = new GettestBLO();
+                GettestBL bl = new GettestBL();
+                objsess = (GettestBLO)HttpContext.Current.Session["Userinfo"];
+               DataTable dt = bl.TestCategorybind(objsess);
+                if (dt.Rows.Count > 0)
+                {
+                    Testcateg.DataSource = dt;
+                    Testcateg.DataTextField = "Test_category_name";
+                    Testcateg.DataValueField = "Category_id";
+                    Testcateg.DataBind();
+                }
+                else
+                    Testcateg.DataSource = null;
+                Testcateg.DataBind();
+            }
+            catch (Exception e)
+
+            {
+                Console.Write(e);
+            }
+        }
+
 
         public void GetPatientinfo()
         {
@@ -44,7 +71,7 @@ namespace digno
 [WebMethod(EnableSession = true)]
         public static List<ListItem> GetTEST()
         {
-            neworderBLO objBE = new neworderBLO();
+            GettestBLO objBE = new GettestBLO();
             BL objuser = new BL();
 
             objuser = (BL)HttpContext.Current.Session["userinfo"];
@@ -52,9 +79,9 @@ namespace digno
             objBE.Branch_Id = objuser.Branch_Id;
             
 
-            TestCreationBL tb = new TestCreationBL();
+            GettestBL tb = new GettestBL();
             DataTable dt = new DataTable();
-            dt = tb.GetTEST(objBE);
+            dt = tb.TestCategorybind(objBE);
 
 
 
@@ -91,7 +118,7 @@ namespace digno
             
             TestCreationBL tb = new TestCreationBL();
             DataTable dt = new DataTable();
-            dt = tb.GetTestAmount(objBE);
+          //  dt = tb.GetTestAmount(objBE);
 
             foreach (DataRow row in dt.Rows)
             {

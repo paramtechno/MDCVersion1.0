@@ -49,6 +49,15 @@ namespace digno {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
+        /// Testcateg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect Testcateg;
+        
+        /// <summary>
         /// rptCustomers control.
         /// </summary>
         /// <remarks>
