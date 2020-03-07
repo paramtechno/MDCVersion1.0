@@ -38,29 +38,16 @@ namespace digno
             }
         }
 
-        public DataTable GetTEST(neworderBLO getinfo)
+        public string savesubtest(OrgBLO saveinfo)
         {
             try
             {
-                return tst.GetTEST(getinfo);
+                return tst.savesubtest(saveinfo);
             }
             catch (Exception e)
             {
-                throw(e);
+                throw;
             }
         }
-
-        public DataTable GetTestAmount(neworderBLO getinfo)
-        {
-            try
-            {
-                return tst.GetTestAmount(getinfo);
-            }
-            catch (Exception e)
-            {
-                throw (e);
-            }
-        }
-
     }
 }

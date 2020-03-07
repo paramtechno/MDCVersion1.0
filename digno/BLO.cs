@@ -20,7 +20,7 @@ namespace digno
 
                 return objdal.LoginCredential(objbeLogin);
             }
-            catch
+            catch(Exception e)
             {
                 throw;
             }

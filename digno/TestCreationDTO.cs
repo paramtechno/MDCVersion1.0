@@ -51,7 +51,7 @@ namespace digno
                 cmd.Parameters.AddWithValue("@Org_id", userinfo.Org_Id);
                 cmd.Parameters.AddWithValue("@Branch_id", userinfo.Branch_Id);
                 cmd.Parameters.AddWithValue("@User_id", userinfo.Id);
-                cmd.Parameters.AddWithValue("@Category_id", 8);
+                cmd.Parameters.AddWithValue("@Category_id", 0);
                 //cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
                 //cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
                 SqlDataAdapter da = new SqlDataAdapter();
@@ -68,63 +68,73 @@ namespace digno
             }
         }
 
-        public DataTable GetTEST(neworderBLO userinfo)
-        {
-            
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
-
-                SqlCommand cmd = new SqlCommand("sp_gettestsinfo", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Org_id", userinfo.Org_Id);
-                cmd.Parameters.AddWithValue("@Branch_id", userinfo.Branch_Id);
-                
-                cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
-                cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
-                SqlDataAdapter da = new SqlDataAdapter();
-
-                da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                con.Close();
-                return dt;
-            }
-            catch (Exception e)
-            {
-                throw(e);
-               
-            }
-        }
-
-        public DataTable GetTestAmount(neworderBLO userinfo)
+        public string savesubtest(OrgBLO cat)
         {
 
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
 
-                SqlCommand cmd = new SqlCommand("sp_gettestsamount", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Org_id", userinfo.Org_Id);
-                cmd.Parameters.AddWithValue("@Branch_id", userinfo.Branch_Id);
-                cmd.Parameters.AddWithValue("@Test_id", userinfo.Test_id);
-
-                cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
-                cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
-                SqlDataAdapter da = new SqlDataAdapter();
-                
-                da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                con.Close();
-                return dt;
-            }
-            catch (Exception e)
+            SqlCommand cmd = new SqlCommand("hunmdc.sp_Test", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (cat.Actions == 0)
             {
-                throw (e);
+                cmd.Parameters.AddWithValue("@Test_ID", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Category_ID", cat.categoryid);
+                cmd.Parameters.AddWithValue("@Test_Name", cat.subtestname);
+                cmd.Parameters.AddWithValue("@Amount", cat.tstamount);
+                cmd.Parameters.AddWithValue("@Org_ID", cat.Org_Id);
+                cmd.Parameters.AddWithValue("@Branch_ID", cat.Branch_Id);
+                cmd.Parameters.AddWithValue("@UserID", cat.Email);
+                cmd.Parameters.AddWithValue("@Status", 0);
+                cmd.Parameters.AddWithValue("@Created_Date", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Action", cat.Actions);
+                cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Test_Code", DBNull.Value);
 
             }
+            else if (cat.Actions == 1)
+            {
+                cmd.Parameters.AddWithValue("@Test_ID",cat.prvsorderid);
+                cmd.Parameters.AddWithValue("@Category_ID", cat.categoryid);
+                cmd.Parameters.AddWithValue("@Test_Name", cat.subtestname);
+                cmd.Parameters.AddWithValue("@Amount", cat.tstamount);
+                cmd.Parameters.AddWithValue("@Org_ID", cat.Org_Id);
+                cmd.Parameters.AddWithValue("@Branch_ID", cat.Branch_Id);
+                cmd.Parameters.AddWithValue("@UserID", cat.Email);
+                cmd.Parameters.AddWithValue("@Status", 0);
+                cmd.Parameters.AddWithValue("@Created_Date", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Action", cat.Actions);
+                cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Test_Code", DBNull.Value);
+
+            }
+            else if (cat.Actions == 2)
+            {
+                cmd.Parameters.AddWithValue("@Test_ID", cat.prvsorderid);
+                cmd.Parameters.AddWithValue("@Category_ID", cat.categoryid);
+                cmd.Parameters.AddWithValue("@Test_Name", cat.subtestname);
+                cmd.Parameters.AddWithValue("@Amount", cat.tstamount);
+                cmd.Parameters.AddWithValue("@Org_ID", cat.Org_Id);
+                cmd.Parameters.AddWithValue("@Branch_ID", cat.Branch_Id);
+                cmd.Parameters.AddWithValue("@UserID", cat.Email);
+                cmd.Parameters.AddWithValue("@Status", cat.activestatus);
+                cmd.Parameters.AddWithValue("@Created_Date", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Action", cat.Actions);
+                cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Test_Code", DBNull.Value);
+
+            }
+
+            cmd.Parameters.Add("@ERROR", SqlDbType.Char, 6);
+            //cmd.Parameters.AddWithValue("@ERROR", DBNull.Value);
+            cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            string status = Convert.ToString(cmd.Parameters["@ERROR"].Value);
+
+            return status;
         }
+
     }
 }

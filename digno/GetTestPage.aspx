@@ -137,7 +137,7 @@
     <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
-        <script type="text/javascript">
+<%--        <script type="text/javascript">
        var categories = []
        $(function () {
            $.ajax({
@@ -301,7 +301,8 @@
           })
 
         
-        sumadd();
+        sumadd();--%>
         
-</script>
+<%--</script>--%>
+
 </asp:Content>

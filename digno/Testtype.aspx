@@ -33,7 +33,7 @@
                   <div class="col-md-2">
               <div class="form-group">
                 <label>Order TO Dispaly</label>
-                 <input  class="form-control input-sm" type="text"  id="inputorderby" placeholder="Orderno"/ required>
+                 <input  class="form-control input-sm" type="text"  id="inputorderby" maxlength="4" placeholder="Orderno"/ required>
               </div>
                     </div>
                   <div class="col-md-2">
@@ -147,6 +147,13 @@
                 })
             })
         });
+        $('#inputorderby').keypress(function (event) {
+
+            if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+                event.preventDefault(); //stop character from entering input
+            }
+        });
+
         function edit(obj) {
             $('[id$=inputcategory]').val($(obj).attr("tstname"));
             $('[id$=inputorderby]').val($(obj).attr("orderby"));
