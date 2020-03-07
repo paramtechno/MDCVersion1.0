@@ -300,10 +300,12 @@
               </div>
               <div class="modal-body">
                 <!--<p>One fine body&hellip;</p>-->
-                  <b>Patient Id:</b> <label id="pid"></label><br />
-                  <b>Patient Name:</b> <label id="pn"></label>
+              Patient ID :    <label id="pid"></label><br />
+              Patient Name : <label id="pnm"></label>
                   
               </div>
+                
+                  <input type="hidden" id="pid1" name="user" value="" />
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="redirect(this)">Take Patient Tests</button>
@@ -391,7 +393,8 @@
 
             function redirect(e)
             {
-                window.location.href = "GetTestPage.aspx";
+                var pid = document.getElementById("pid1").value;
+                window.location.href = "GetTestPage.aspx?pid="+ pid ;
             }
             function validateForm(e) {
 
@@ -459,15 +462,15 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (e) {
+                           
+                            $('#pid').html(e.d[0]);
+                            $('#pnm').html(e.d[1]);
+                            $('#pid1').attr('value', e.d[0]);
                             $('#modal-default').modal('show');
-                         var pid   = "<%= HttpContext.Current.Session["Patient_name"] %>";
-                          var pname=  "<%= HttpContext.Current.Session["Patient_id"] %>";
-                            document.getElementById("pn").innerHTML = pname;
-                            document.getElementById("pid").innerHTML = pid;
                             
                         },
                         error: function (err) {
-                            alert("notok");
+                            
                             console.log(err);
                         }
                     });

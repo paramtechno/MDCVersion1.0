@@ -1,5 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="GetTestPage.aspx.cs" Inherits="digno.GetTestPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        body
+{
+    counter-reset: Serial;          
+}
+
+table
+{
+    border-collapse: separate;
+}
+
+        tr td:first-child:before {
+            counter-increment: Serial;
+            content:  counter(Serial);
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -47,7 +63,15 @@
          <div class="col-xs-12" style="border:0.5px solid #f39c12;border-radius:10px; ">
             <div class=" ">
 
-                 <div class="col-md-4">
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Test Category</label>
+                   <select id="Testcateg" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
+                     <option>Select Test</option>
+                   </select>
+                 </div>
+              </div>
+                 <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Test</label>
                    <select id="productCategory" class="form-control" onchange="LoadProduct(this.value)">
@@ -56,7 +80,7 @@
                  </div>
               </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="form-group">
                    <label for="exampleInputEmail1"><%# Eval("tid") %></label>
                  <label for="exampleInputEmail1">Amount</label>
@@ -86,7 +110,7 @@
                  <th style="width:10%">Slno</th>
                  <th >Test Name</th>
                  <th style="width:20%">Test Amout</th>
-                 <th style="width:10%"></th>
+                 <th style="width:10%">Delete</th>
                </tr>
             </thead>
         <tbody>
@@ -253,7 +277,7 @@
                     tid=opt.value,
               price = sel1.value,
                 detailsTableBody = $("#tb tbody");
-                var productItem = '<tr><td></td><td>' + productName + '</td><td class="hi">' + price + '</td><td style="visibility:hidden">' + tid + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td></tr>';
+                var productItem = '<tr><td></td><td>' + productName + '</td><td class="hi">' + price + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td> <td style="display:none">' + tid + '</td></tr>';
             detailsTableBody.append(productItem);
             sumadd();
             clearItem();
