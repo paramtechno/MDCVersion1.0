@@ -54,7 +54,7 @@
                     </div>
                   <div class="col-md-3">
               <div class="form-group" style="margin-top:23px">
-               <button type="submit" class="btn btn-primary" onclick="Javascript:return Savsubtest(this)"> <i class="fa fa-save"></i> Save</button>
+               <button type="submit" class="btn btn-primary" id="saveupdate" onclick="Javascript:return Savsubtest(this)"> <i class="fa fa-save"></i> Save</button>
                   
                
               
@@ -101,9 +101,9 @@
                   <%--  <td><%# Eval("Test") %> </td>
                     <td><%# Eval("Order_by") %> </td>--%>
                 <td style="text-align: center; vertical-align: middle;cursor:pointer">
-                <i  subtest="<%# Eval("Test_name") %>" amount="<%# Eval("Amount") %>" tstid="<%#Eval("Test_id") %>" onclick ="javascript: return edit(this)" class="fa fa-edit"></i> Edit
+                <i  subtest="<%# Eval("Test_name") %>" testcatid="<%# Eval("Category_id") %>" amount="<%# Eval("Amount") %>" tstid="<%#Eval("Test_id") %>" onclick ="javascript: return edit(this)" class="fa fa-edit"></i> Edit
               </td>   
-                    <td style="text-align: center; vertical-align: middle;cursor:pointer"><i status="<%# Convert.ToInt32(Eval("Status")) %>" testid="<%# Eval("Category_id") %>"onclick="javascript: return ACTDEC(this)" class='<%# Eval("Status").ToString()  == "True" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>'></i></td>      
+                    <td style="text-align: center; vertical-align: middle;cursor:pointer"><i status="<%# Convert.ToInt32(Eval("Status")) %>" tstid="<%#Eval("Test_id") %>" testcatid="<%# Eval("Category_id") %>"onclick="javascript: return ACTDEC(this)" class='<%# Eval("Status").ToString()  == "True" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>'></i></td>      
                 </tr>
                   </ItemTemplate>
                 <%--<tfoot>
@@ -149,6 +149,7 @@
     <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript">
+        var categrid;
     $(document).ready(function() {
            $(function () {
                 $('#example1').DataTable()
@@ -174,8 +175,9 @@
         $('[id$=subtest]').val($(obj).attr("subtest"));
         $('[id$=tstamount]').val($(obj).attr("Amount"));
         $('[id$=previousid]').val($(obj).attr("tstid"));
+        categrid = $(obj).attr("testcatid");
         $('[id$=Actions]').val(1);
-        $("#savupdate").html('<i class="fa fa-save"> </i> Update');
+        $("#saveupdate").html('<i class="fa fa-save"> </i> Update');
         document.getElementById("subtest").focus();
     }
     function ACTDEC(ACTobj) {
@@ -184,10 +186,11 @@
             cat.status = 1;
         else
             cat.status = 0;
+        cat.categoryid = $(ACTobj).attr("testcatid");
         $.ajax({
             type: 'POST',
             url: 'TestCreation.aspx/savesubtest',
-            data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + 2 + ',prevsid:' + $(ACTobj).attr("testid") + '}',
+            data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + 2 + ',prevsid:' + $(ACTobj).attr("tstid") + '}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (e) {
@@ -237,7 +240,11 @@
             var categid = '<%= Testcateg.ClientID %>';
             cat.subtestname = subtest;
             cat.tstamount = tstamount;
-            cat.categoryid = $('#' + categid).val();
+            if ($('[id$=Actions]').val() == 1)
+                cat.categoryid = categrid;
+            else
+                cat.categoryid = $('#' + categid).val();
+
             var Actions = $('[id$=Actions]').val();
             var previousid = $('[id$=previousid]').val();
             $.ajax({
