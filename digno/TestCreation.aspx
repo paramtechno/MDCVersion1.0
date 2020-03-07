@@ -41,18 +41,20 @@
                    <div class="col-md-3">
               <div class="form-group">
                 <label>Test</label>
+                   <input  type="hidden" value="0" id="Actions" runat="server" />
+                  <input  type="hidden" value="0" id="previousid" runat="server" />
                  <input class="form-control input-sm" id="subtest" type="text" placeholder=""/>
               </div>
                     </div>
                    <div class="col-md-3">
               <div class="form-group">
                 <label>Amount</label>
-                 <input class="form-control input-sm only-numeric" id="tstamount" maxlength="5" type="text" placeholder=""/>
+                 <input class="form-control input-sm" id="tstamount" maxlength="5" type="text" placeholder=""/>
               </div>
                     </div>
                   <div class="col-md-3">
               <div class="form-group" style="margin-top:23px">
-               <button type="submit" class="btn btn-primary" onclick="Savsubtest(this)"> <i class="fa fa-save"></i> Save</button>
+               <button type="submit" class="btn btn-primary" onclick="Javascript:return Savsubtest(this)"> <i class="fa fa-save"></i> Save</button>
                   
                
               
@@ -81,6 +83,7 @@
                 <tr>
                   <th>No</th>
                   <th>TestType</th>
+                  <th>Test code</th>
                   <th>Test Name</th>   
                     <th>Amount</th>               
                   <th style="text-align: center; vertical-align: middle;">Edit</th>
@@ -91,15 +94,16 @@
             <ItemTemplate>        
                     <tr>
                   <td><%# Container.ItemIndex + 1 %></td>
-                  <td><%# Eval("Test_id") %> </td>
+                  <td><%# Eval("Test_category_name") %> </td>
+                        <td><%# Eval("Test_code") %></td>
                   <td><%# Eval("Test_name") %> </td>
                     <td><%# Eval("Amount") %> </td>
                   <%--  <td><%# Eval("Test") %> </td>
                     <td><%# Eval("Order_by") %> </td>--%>
-                <td style="text-align: center; vertical-align: middle;">
-                <i class="fa fa-edit"></i> Edit
+                <td style="text-align: center; vertical-align: middle;cursor:pointer">
+                <i  subtest="<%# Eval("Test_name") %>" amount="<%# Eval("Amount") %>" tstid="<%#Eval("Test_id") %>" onclick ="javascript: return edit(this)" class="fa fa-edit"></i> Edit
               </td>   
-                    <td style="text-align: center; vertical-align: middle;"><i class="fa fa-fw fa-toggle-on"></i></td>      
+                    <td style="text-align: center; vertical-align: middle;cursor:pointer"><i status="<%# Convert.ToInt32(Eval("Status")) %>" testid="<%# Eval("Category_id") %>"onclick="javascript: return ACTDEC(this)" class='<%# Eval("Status").ToString()  == "True" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>'></i></td>      
                 </tr>
                   </ItemTemplate>
                 <%--<tfoot>
@@ -146,23 +150,6 @@
 <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-      $(".only-numeric").bind("keypress", function (e) {
-
-          var keyCode = e.which ? e.which : e.keyCode
-          if (!(keyCode >= 48 && keyCode <= 57)) {
-
-            $(".error").css("display", "inline");
-
-            return false;
-
-          }else{
-
-            $(".error").css("display", "none");
-
-          }
-
-      });
-
            $(function () {
                 $('#example1').DataTable()
                 $('#example2').DataTable({
@@ -176,6 +163,49 @@
             })
 
     });
+    $('#tstamount').keypress(function (event) {
+
+        if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+            event.preventDefault(); //stop character from entering input
+        }
+
+    });
+    function edit(obj) {
+        $('[id$=subtest]').val($(obj).attr("subtest"));
+        $('[id$=tstamount]').val($(obj).attr("Amount"));
+        $('[id$=previousid]').val($(obj).attr("tstid"));
+        $('[id$=Actions]').val(1);
+        $("#savupdate").html('<i class="fa fa-save"> </i> Update');
+        document.getElementById("subtest").focus();
+    }
+    function ACTDEC(ACTobj) {
+        var cat = {};
+        if ($(ACTobj).attr("status") == "0")
+            cat.status = 1;
+        else
+            cat.status = 0;
+        $.ajax({
+            type: 'POST',
+            url: 'TestCreation.aspx/savesubtest',
+            data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + 2 + ',prevsid:' + $(ACTobj).attr("testid") + '}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (e) {
+
+                window.location.reload();
+
+                if ($(ACTobj).attr("status") == '0')
+                    alert("Dectivated");
+                else
+                    alert("Activated");
+            },
+            error: function (err) {
+                alert("notok");
+                console.log(err);
+            }
+        });
+    }
+
    
     function Savsubtest(e) {
 
@@ -186,17 +216,17 @@
         if (subtest == "" && tstamount == "") {
             alert("PLEASE ENTER TEST");
             submitOK = "false";
-            document.getElementById("inputcategory").focus();
+            document.getElementById("subtest").focus();
         }
         else if (tstamount != "" && subtest == "") {
-            alert("PLEASE ENTER CATEGORY NAME");
+            alert("PLEASE ENTER TEST");
             submitOK = "false";
-            document.getElementById("inputcategory").focus();
+            document.getElementById("subtest").focus();
         }
         else if (subtest != "" && tstamount == "") {
-            alert("PLEASE ENTER ORDERBY");
+            alert("PLEASE ENTER AMOUNT");
             submitOK = "false";
-            document.getElementById("inputorderby").focus();
+            document.getElementById("tstamount").focus();
         }
         if (submitOK == "false") {
 
@@ -204,25 +234,27 @@
         }
         if (submitOK == "true") {
             var cat = {};
-            cat.categoryname = categoryname;
-            cat.orderby = orderby;
-            var isupate = $('[id$=isupdate]').val();
+            var categid = '<%= Testcateg.ClientID %>';
+            cat.subtestname = subtest;
+            cat.tstamount = tstamount;
+            cat.categoryid = $('#' + categid).val();
+            var Actions = $('[id$=Actions]').val();
             var previousid = $('[id$=previousid]').val();
             $.ajax({
                 type: 'POST',
-                url: 'Testtype.aspx/SaveType',
-                data: '{cat: ' + JSON.stringify(cat) + ',isupdate:' + isupate + ',prevsid:' + previousid + '}',
+                url: 'TestCreation.aspx/savesubtest',
+                data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + Actions + ',prevsid:' + previousid + '}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (e) {
-                    alert("test type");
+                    alert("Record effected");
                 },
                 error: function (err) {
                     alert("notok");
                     console.log(err);
                 }
             });
-            $('[id$=isupdate]').val(0);
+            $('[id$=Actions]').val(0);
         }
     }
 

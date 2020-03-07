@@ -8,10 +8,40 @@ namespace digno
     public class TestCreationBLO
     {
         private string _Org_name;
-        private string _Org_id;
+        private Int64 _Org_id;
         private string _test;
         private string _amount;
+        private string _subtestname;
+        private Int64 _tstamount;
+        private Int64 _categoryid;
         private string _testCategory;
+        private int _Status;
+
+        public int Status
+        {
+            get { return _Status; }
+            set { _Status = value; }
+        }
+
+
+        public string subtestname
+        {
+            get { return _subtestname; }
+            set { _subtestname = value; }
+        }
+
+        public Int64 tstamount
+        {
+            get { return _tstamount; }
+            set { _tstamount = value; }
+        }
+
+        public Int64 categoryid
+        {
+            get { return _categoryid; }
+            set { _categoryid = value; }
+        }
+
 
         public string Org_name
         {
@@ -19,7 +49,7 @@ namespace digno
             set { _Org_name = value; }
         }
 
-        public string Org_id
+        public Int64 Org_id
         {
             get { return _Org_id; }
             set { _Org_id = value; }

@@ -37,5 +37,17 @@ namespace digno
 
             }
         }
+
+        public string savesubtest(OrgBLO saveinfo)
+        {
+            try
+            {
+                return tst.savesubtest(saveinfo);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
     }
 }

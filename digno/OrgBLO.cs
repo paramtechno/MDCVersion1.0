@@ -21,6 +21,29 @@ namespace digno
         private string _Branch_Id;
         private int _Org_Id;
         private int _Actions;
+        private string _subtestname;
+        private Int64 _tstamount;
+        private Int64 _categoryid;
+        private string _testCategory;
+
+        public string subtestname
+        {
+            get { return _subtestname; }
+            set { _subtestname = value; }
+        }
+
+        public Int64 tstamount
+        {
+            get { return _tstamount; }
+            set { _tstamount = value; }
+        }
+
+        public Int64 categoryid
+        {
+            get { return _categoryid; }
+            set { _categoryid = value; }
+        }
+
         public int Actions
         {
             get { return _Actions; }
