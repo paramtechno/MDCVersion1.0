@@ -111,8 +111,8 @@ namespace digno
             {
                 cmd.Parameters.AddWithValue("@Test_ID", cat.prvsorderid);
                 cmd.Parameters.AddWithValue("@Category_ID", cat.categoryid);
-                cmd.Parameters.AddWithValue("@Test_Name", cat.subtestname);
-                cmd.Parameters.AddWithValue("@Amount", cat.tstamount);
+                cmd.Parameters.AddWithValue("@Test_Name", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Amount", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Org_ID", cat.Org_Id);
                 cmd.Parameters.AddWithValue("@Branch_ID", cat.Branch_Id);
                 cmd.Parameters.AddWithValue("@UserID", cat.Email);

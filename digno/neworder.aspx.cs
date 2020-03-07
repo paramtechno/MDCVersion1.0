@@ -79,9 +79,10 @@ namespace digno
 
 
         [System.Web.Services.WebMethod]
-        public static Int32 Saveneworder(neworderBLO cat)
+        public static string[] Saveneworder(neworderBLO cat)
         {
-            Int32 status = 0;
+            string[] status =new string[1] ;
+           
             try
             {
                 neworderBLO objBE = new neworderBLO();
@@ -115,11 +116,13 @@ namespace digno
                     DataSet ds = new DataSet();
                     dt  = bl.saveneworder(objBE);
                     ds.Tables.Add(dt);
-                    HttpContext.Current.Session["Patient_id"] = null;
-                    HttpContext.Current.Session["Patient_name"] = null;
-                    HttpContext.Current.Session["Patient_id"] = ds.Tables[0].Rows[0][0].ToString();
-                    HttpContext.Current.Session["Patient_name"] = ds.Tables[0].Rows[0][1].ToString();
-
+                   
+                    var pid = ds.Tables[0].Rows[0][0].ToString();
+                    var pname = ds.Tables[0].Rows[0][1].ToString();
+                   // return String.Format("Patient Id: {0}{2} <br/>Patient Name: {1}", pid, pname, Environment.NewLine);
+                    string description = pid + "," + pname;
+                    string[] a = description.Split(',');
+                    return a;
                 }
             }
             catch (Exception e)
