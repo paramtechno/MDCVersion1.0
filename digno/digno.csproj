@@ -68,6 +68,7 @@
       <DependentUpon>digno.mdf</DependentUpon>
     </Content>
     <Content Include="DrCreation.aspx" />
+    <Content Include="GetTestPage.aspx" />
     <Content Include="index.aspx" />
     <Content Include="indexstyle\contactform\contactform.js" />
     <Content Include="indexstyle\contactform\Readme.txt" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="DRDTO.cs" />
     <Compile Include="DTO.cs" />
+    <Compile Include="GetTestPage.aspx.cs">
+      <DependentUpon>GetTestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetTestPage.aspx.designer.cs">
+      <DependentUpon>GetTestPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

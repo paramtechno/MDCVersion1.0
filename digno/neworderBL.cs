@@ -65,5 +65,21 @@ namespace digno
 
             }
         }
+
+        public DataSet GetPatientbyid(neworderBLO testtypedata)
+        {
+
+            try
+            {
+
+                return newdt.GetPatientbyid(testtypedata);
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
     }
 }

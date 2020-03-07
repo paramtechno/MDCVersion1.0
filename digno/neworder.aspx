@@ -85,7 +85,7 @@
                   <select id="IDDr" class="form-control select2 " >
                       
                                     </select>
-                  <i class="fa fa-fw fa-plus-square"></i> ADD Dr.
+             <div data-toggle="modal" data-target="#Drmodel">     <i class="fa fa-fw fa-plus-square"></i> ADD Dr.</div>
               </div>
                 </div>
                 <div class="col-md-2">
@@ -94,7 +94,7 @@
                   <select id="IDref" class="form-control select2 ">
                       
                                     </select>
-                  <i class="fa fa-fw fa-plus-square"></i> ADD Reffrence Center
+               <div data-toggle="modal" data-target="#Refmodel">  <i class="fa fa-fw fa-plus-square" ></i> ADD Reffrence Center</div> 
               </div>
                     </div>
                     <div class="col-md-4">
@@ -196,6 +196,99 @@
       </div>
           <!-- /.row -->
         </div>
+
+
+        <div class="modal fade" id="Drmodel"  >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">New Doctor Creation</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="box-body">
+          <div class="row">
+              <div class="col-md-12">
+            
+                <div class="col-md-12">
+              <div class="form-group">
+                <label>Dr. Name*</label>
+                 <input class="form-control input-sm" type="text" placeholder=""/>
+              </div>
+                    </div>
+                   <div class="col-md-12">
+              <div class="form-group">
+                <label>Mobile*</label>
+                 <input class="form-control input-sm" type="text" placeholder=""/>
+              </div>
+                    </div>
+                   <div class="col-md-12">
+              <div class="form-group">
+                <label>Clinic/Hospital Name</label>
+                 <input class="form-control input-sm" type="text" placeholder=""/>
+              </div>
+                    </div>
+                  </div>
+              </div>
+             </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+        <div class="modal fade" id="Refmodel"  >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel1">Refrence Center Creation</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="box-body">
+          <div class="row">
+              <div class="col-md-12">
+            
+                <div class="col-md-12">
+              <div class="form-group">
+                <label>Dr. Name*</label>
+                 <input class="form-control input-sm" type="text" placeholder=""/>
+              </div>
+                    </div>
+                   <div class="col-md-12">
+              <div class="form-group">
+                <label>Mobile*</label>
+                 <input class="form-control input-sm" type="text" placeholder=""/>
+              </div>
+                    </div>
+                   <div class="col-md-12">
+              <div class="form-group">
+                <label>Clinic/Hospital Name</label>
+                 <input class="form-control input-sm" type="text" placeholder=""/>
+              </div>
+                    </div>
+                  </div>
+              </div>
+             </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- /.box-body -->
          <div class="modal fade" id="modal-default" >
           <div class="modal-dialog">
@@ -207,12 +300,13 @@
               </div>
               <div class="modal-body">
                 <!--<p>One fine body&hellip;</p>-->
-                  <label>Patient Id:<%# Eval("Patient_id") %></label>
-                  <label>Patient Name:<%# Eval("Patient_name") %></label>
+                  <b>Patient Id:</b> <label id="pid"></label><br />
+                  <b>Patient Name:</b> <label id="pn"></label>
+                  
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Take Patient Tests</button>
+                <button type="button" class="btn btn-primary" onclick="redirect(this)">Take Patient Tests</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -295,7 +389,10 @@
                 $('.select2').select2()
             })
 
-
+            function redirect(e)
+            {
+                window.location.href = "GetTestPage.aspx";
+            }
             function validateForm(e) {
 
                 var init = document.getElementById("IDini").value;
@@ -363,6 +460,11 @@
                         dataType: "json",
                         success: function (e) {
                             $('#modal-default').modal('show');
+                         var pid   = "<%= HttpContext.Current.Session["Patient_name"] %>";
+                          var pname=  "<%= HttpContext.Current.Session["Patient_id"] %>";
+                            document.getElementById("pn").innerHTML = pname;
+                            document.getElementById("pid").innerHTML = pid;
+                            
                         },
                         error: function (err) {
                             alert("notok");

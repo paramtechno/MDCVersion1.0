@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Data.SqlClient;
 using System.Data;
 
 namespace digno
@@ -12,7 +14,7 @@ namespace digno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GetPatientinfo();
+           GetPatientinfo();
         }
 
         public void GetPatientinfo()
@@ -113,8 +115,10 @@ namespace digno
                     DataSet ds = new DataSet();
                     dt  = bl.saveneworder(objBE);
                     ds.Tables.Add(dt);
-                    var Patient_id = ds.Tables[0].Rows[0][0].ToString();
-                    var Patient_name = ds.Tables[0].Rows[0][1].ToString();
+                    HttpContext.Current.Session["Patient_id"] = null;
+                    HttpContext.Current.Session["Patient_name"] = null;
+                    HttpContext.Current.Session["Patient_id"] = ds.Tables[0].Rows[0][0].ToString();
+                    HttpContext.Current.Session["Patient_name"] = ds.Tables[0].Rows[0][1].ToString();
 
                 }
             }

@@ -18,7 +18,7 @@
          <div class="col-md-12">
                  <div class="box " >
                       <div class="box-header with-border">
-                 <div class="col-md-2">Bill No:
+                 <div class="col-md-2">Patient Id:
                      <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> 
                 </div>
                  <div class="col-md-2">
@@ -29,13 +29,10 @@
                      Age :
                      <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
                 </div>
-                 <%--<div class="col-md-2">
-                     City :
-                     <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                </div>--%>
+                 
                  <div class="col-md-2">
-                     Ref Dr.
-                     <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+                     Refered DrName:
+                     <asp:Label ID="Label4" runat="server" Text="Label" ></asp:Label>
                 </div>
                 </div>
                      </div>
@@ -133,5 +130,178 @@
               </div>
             </div>
           </div>
-        </section>
+         </section>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+       var categories = []
+       $(function () {
+           $.ajax({
+               type: "POST",
+               url: "GetTestPage.aspx/GetTEST",
+               data: '{}',
+               contentType: "application/json; charset=utf-8",
+               dataType: "json",
+               success: function (r) {
+                   categories = r;
+                   var ddlCustomers = $("[id*=productCategory]");
+                   ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                   $.each(r.d, function () {
+                       ddlCustomers.append($("<option></option>").val(this['Value']).html(this['Text']));
+                   });
+               }
+           });
+           });
+     </script>  
+       
+    <script type="text/javascript">
+       
+       var Categories = []
+       function LoadProduct(categoryDD) {
+           $.ajax({
+               type: "POST",
+               url: "GetTestPage.aspx/GetTestAmount",
+               data: '{testid: "' + categoryDD + '"}',
+               contentType: "application/json; charset=utf-8",
+               dataType: "json",
+               success: function (r) {
+                  
+                   if (r.d != '') {
+                      
+                       var user = JSON.parse(r.d);
+                       var sel = document.getElementById('AMT');
+                       sel.value = user.amount;
+                      // $('#lblId').html(user.Id);
+                      // $('#lblName').html(user.Name);
+                   }
+                  // else {
+                     //  $('#lblId').html('no datafound');
+                      // $('#lblName').html('');
+                  // }
+               }
+           });
+       }
+   </script>
+       <script type="text/javascript">
+       
+        $('#add').click(function () {
+            //validation and add order items
+
+
+
+
+
+
+
+            var isAllValid = true;
+            // alert($('#productCategory').val())
+
+            if ($('#productCategory').val() == "0") {
+                isAllValid = false;
+                $('#productCategory').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#productCategory').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#AMT').val() == "0" || $('#AMT').val() == "") {
+                isAllValid = false;
+                $('#AMT').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#AMT').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            //if (!($('#quantity').val().trim() != '' && (parseInt($('#quantity').val()) || 0))) {
+            //    isAllValid = false;
+            //    $('#quantity').siblings('span.error').css('visibility', 'visible');
+            //}
+            //else {
+            //    $('#quantity').siblings('span.error').css('visibility', 'hidden');
+            //}
+
+            //if (!($('#rate').val().trim() != '' && !isNaN($('#rate').val().trim()))) {
+            //    isAllValid = false;
+            //    $('#rate').siblings('span.error').css('visibility', 'visible');
+            //}
+            //else {
+            //    $('#rate').siblings('span.error').css('visibility', 'hidden');
+            //}
+
+            if (isAllValid) {
+                var table = document.getElementById("tb");
+                //var row = table.insertRow(1);
+
+
+                //var cell1 = row.insertCell(0);
+                //var cell2 = row.insertCell(1);
+                
+
+            var sel = document.getElementById('productCategory');
+            var opt = sel.options[sel.selectedIndex];
+            var sel1 = document.getElementById('AMT');
+
+            //cell1.innerHTML = opt.text;
+            //cell2.innerHTML = sel1.value;
+
+
+                var productName = opt.text,
+                    tid=opt.value,
+              price = sel1.value,
+                detailsTableBody = $("#tb tbody");
+                var productItem = '<tr><td></td><td>' + productName + '</td><td class="hi">' + price + '</td><td style="visibility:hidden">' + tid + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td></tr>';
+            detailsTableBody.append(productItem);
+            sumadd();
+            clearItem();
+
+
+
+
+        }
+            function sumadd() {
+                var sum = 0;
+                var table = document.getElementById("tb");
+                var ths = table.getElementsByTagName('th');
+                var tds = table.getElementsByClassName('hi');
+                for (var i = 0; i < tds.length; i++) {
+                    sum += isNaN(tds[i].innerText) ? 0 : parseInt(tds[i].innerText);
+                }
+
+                //var row = table.insertRow(table.rows.length);
+                //var cell = row.insertCell(0);
+                //cell.setAttribute('colspan', ths.length);
+
+                //var totalBalance = document.createTextNode('Total Balance ' + sum);
+                //cell.appendChild(totalBalance);
+                document.getElementById('amount').innerHTML = sum;
+            }
+
+
+            function clearItem() {
+                $("#productName").val('');
+                $("#price").val('');
+                $("#quantity").val('');
+            }
+            // After Add A New Order In The List, If You Want, You Can Remove It.
+            $(document).on('click', 'a.deleteItem', function (e) {
+                e.preventDefault();
+                var $self = $(this);
+                if ($(this).attr('data-itemId') == "0") {
+                    $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                        $(this).remove();
+                        sumadd();
+                    });
+                }
+            });
+
+          })
+
+        
+        sumadd();
+        
+</script>
 </asp:Content>
