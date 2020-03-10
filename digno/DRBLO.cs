@@ -9,7 +9,7 @@ namespace digno
     {
         private string _Drname;
         private string _Draddress;
-        private bool _Drstatus;
+        private int _Drstatus;
         private Int64 _Drmobi;
         private string _Dremail;
         private DateTime _Drdate;
@@ -18,7 +18,26 @@ namespace digno
         private int _Org_Id;
         private string _UserID;
         private int _ERROR;
+        private int _Drid;
+        private int _Actions;
+        private string _drclinic;
 
+        public string drclinic
+        {
+            get { return _drclinic; }
+            set { _drclinic = value; }
+        }
+        public int Drid
+        {
+            get { return _Drid; }
+            set { _Drid = value; }
+        }
+
+        public int Actions
+        {
+            get { return _Actions; }
+            set { _Actions = value; }
+        }
         public int ERROR
         {
             get { return _ERROR; }
@@ -55,7 +74,7 @@ namespace digno
             set { _Draddress = value; }
         }
 
-        public bool Drstatus
+        public int Drstatus
         {
             get { return _Drstatus; }
             set { _Drstatus = value; }
@@ -84,101 +103,5 @@ namespace digno
             get { return _Drisdeleted; }
             set { _Drisdeleted = value; }
         }
-
-    private string _Org_name;
-    private string _Reg_no;
-    private int _Status;
-    private string _Email;
-    private Int64 _Mobile_no;
-    private string _Password;
-    private int _Exp_type;
-    private string _Subscription_type;
-    private int _Actions;
-    private string _subtestname;
-    private Int64 _tstamount;
-    private Int64 _categoryid;
-    private string _testCategory;
-
-        public string subtestname
-    {
-        get { return _subtestname; }
-        set { _subtestname = value; }
-    }
-        public int Status
-        {
-            get { return _Status; }
-            set { _Status = value; }
-        }
-
-        public Int64 tstamount
-    {
-        get { return _tstamount; }
-        set { _tstamount = value; }
-    }
-
-    public Int64 categoryid
-    {
-        get { return _categoryid; }
-        set { _categoryid = value; }
-    }
-
-    public int Actions
-    {
-        get { return _Actions; }
-        set { _Actions = value; }
-    }
-    private int _prvsorderid;
-    public int prvsorderid
-    {
-        get { return _prvsorderid; }
-        set { _prvsorderid = value; }
-    }
-
-    public string Org_name
-    {
-        get { return _Org_name; }
-        set { _Org_name = value; }
-    }
-    public string Reg_no
-    {
-        get { return _Reg_no; }
-        set { _Reg_no = value; }
-    }
-
-    private int _activestatus;
-    public int activestatus
-    {
-        get { return _activestatus; }
-        set { _activestatus = value; }
-    }
-    public string Email
-    {
-        get { return _Email; }
-        set { _Email = value; }
-    }
-
-    public Int64 Mobile_no
-    {
-        get { return _Mobile_no; }
-        set { _Mobile_no = value; }
-    }
-
-    public string Password
-    {
-        get { return _Password; }
-        set { _Password = value; }
-    }
-
-    public int Exp_type
-    {
-        get { return _Exp_type; }
-        set { _Exp_type = value; }
-    }
-
-    public string Subscription_type
-    {
-        get { return _Subscription_type; }
-        set { _Subscription_type = value; }
-    }
     }
 }

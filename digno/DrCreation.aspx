@@ -28,7 +28,7 @@
                 <label>Dr. Name*</label>
                   <input  type="hidden" value="0" id="Actions" runat="server" />
                   <input  type="hidden" value="0" id="previousid" runat="server" />
-                 <input class="form-control input-sm" type="text" placeholder=""/>
+                 <input id="drname" class="form-control input-sm" type="text" placeholder=""/>
               </div>
                     </div>
                    <div class="col-md-3">
@@ -41,7 +41,7 @@
                    <div class="col-md-3">
               <div class="form-group">
                 <label>Clinic/Hospital Name</label>
-                 <input class="form-control input-sm" type="text" placeholder=""/>
+                 <input id="drclinic" class="form-control input-sm" type="text" placeholder=""/>
               </div>
                     </div>
                   <div class="col-md-3">
@@ -75,8 +75,7 @@
                 <tr>
                   <th>No</th>
                   <th>Dr.Name</th>
-                  <th>Mobile</th>   
-                    <th>Address</th>
+                  <th>Mobile</th>  
                     <th>Clinic</th>               
                   <th>Edit</th>
                     <th>Active Status</th>
@@ -85,14 +84,14 @@
                     </HeaderTemplate>
                   <ItemTemplate>
                       <tr>
-                  <td><%# Eval("drname") %></td>
-                  <td><%# Eval("drphone") %></td>
-                   <td><%# Eval("dradress") %></td>
-                     <td><%# Eval("drclicnib") %></td>
+                      <td><%# Container.ItemIndex + 1 %></td>
+                  <td><%# Eval("Dr_name") %></td>
+                  <td><%# Eval("Dr_mobno") %></td>
+                     <td><%# Eval("Dr_clinic_name") %></td>
                 <td style="text-align: center; vertical-align: middle;">
-                <i class="fa fa-edit" style="cursor:pointer" tstname="<%# Eval("Test_category_name") %>" orderby="<%# Eval("Order_by")%>" Category_id="<%# Eval("Category_id") %>"onclick ="javascript: return edit(this)"></i> Edit
+                <i class="fa fa-edit" style="cursor:pointer" drid="<%# Eval("Dr_id") %>" drname="<%# Eval("Dr_name") %>" drmobno="<%# Eval("Dr_mobno")%>" drclinic="<%# Eval("Dr_clinic_name") %>"onclick ="javascript: return edit(this)"></i> Edit
               </td>   
-                    <td style="text-align: center; vertical-align: middle;"><i status="<%# Convert.ToInt32(Eval("Status")) %>" Category_id="<%# Eval("Category_id") %>" onclick="javascript: return ACTDEC(this)" class='<%# Eval("Status").ToString()  == "True" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>'></i></td>      
+                    <td style="text-align: center; vertical-align: middle;"><i status="<%# Convert.ToInt32(Eval("Status")) %>" drid="<%# Eval("Dr_id") %>" onclick="javascript: return ACTDEC(this)" class='<%# Eval("Status").ToString()  == "True" ? "fa fa-fw fa-toggle-off" : "fa fa-fw fa-toggle-on" %>'></i></td>      
                 </tr>
                      </ItemTemplate>
 
@@ -165,9 +164,10 @@
 
         });
         function edit(obj) {
-            $('[id$=inputcategory]').val($(obj).attr("tstname"));
-            $('[id$=inputorderby]').val($(obj).attr("orderby"));
-            $('[id$=previousid]').val($(obj).attr("Category_id"));
+            $('[id$=drname]').val($(obj).attr("drname"));
+            $('[id$=drphone]').val($(obj).attr("drmobno"));
+            $('[id$=drclinic]').val($(obj).attr("drclinic"));
+            $('[id$=previousid]').val($(obj).attr("drid"));
             $('[id$=Actions]').val(1);
             $("#savupdate").html('<i class="fa fa-save"> </i> Update');
             document.getElementById("inputcategory").focus();
@@ -175,13 +175,13 @@
         function ACTDEC(ACTobj) {
             var cat = {};
             if ($(ACTobj).attr("status") == "0")
-                cat.status = 1;
+                cat.Drstatus = 1;
             else
-                cat.status = 0;
+                cat.Drstatus = 0;
             $.ajax({
                 type: 'POST',
                 url: 'DrCreation.aspx/savedoctorinfo',
-                data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + 2 + ',prevsid:' + $(ACTobj).attr("Category_id") + '}',
+                data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + 2 + ',prevsid:' + $(ACTobj).attr("drid") + '}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (e) {
@@ -206,29 +206,30 @@
         })
         function validateForm(e) {
 
-            var categoryname = document.getElementById("inputcategory").value;
-            var orderby = document.getElementById("inputorderby").value;
+            var drname = document.getElementById("drname").value;
+            var drphone = document.getElementById("drphone").value;
+            var drclinic = document.getElementById("drclinic").value;
             submitOK = "true";
 
-            if (categoryname == "" && orderby == "") {
-                alert("PLEASE ENTER Category NAME");
+            if (drname == "" && drphone == "" && drclinic=="") {
+                alert("Fill all detials");
                 submitOK = "false";
-                document.getElementById("inputcategory").focus();
+                document.getElementById("drname").focus();
             }
-            else if (orderby != "" && categoryname == "") {
-                alert("PLEASE ENTER CATEGORY NAME");
+            else if (drname == "" && drphone != "" &&  drclinic=="") {
+                alert("PLEASE ENTER Doctorname");
                 submitOK = "false";
-                document.getElementById("inputcategory").focus();
+                document.getElementById("drname").focus();
             }
-            else if (categoryname != "" && orderby == "") {
-                alert("PLEASE ENTER ORDERBY");
+            else if (drname != "" && drphone == "") {
+                alert("PLEASE ENTER Phonenumber");
                 submitOK = "false";
-                document.getElementById("inputorderby").focus();
+                document.getElementById("drphone").focus();
             }
-            else if (isNaN(orderby)) {
-                alert("Please enter valid orderby");
+            else if (drname != "" && drphone != "" && drclinic =="") {
+                alert("PLEASE ENTER Doctorclinic");
                 submitOK = "false";
-                document.getElementById("inputorderby").focus();
+                document.getElementById("drclinic").focus();
             }
             if (submitOK == "false") {
 
@@ -236,8 +237,9 @@
             }
             if (submitOK == "true") {
                 var cat = {};
-                cat.categoryname = categoryname;
-                cat.orderby = orderby;
+                cat.Drname = drname;
+                cat.Drmobi = drphone;
+                cat.drclinic = drclinic;
                 var Actions = $('[id$=Actions]').val();
                 var previousid = $('[id$=previousid]').val();
                 $.ajax({

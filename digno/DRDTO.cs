@@ -43,7 +43,7 @@ namespace digno
         }
 
 
-        public DataSet getdoctorinfo(DRBLO belogin)
+        public DataSet getdoctorinfo(BL belogin)
         {
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
@@ -53,10 +53,10 @@ namespace digno
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Branch_ID", belogin.Branch_Id);
             cmd.Parameters.AddWithValue("@Org_ID", belogin.Org_Id);
-            cmd.Parameters.AddWithValue("@UserID", belogin.UserID);
+            cmd.Parameters.AddWithValue("@User_id", belogin.Id);
 
-            cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
-            cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
+            //cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
+            //cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
             SqlDataAdapter da = new SqlDataAdapter();
             DataSet ds = new DataSet();
             da = new SqlDataAdapter(cmd);
@@ -70,14 +70,14 @@ namespace digno
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString());
 
-            SqlCommand cmd = new SqlCommand("sp_Master_Doctor", con);
+            SqlCommand cmd = new SqlCommand("hunmdc.sp_Save_Doctor", con);
             cmd.CommandType = CommandType.StoredProcedure;
             if (Dr.Actions == 0)
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Dr_Name", Dr.Drname);
-                cmd.Parameters.AddWithValue("@Dr_Address", Dr.Draddress);
-                cmd.Parameters.AddWithValue("@Dr_MailID", Dr.Dremail);
+                cmd.Parameters.AddWithValue("@Dr_Address", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Dr_MailID", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Dr_MobNo", Dr.Drmobi);
                 cmd.Parameters.AddWithValue("@Org_ID", Dr.Org_Id);
                 cmd.Parameters.AddWithValue("@Branch_ID", Dr.Branch_Id);
@@ -86,15 +86,18 @@ namespace digno
                 cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Status", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Dr_ID", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Clinic_name", Dr.drclinic);
+                cmd.Parameters.AddWithValue("@Action", Dr.Actions);
                 cmd.Parameters.AddWithValue("@Dr_RefID", DBNull.Value);
+
 
             }
             else if (Dr.Actions == 1)
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Dr_Name", Dr.Drname);
-                cmd.Parameters.AddWithValue("@Dr_Address", Dr.Draddress);
-                cmd.Parameters.AddWithValue("@Dr_MailID", Dr.Dremail);
+                cmd.Parameters.AddWithValue("@Dr_Address", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Dr_MailID", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Dr_MobNo", Dr.Drmobi);
                 cmd.Parameters.AddWithValue("@Org_ID", Dr.Org_Id);
                 cmd.Parameters.AddWithValue("@Branch_ID", Dr.Branch_Id);
@@ -102,26 +105,28 @@ namespace digno
                 cmd.Parameters.AddWithValue("@Created_Date", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Status", DBNull.Value);
-                cmd.Parameters.AddWithValue("@Dr_ID", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Dr_ID", Dr.Drid);
                 cmd.Parameters.AddWithValue("@Dr_RefID", DBNull.Value);
-
+                cmd.Parameters.AddWithValue("@Clinic_name", Dr.drclinic);
+                cmd.Parameters.AddWithValue("@Action", Dr.Actions);
             }
             else if (Dr.Actions == 2)
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Dr_Name", Dr.Drname);
-                cmd.Parameters.AddWithValue("@Dr_Address", Dr.Draddress);
-                cmd.Parameters.AddWithValue("@Dr_MailID", Dr.Dremail);
-                cmd.Parameters.AddWithValue("@Dr_MobNo", Dr.Drmobi);
+                cmd.Parameters.AddWithValue("@Dr_Name", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Dr_Address", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Dr_MailID", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Dr_MobNo", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Org_ID", Dr.Org_Id);
                 cmd.Parameters.AddWithValue("@Branch_ID", Dr.Branch_Id);
                 cmd.Parameters.AddWithValue("@UserID", Dr.UserID);
                 cmd.Parameters.AddWithValue("@Created_Date", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Is_Deleted", DBNull.Value);
-                cmd.Parameters.AddWithValue("@Status", DBNull.Value);
-                cmd.Parameters.AddWithValue("@Dr_ID", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Status",Dr.Drstatus);
                 cmd.Parameters.AddWithValue("@Dr_RefID", DBNull.Value);
-
+                cmd.Parameters.AddWithValue("@Clinic_name",DBNull.Value);
+                cmd.Parameters.AddWithValue("@Dr_ID", Dr.Drid);
+                cmd.Parameters.AddWithValue("@Action", Dr.Actions);
             }
 
             cmd.Parameters.Add("@ERROR", SqlDbType.Char, 6);
