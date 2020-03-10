@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="digno.Users" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="OrgUsers.aspx.cs" Inherits="digno.OrgUsers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
      <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <section class="content">
+
+ <section class="content">
 
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default" style="margin-top:12px">
@@ -21,11 +23,31 @@
           <div class="row">
               <div class="col-md-12">
             
+                    <div class="col-md-2">
+              <div class="form-group">
+                <label>Branch Name</label>
+                  <select id="Branchname" class="form-control select2 " runat="server">
+                      <option selected="selected">Select Name</option>
+                  <option>test1</option>
+                  <option>test2</option>
+                                    </select>
+              </div>
+                    </div>
+
+                  <div class="col-md-2">
+              <div class="form-group">
+                <label>Role Type</label>
+                <select id="inputrt" class="form-control select2 ">
+                      <option selected="selected">Admin</option>
+                  <option>Technician</option>
+                  <option>User</option>
+                                    </select>              </div>
+                    </div>
 
                 <div class="col-md-2">
               <div class="form-group">
                 <label>User Name</label>
-                  <input  type="hidden" value="1" id="Actions" runat="server" />
+                  <input  type="hidden" value="0" id="Actions" runat="server" />
                   <input  type="hidden" value="0" id="previousid" runat="server" />
                  <input id="inputun" class="form-control input-sm" type="text" placeholder="User Name"/ required>
               </div>
@@ -231,7 +253,6 @@
             //Initialize Select2 Elements
             $('.select2').select2()
         })
-
         function validateForm(e) {
             
             var Roletype = document.getElementById("inputrt").value;

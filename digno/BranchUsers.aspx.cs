@@ -8,21 +8,20 @@ using System.Web.UI.WebControls;
 
 namespace digno
 {
-    public partial class Users : System.Web.UI.Page
+    public partial class BranchUsers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             GetUsers();
-           
         }
 
         [System.Web.Services.WebMethod]
-        public static string SaveUsers(UsersBLO cat, int Actions)
+        public static string SaveUsers(BranchUsersBLO cat, int Actions)
         {
             string status = string.Empty;
             try
             {
-               
+
                 BL objuser = new BL();
                 //if (Actions != 2)
                 //{
@@ -30,11 +29,11 @@ namespace digno
                 //    objBE.tstamount = cat.tstamount;
                 //}
                 objuser = (BL)HttpContext.Current.Session["userinfo"];
-                
+
                 cat.Org_id = objuser.Org_Id;
                 cat.Branch_id = objuser.Branch_Id;
                 cat.Actions = Actions;
-                
+
                 if (Actions == 0)
                     cat.PrevUID = null;
 
@@ -54,10 +53,10 @@ namespace digno
                 //    objBE.activestatus = cat.Status;
 
 
-                UsersBL bl = new UsersBL();
-                    status = bl.SaveUsers(cat);
+                BranchUsersBL bl = new BranchUsersBL();
+                status = bl.SaveUsers(cat);
 
-                
+
             }
             catch (Exception e)
             {
@@ -70,14 +69,13 @@ namespace digno
         {
             DataSet ds = new DataSet();
             BL objsess = new BL();
-            UsersBL bl = new UsersBL();
+            BranchUsersBL bl = new BranchUsersBL();
             objsess = (BL)HttpContext.Current.Session["Userinfo"];
             ds = bl.GetUsers(objsess);
             Usersrpt.DataSource = ds;
             Usersrpt.DataBind();
 
         }
-
-       
+        
     }
 }

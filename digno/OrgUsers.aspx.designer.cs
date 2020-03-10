@@ -10,7 +10,16 @@
 namespace digno {
     
     
-    public partial class Users {
+    public partial class OrgUsers {
+        
+        /// <summary>
+        /// Branchname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect Branchname;
         
         /// <summary>
         /// Actions control.

@@ -10,7 +10,7 @@
 namespace digno {
     
     
-    public partial class Users {
+    public partial class BranchUsers {
         
         /// <summary>
         /// Actions control.

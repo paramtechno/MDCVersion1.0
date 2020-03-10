@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="digno.Users" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="BranchUsers.aspx.cs" Inherits="digno.BranchUsers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
      <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <section class="content">
+    
+ <section class="content">
 
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default" style="margin-top:12px">
@@ -21,11 +22,22 @@
           <div class="row">
               <div class="col-md-12">
             
+                   
+
+                  <div class="col-md-2">
+              <div class="form-group">
+                <label>Role Type</label>
+                <select id="inputrt" class="form-control select2 ">
+                      <option selected="selected">Admin</option>
+                  <option>Technician</option>
+                  <option>User</option>
+                                    </select>              </div>
+                    </div>
 
                 <div class="col-md-2">
               <div class="form-group">
                 <label>User Name</label>
-                  <input  type="hidden" value="1" id="Actions" runat="server" />
+                  <input  type="hidden" value="0" id="Actions" runat="server" />
                   <input  type="hidden" value="0" id="previousid" runat="server" />
                  <input id="inputun" class="form-control input-sm" type="text" placeholder="User Name"/ required>
               </div>
@@ -207,7 +219,7 @@
 
         $.ajax({
             type: 'POST',
-            url: 'Users.aspx/SaveUsers',
+            url: 'BranchUsers.aspx/SaveUsers',
             data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + 2 + '}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -231,7 +243,6 @@
             //Initialize Select2 Elements
             $('.select2').select2()
         })
-
         function validateForm(e) {
             
             var Roletype = document.getElementById("inputrt").value;
@@ -250,19 +261,19 @@
             }
 
             if (Password != Confirmpassword) {
-                alert("PLEASE ENTER Same Password for Password and Confirm Password");
+                alert("PLEASE ENTER Same Password for both Password and Confirm Password");
                 submitOK = "false";
                 document.getElementById("inputp").focus();
                 document.getElementById("inputcp").focus();
             }
 
             if (Email == "") {
-                alert("PLEASE ENTER CATEGORY NAME");
+                alert("PLEASE ENTER Email");
                 submitOK = "false";
                 document.getElementById("inputemail").focus();
             }
              if (Roletype == "") {
-                alert("PLEASE ENTER ORDERBY");
+                alert("PLEASE SELECT Roletype");
                 submitOK = "false";
                 document.getElementById("inputrt").focus();
             }
@@ -288,7 +299,7 @@
                 cat.PrevUID = $('[id$=previousid]').val();
                 $.ajax({
                     type: 'POST',
-                    url: 'Users.aspx/SaveUsers',
+                    url: 'BranchUsers.aspx/SaveUsers',
                     data: '{cat: ' + JSON.stringify(cat) + ',Actions:' + Actions + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -305,5 +316,4 @@
         }
 
             </script>
-
 </asp:Content>
