@@ -67,7 +67,6 @@
     <Content Include="App_Data\digno_log.ldf">
       <DependentUpon>digno.mdf</DependentUpon>
     </Content>
-    <Content Include="BranchUsers.aspx" />
     <Content Include="DrCreation.aspx" />
     <Content Include="GetTestPage.aspx" />
     <Content Include="index.aspx" />
@@ -219,11 +218,9 @@
     <Content Include="login.aspx" />
     <Content Include="login.jpg" />
     <Content Include="neworder.aspx" />
-    <Content Include="OrgUsers.aspx" />
     <Content Include="Org_Creation.aspx" />
     <Content Include="TestCreation.aspx" />
     <Content Include="Testtype.aspx" />
-    <Content Include="Users.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -244,16 +241,6 @@
     </Compile>
     <Compile Include="BL.cs" />
     <Compile Include="BLO.cs" />
-    <Compile Include="BranchUsers.aspx.cs">
-      <DependentUpon>BranchUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BranchUsers.aspx.designer.cs">
-      <DependentUpon>BranchUsers.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BranchUsersBL.cs" />
-    <Compile Include="BranchUsersBLO.cs" />
-    <Compile Include="BranchUsersDT.cs" />
     <Compile Include="DRBL.cs" />
     <Compile Include="DRBLO.cs" />
     <Compile Include="DrCreation.aspx.cs">
@@ -265,9 +252,6 @@
     </Compile>
     <Compile Include="DRDTO.cs" />
     <Compile Include="DTO.cs" />
-    <Compile Include="GettestBL.cs" />
-    <Compile Include="GettestBLO.cs" />
-    <Compile Include="GettestDT.cs" />
     <Compile Include="GetTestPage.aspx.cs">
       <DependentUpon>GetTestPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -310,16 +294,6 @@
     <Compile Include="OrgBL.cs" />
     <Compile Include="OrgBLO.cs" />
     <Compile Include="OrgDTO.cs" />
-    <Compile Include="OrgUsers.aspx.cs">
-      <DependentUpon>OrgUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrgUsers.aspx.designer.cs">
-      <DependentUpon>OrgUsers.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OrgUsersBL.cs" />
-    <Compile Include="OrgUsersBLO.cs" />
-    <Compile Include="OrgUsersDT.cs" />
     <Compile Include="Org_Creation.aspx.cs">
       <DependentUpon>Org_Creation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -349,16 +323,6 @@
       <DependentUpon>Testtype.aspx</DependentUpon>
     </Compile>
     <Compile Include="TesttypeDTO.cs" />
-    <Compile Include="Users.aspx.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Users.aspx.designer.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UsersBL.cs" />
-    <Compile Include="UsersBLO.cs" />
-    <Compile Include="UsersDT.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="indexstyle\font\customicon\Icons.eot" />

@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="GetTestPage.aspx.cs" Inherits="digno.GetTestPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css"/>
+    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
     <style>
         body
 {
@@ -66,7 +68,7 @@ table
                 <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Test Category</label>
-                   <select id="Testcateg" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
+                   <select id="Testcateg" class="form-control select2 " runat="server" onchange="LoadTEST(this.value)">
                      <option>Select Test</option>
                    </select>
                  </div>
@@ -123,6 +125,8 @@ table
             <td><%# Eval("TesteName") %></td>
             <td class="hi"><%# Eval("TestAmt") %></td>
                 <td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td>
+                 <td class="hi"><%# Eval("TestAmt") %></td>
+                 <td class="hi"><%# Eval("TestAmt") %></td>
                 </tr></ItemTemplate>
                 </asp:Repeater>
    </tbody>
@@ -137,12 +141,13 @@ table
 
                       </div>
         <div style="padding:10px 0; text-align:left" class="col-md-12">
-             <div class="col-md-3">Paid Amount :  <input class="form-control input-sm" type="text" placeholder=""/></div>
-               <div class="col-md-3">Discount Amount :  <input class="form-control input-sm" type="text" placeholder=""/></div>
-                    <div class="col-md-3">Balance Amount :  <label id="amount">0.00</label></div>
+             <div class="col-md-3">Paid Amount :  <input id="pamt" class="form-control input-sm" type="text" placeholder=""  value="0.0"  onkeyup="changebal()"/></div>
+               <div class="col-md-3">Discount Amount :  <input id="disamt" class="form-control input-sm" type="text" placeholder=""   value="0.0"  onkeyup="changebal()"/></div>
+                    <div class="col-md-3">Balance Amount :  <label id="Bamount" value="0.0">0.00</label></div>
       
           
        <div class="col-md-3">  
+            <input  type="hidden" value="0" id="Actions" runat="server" />
           <button id="saveOrder" type="submit" class="btn btn-success">Save Bill</button>
           <button type="reset" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
        </div>
@@ -161,13 +166,13 @@ table
     <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
-<%--        <script type="text/javascript">
+        <script type="text/javascript">
        var categories = []
-       $(function () {
+       function LoadTEST(categoryDD) {
            $.ajax({
                type: "POST",
                url: "GetTestPage.aspx/GetTEST",
-               data: '{}',
+               data: '{categoryid: "' + categoryDD + '"}',
                contentType: "application/json; charset=utf-8",
                dataType: "json",
                success: function (r) {
@@ -179,7 +184,7 @@ table
                    });
                }
            });
-           });
+           };
      </script>  
        
     <script type="text/javascript">
@@ -209,6 +214,109 @@ table
                }
            });
        }
+
+
+
+       function changebal() {
+           var billamt = document.getElementById('amount').value;
+           var paidamt = document.getElementById('pamt').value;
+           var discount = document.getElementById('disamt').value;
+           var balance = parseInt(billamt) - (parseInt(paidamt) + parseInt(discount));
+           var bal = isNaN(balance) ? 0 : parseInt(balance);
+           document.getElementById('Bamount').value = bal;
+           document.getElementById('Bamount').innerHTML = bal;
+       }
+       function saveOrder(data) {
+
+           return $.ajax({
+
+               contentType: 'application/json; charset=utf-8',
+               dataType: 'json',
+               type: 'POST',
+               url: "GetTestPage.aspx/SaveOrder",
+               data: data,
+               success: function (result) {
+                   alert("Data Saved Sucessfully");
+                   window.location.href = "Billmaster.aspx";
+
+               },
+               error: function (result) {
+                   alert(result)
+               }
+           });
+       }
+
+
+       $("#saveOrder").click(function (e) {
+
+
+
+
+
+
+           e.preventDefault();
+
+           var orderArr = [];
+           orderArr.length = 0;
+
+
+           var pid = $('#<%=Label1.ClientID%>').text();
+           if (pid != '') {
+
+               $.each($("#tb tbody tr"), function () {
+                   orderArr.push({
+                       TesteName: $(this).find('td:eq(1)').html(),
+                       TestAmt: $(this).find('td:eq(2)').html(),
+                       TId: $(this).find('td:eq(4)').html(),
+                       catId: $(this).find('td:eq(5)').html()
+                   });
+               });
+               if (orderArr.length > 0) {
+
+
+                   var data = JSON.stringify({
+                       paid: $('#pamt').val(),
+                       totalamt: $('#amount').val(),
+                       discount: $('#disamt').val(),
+                       pid:pid,
+                       PTest: orderArr
+                   });
+                  // var upis = $('#Actions').val();
+                   var upis = "insert";
+                   if (upis == "insert") {
+                       $.when(saveOrder(data)).then(function (response) {
+
+                           console.log(response);
+                       }).fail(function (err) {
+                           console.log(err);
+                       });
+                   }
+                   else {
+                       $.when(update(data)).then(function (response) {
+
+                           console.log(response);
+
+                       }).fail(function (err) {
+                           console.log(err);
+                       });
+                   }
+               }
+               else {
+                   alert("Select Atleast One Test");
+               }
+
+
+           }
+           else {
+               alert("enter the Requerd filds pid");
+           }
+
+
+
+       });
+
+
+
    </script>
        <script type="text/javascript">
        
@@ -276,10 +384,12 @@ table
                 var productName = opt.text,
                     tid=opt.value,
               price = sel1.value,
+
                 detailsTableBody = $("#tb tbody");
                 var productItem = '<tr><td></td><td>' + productName + '</td><td class="hi">' + price + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td> <td style="display:none">' + tid + '</td></tr>';
             detailsTableBody.append(productItem);
             sumadd();
+            changebal();
             clearItem();
 
 
@@ -302,6 +412,7 @@ table
                 //var totalBalance = document.createTextNode('Total Balance ' + sum);
                 //cell.appendChild(totalBalance);
                 document.getElementById('amount').innerHTML = sum;
+                document.getElementById('amount').value = sum;
             }
 
 
@@ -325,8 +436,26 @@ table
           })
 
         
-        sumadd();--%>
+        sumadd();
         
-<%--</script>--%>
+</script>
 
+     
+    <script type="text/javascript">
+
+
+
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
+
+
+
+
+
+
+
+
+            </script>
 </asp:Content>

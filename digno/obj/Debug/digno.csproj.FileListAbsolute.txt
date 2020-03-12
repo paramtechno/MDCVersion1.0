@@ -26,10 +26,3 @@ C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\bin\ClassLibrary1.pdb
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\obj\Debug\digno.csprojResolveAssemblyReference.cache
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\obj\Debug\digno.dll
 C:\Users\nitin\Source\Repos\MDCVersion1.0\digno\obj\Debug\digno.pdb
-E:\Project DC\digno\bin\digno.dll.config
-E:\Project DC\digno\bin\digno.dll
-E:\Project DC\digno\bin\digno.pdb
-E:\Project DC\digno\bin\ClassLibrary1.pdb
-E:\Project DC\digno\obj\Debug\digno.csprojResolveAssemblyReference.cache
-E:\Project DC\digno\obj\Debug\digno.dll
-E:\Project DC\digno\obj\Debug\digno.pdb
