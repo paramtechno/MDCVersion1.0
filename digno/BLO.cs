@@ -22,7 +22,7 @@ namespace digno
             }
             catch(Exception e)
             {
-                throw;
+                throw e;
             }
         }  
     }

@@ -6,43 +6,39 @@ using System.Web;
 
 namespace digno
 {
-    public class TestCreationBL
+    public class OrgUsersBL
     {
-        TestCreationDTO tst = new TestCreationDTO();
 
-        public DataTable TestCategorybind(BL saveinfo)
+        OrgUsersDT udt = new OrgUsersDT();
+        public string SaveUsers(OrgUsersBLO ubl)
         {
             try
             {
-                return tst.testcategory(saveinfo);
-            }
-            catch(Exception e)
-            {
-                throw e;
-               
-            }
-        }
-
-
-
-        public DataSet subtestbind(BL saveinfo)
-        {
-            try
-            {
-                return tst.subtestbind(saveinfo);
+                return udt.SaveUsers(ubl);
             }
             catch (Exception e)
             {
                 throw e;
-
             }
         }
 
-        public string savesubtest(OrgBLO saveinfo)
+        public DataSet GetUsers(BL bl)
         {
             try
             {
-                return tst.savesubtest(saveinfo);
+                return udt.GetUsers(bl);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public DataTable BindBranchName(BL bl)
+        {
+            try
+            {
+                return udt.BindBranchName(bl);
             }
             catch (Exception e)
             {
