@@ -12,7 +12,9 @@ namespace digno
         public string Patient_name { get; set; }
 
         public Int32 Test_id { get; set; }
+        public Int32 Category_ID { get; set; }
 
+      
         private string _name;
         private Int64 _mobile;
         private string _email;
