@@ -26,7 +26,7 @@ namespace digno
             objBE.UserID = objuser.Id;
 
             DRBL bll = new DRBL();
-            ds = bll.gettesttype(objBE);
+            //ds = bll.gettesttype(objBE);
             Repeaters.DataSource = ds;
             Repeaters.DataBind();
 

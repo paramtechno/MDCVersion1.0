@@ -17,7 +17,6 @@ table
         }
     </style>
 </asp:Content>
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <section class="content">
@@ -31,25 +30,37 @@ table
           <div class="box " >
             <div class="box-header with-border">
               <h3 class="box-title">Patient Details </h3>
+                <div class="col-md-12">
+                 <div class="box " >
+                      <div class="box-header with-border">
+                 <div class="col-md-4">Test Ctegory:
+                     <select id="Testcategory" class="form-control" onchange="LoadProduct(this.value)">
+                     <option>Select Test Category</option></select>
+                </div>
+                 <div class="col-md-4">
+                     Test:
+                    <select id="Test" class="form-control" onchange="LoadProduct(this.value)">
+                     <option>Select Test</option></select>
+                </div>
+                   <div class="col-md-4">
+                      <button type="button" class="btn btn-primary">Show</button>
+                </div>
+                 
+                </div>
+                     </div>
+          </div>
+
          <div class="col-md-12">
                  <div class="box " >
                       <div class="box-header with-border">
-                 <div class="col-md-2">Patient Id:
+                 <div class="col-md-6">Category Name:
                      <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> 
                 </div>
-                 <div class="col-md-2">
-                     Name:
+                 <div class="col-md-6">
+                     Test:
                      <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
                 </div>
-                 <div class="col-md-2">
-                     Age :
-                     <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                </div>
                  
-                 <div class="col-md-2">
-                     Refered DrName:
-                     <asp:Label ID="Label4" runat="server" Text="Label" ></asp:Label>
-                </div>
                 </div>
                      </div>
           </div>
@@ -62,16 +73,67 @@ table
       <div class="row" >
          <div class="col-xs-12" style="border:0.5px solid #f39c12;border-radius:10px; ">
             <div class=" ">
-
+            
+                <div class="col-md-12">
                 <div class="col-md-3">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Test Category</label>
+                  <label for="exampleInputEmail1">Examintaion Type</label>
                    <select id="Testcateg" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
                      <option>Select Test</option>
                    </select>
                  </div>
               </div>
                  <div class="col-md-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Parameter Name</label>
+                   <input class="form-control input-sm" type="text" placeholder="Parameter Name"/>
+                   
+                 </div>
+              </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Gender</label>
+                   <select id="Select3" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
+                     <option selected="">Male</option>
+                       <option>Female</option>
+                       <option>Both</option>
+                   </select>
+              </div>
+            </div>
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Normal Values</label>
+                   <input class="form-control input-sm" type="text" placeholder="Normal Values"/>
+                 </div>
+              </div>
+
+                </div>
+                <div class="col-md-12">
+                 <div class="col-md-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Minimum Range</label>
+                   <input class="form-control input-sm" type="text" placeholder="Minimum Range"/>
+                   
+                 </div>
+              </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                    <label for="exampleInputEmail1">Maximum Range</label>
+                 <input type="text" class="form-control" id="mr" placeholder="Maximum Range" />
+              </div>
+            </div>
+
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Units</label>
+                   <select id="Select2" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
+                     <option>Select Test</option>
+                   </select>
+                 </div>
+              </div>
+    <%--             <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Test</label>
                    <select id="productCategory" class="form-control" onchange="LoadProduct(this.value)">
@@ -86,7 +148,7 @@ table
                  <label for="exampleInputEmail1">Amount</label>
                  <input type="text" class="form-control" id="AMT" placeholder="Amount">
               </div>
-            </div>
+            </div>--%>
 
                 <div class="col-md-2">
                 <div class="form-group">
@@ -94,12 +156,15 @@ table
                
                 </div>
 
-
-
-
-                      </div>
                 </div>
+                </div>
+
+                     
+                </div>
+
              </div>
+
+
           </div></section>
 
                   
@@ -108,9 +173,14 @@ table
              <thead>
                 <tr>
                  <th style="width:10%">Slno</th>
-                 <th >Test Name</th>
-                 <th style="width:20%">Test Amout</th>
-                 <th style="width:10%">Delete</th>
+                 <th style="width:10%">Examination Type</th>
+                 <th style="width:10%">Parameter Name</th>
+                 <th style="width:10%">Gender</th>
+                <th style="width:10%">Normal Value</th>
+                <th style="width:10%">Minimum Range</th>
+                <th style="width:10%">Maximum Range</th>
+                <th style="width:10%">Unit</th>
+                <th style="width:10%">Delete</th>
                </tr>
             </thead>
         <tbody>
@@ -120,8 +190,8 @@ table
                 <ItemTemplate>
             <tr style="visibility:visible">
             <td></td>
-            <td><%# Eval("TesteName") %></td>
-            <td class="hi"><%# Eval("TestAmt") %></td>
+            <td></td>
+            <td></td>
                 <td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td>
                 </tr></ItemTemplate>
                 </asp:Repeater>
@@ -132,28 +202,19 @@ table
             </table>
             <span id="orderItemError" style="color:red"></span>
         </div>
-                  <div style="padding:10px 0; text-align:left" class="col-md-12">
-                      <div class="col-md-3">Total Amount :  <label id="amount">0.00</label></div>
-
-                      </div>
-        <div style="padding:10px 0; text-align:left" class="col-md-12">
-             <div class="col-md-3">Paid Amount :  <input class="form-control input-sm" type="text" placeholder=""/></div>
-               <div class="col-md-3">Discount Amount :  <input class="form-control input-sm" type="text" placeholder=""/></div>
-                    <div class="col-md-3">Balance Amount :  <label id="amount">0.00</label></div>
-      
-          
+                
        <div class="col-md-3">  
-          <button id="saveOrder" type="submit" class="btn btn-success">Save Bill</button>
+          <button id="saveOrder" type="submit" class="btn btn-success">Save</button>
           <button type="reset" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
        </div>
               </div>
    </div>
               
-                </form>
+               
                 </div>
               </div>
-            </div>
-          </div>
+            
+         
          </section>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  

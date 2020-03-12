@@ -146,7 +146,7 @@ namespace digno
           
         }
         [System.Web.Services.WebMethod]
-        public static string SaveOrder(float paid,float totalamt,float discount,string pid, billblo[] PTest)
+        public static string SaveOrder(float paid,float totalamt,float discount,string pid,billblo[] PTest)
         {
             string status = string.Empty;
             //try
