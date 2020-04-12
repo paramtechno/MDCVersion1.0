@@ -10,33 +10,24 @@
 namespace digno {
     
     
-    public partial class neworder {
+    public partial class dashboard {
         
         /// <summary>
-        /// Testcateg control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Testcateg;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// rptCustomers control.
+        /// Billrept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCustomers;
-        
-        /// <summary>
-        /// Actions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden Actions;
+        protected global::System.Web.UI.WebControls.Repeater Billrept;
     }
 }

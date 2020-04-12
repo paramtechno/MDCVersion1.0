@@ -21,8 +21,40 @@ namespace digno
         private string _refcetnter;
         private int _age;
         private string _agetype;
+        private float _Paidamt;
+        private float _Discount;
+        private float _totalamt;
+        private string _userid;
+
+
 
         private int _Org_Id;
+        public string userid
+        {
+           get { return _userid; }
+            set { _userid = value; }
+        }
+
+   
+        public float Paidamt
+        {
+            get { return _Paidamt; }
+            set { _Paidamt = value; }
+        }
+        public float Discount
+        {
+            get { return _Discount; }
+            set { _Discount = value; }
+        }
+
+        public float totalamt
+        {
+            get { return _totalamt; }
+            set { _totalamt = value; }
+        }
+
+
+
 
         public int Org_Id
         {

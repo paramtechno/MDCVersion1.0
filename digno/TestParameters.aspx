@@ -34,16 +34,18 @@ table
                  <div class="box " >
                       <div class="box-header with-border">
                  <div class="col-md-4">Test Ctegory:
-                     <select id="Testcategory" class="form-control" onchange="LoadProduct(this.value)">
-                     <option>Select Test Category</option></select>
+                     <select  id="testid" class="form-control" runat="server" onchange="LoadTEST(this.value)">
+                     <option>Select Test Category</option>
+                   
+                     </select>
                 </div>
                  <div class="col-md-4">
                      Test:
-                    <select id="Test" class="form-control" onchange="LoadProduct(this.value)">
+                    <select id="productCategory" class="form-control" runat="server">
                      <option>Select Test</option></select>
                 </div>
                    <div class="col-md-4">
-                      <button type="button" class="btn btn-primary">Show</button>
+                      <button type="button" class="btn btn-primary" id="Showid">Show</button>
                 </div>
                  
                 </div>
@@ -54,11 +56,11 @@ table
                  <div class="box " >
                       <div class="box-header with-border">
                  <div class="col-md-6">Category Name:
-                     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> 
+                       <label class="agile-label" for="Cat-name" id="a1"></label>
                 </div>
                  <div class="col-md-6">
                      Test:
-                     <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                     <label class="agile-label" for="test-name" id="a2"></label>
                 </div>
                  
                 </div>
@@ -78,15 +80,19 @@ table
                 <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Examintaion Type</label>
-                   <select id="Testcateg" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
+                   <select id="Testcateg" class="form-control select2 " runat="server">
                      <option>Select Test</option>
+                        <option>chemical exmition</option>
+                        <option>Physical Ezmiation</option>
+                        <option>test</option>
+                        <option>Select Test</option>
                    </select>
                  </div>
               </div>
                  <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Parameter Name</label>
-                   <input class="form-control input-sm" type="text" placeholder="Parameter Name"/>
+                   <input class="form-control input-sm" type="text" id="pn" placeholder="Parameter Name"/>
                    
                  </div>
               </div>
@@ -94,7 +100,7 @@ table
             <div class="col-md-3">
               <div class="form-group">
                   <label for="exampleInputEmail1">Gender</label>
-                   <select id="Select3" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
+                   <select id="Gn" class="form-control select2 " runat="server">
                      <option selected="">Male</option>
                        <option>Female</option>
                        <option>Both</option>
@@ -104,7 +110,7 @@ table
                 <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Normal Values</label>
-                   <input class="form-control input-sm" type="text" placeholder="Normal Values"/>
+                   <input class="form-control input-sm" type="text" id="NV" placeholder="Normal Values"/>
                  </div>
               </div>
 
@@ -113,7 +119,7 @@ table
                  <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Minimum Range</label>
-                   <input class="form-control input-sm" type="text" placeholder="Minimum Range"/>
+                   <input class="form-control input-sm" type="text" id="MinR" placeholder="Minimum Range"/>
                    
                  </div>
               </div>
@@ -121,14 +127,14 @@ table
             <div class="col-md-3">
               <div class="form-group">
                     <label for="exampleInputEmail1">Maximum Range</label>
-                 <input type="text" class="form-control" id="mr" placeholder="Maximum Range" />
+                 <input type="text" class="form-control" id="MaxR" placeholder="Maximum Range" />
               </div>
             </div>
 
                 <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Units</label>
-                   <select id="Select2" class="form-control select2 " runat="server" onchange="LoadProduct1(this.value)">
+                   <select id="units" class="form-control select2 " runat="server">
                      <option>Select Test</option>
                    </select>
                  </div>
@@ -221,6 +227,89 @@ table
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+
+
+     <script type="text/javascript">
+       var categories = []
+       function LoadTEST(categoryDD) {
+           $.ajax({
+               type: "POST",
+               url: "TestParameters.aspx/GetTEST",
+               data: '{categoryid: "' + categoryDD + '"}',
+               contentType: "application/json; charset=utf-8",
+               dataType: "json",
+               success: function (r) {
+                   categories = r;
+                   var ddlCustomers = $("[id*=productCategory]");
+                   ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                   $.each(r.d, function () {
+                       ddlCustomers.append($("<option></option>").val(this['Value']).html(this['Text']));
+                   });
+               }
+           });
+           };
+     </script>  
+
+    <script type="text/javascript">
+    
+        $('#Showid').click(function () {
+            //validation and add order items
+            var sel = document.getElementById('<%=testid.ClientID%>');
+            var opt = sel.options[sel.selectedIndex];
+            var sel1 = document.getElementById('<%=productCategory.ClientID%>');
+            var opt1 = sel1.options[sel1.selectedIndex];
+            $('#a1').text(opt.text);
+            $('#a2').text(opt1.text);
+
+         
+           // cat.Text = opt.text;
+         //   test.Text = opt1.text;
+
+
+
+
+
+
+        });
+
+        $('#add').click(function () {
+
+            var sel = document.getElementById('<%=Testcateg.ClientID%>');
+            var opt1 = sel.options[sel.selectedIndex];
+            var opt2 = document.getElementById('pn');
+             var sel2 = document.getElementById('<%=Gn.ClientID%>');
+            var opt3 = sel2.options[sel2.selectedIndex];
+           
+           
+            var opt4 = document.getElementById('NV');
+            var opt5 = document.getElementById('minval');
+            var opt6 = document.getElementById('maxval');
+            var sel1 = document.getElementById('<%=units.ClientID%>');
+            var opt7 = sel1.options[sel1.selectedIndex];
+            
+
+            //cell1.innerHTML = opt.text;
+            //cell2.innerHTML = sel1.value;
+
+
+            var exmtype = opt1.text,
+                paramname = opt2.value,
+                gender = opt3.value,
+                normalvalues = opt4.value,
+                minmumval = opt5.value,
+                maxval = opt6.value,
+                unit=opt7.value
+                 
+
+
+            detailsTableBody = $("#tb tbody");
+            var productItem = '<tr><td></td><td>' + exmtype + '</td><td class="hi">' + paramname + '</td><td class="hi">' + gender + '</td><td class="hi">' + normalvalues + '</td><td class="hi">' + minmumval + '</td><td class="hi">' + maxval + '</td><td class="hi">' + unit + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td> <td style="display:none">' + tid + '</td></tr>';
+            detailsTableBody.append(productItem);
+        });
+
+       </script>
 
 <%--        <script type="text/javascript">
        var categories = []

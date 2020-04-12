@@ -89,7 +89,7 @@ namespace digno
                             objsess.Id = ds.Tables[1].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[1].Rows[0][1].ToString();
                             HttpContext.Current.Session["Userinfo"] = objsess;
-                           Response.Redirect("~/Billmaster.aspx");
+                           Response.Redirect("~/dashboard.aspx");
                         }
                         else if (ds.Tables[0].Rows[0][2].ToString() == "tech")
                         
@@ -100,7 +100,7 @@ namespace digno
                             objsess.Id = ds.Tables[0].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[0].Rows[1].ToString();
                             HttpContext.Current.Session["Userinfo"] = objsess;
-                            Response.Redirect("~/Dr/Billmaster.aspx");
+                            Response.Redirect("~/Dr/dashboard.aspx");
                         }
                         else if (ds.Tables[0].Rows[0][2].ToString() == "user")
                         {
@@ -110,7 +110,7 @@ namespace digno
                             objsess.Id = ds.Tables[0].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[0].Rows[1].ToString();
                             HttpContext.Current.Session["Userinfo"] = objsess;
-                            Response.Redirect("~/users/Billmaster.aspx");
+                            Response.Redirect("~/users/dashboard.aspx");
                         }
                         else if (ds.Tables[0].Rows[0][2].ToString() == "patient")
                         {
@@ -120,7 +120,7 @@ namespace digno
                             objsess.Id = ds.Tables[0].Rows[0][0].ToString();
                             objsess.User_name = ds.Tables[0].Rows[1].ToString();
                             HttpContext.Current.Session["Userinfo"] = objsess;
-                            Response.Redirect("~/admin/Billmaster.aspx");
+                            Response.Redirect("~/admin/dashboard.aspx");
                         }
                     }
 

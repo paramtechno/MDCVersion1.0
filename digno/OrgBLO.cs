@@ -25,6 +25,16 @@ namespace digno
         private Int64 _tstamount;
         private Int64 _categoryid;
         private string _testCategory;
+         private string name { set; get; }
+        private string age { set; get; }
+        private string intal { set; get; }
+        private string refdr { set; get; }
+        private string refcent { set; get; }
+        private string gender { set; get; }
+
+
+
+
 
         public string subtestname
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.Data;
 namespace digno
 {
     public class BillBL
@@ -10,13 +10,13 @@ namespace digno
 
         BillDT OBJ = new BillDT();
 
-        public string SaveOrder(float paid, float totalamt, float discount, string pid, billblo[] PTest, OrgBLO objBE)
+        public string SaveOrder( neworderBLO objBE,DataTable dt)
         {
 
             try
             {
 
-                return OBJ.SaveOrder(paid, totalamt, discount, pid, PTest, objBE);
+                return OBJ.SaveOrder(objBE,dt);
             }
             catch
             {

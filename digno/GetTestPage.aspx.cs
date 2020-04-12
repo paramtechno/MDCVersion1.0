@@ -174,7 +174,7 @@ namespace digno
             //    if (objBE != null)
             //    {
                  BillBL bl = new BillBL();
-             status = bl.SaveOrder(paid,totalamt,discount,pid,PTest, objBE);
+          ///   status = bl.SaveOrder(paid,totalamt,discount,pid,PTest, objBE);
 
             //    }
             //}

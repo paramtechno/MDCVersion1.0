@@ -102,7 +102,7 @@ table
                       </div>
                 </div>
              </div>
-          </div></section>
+          </div>
 
                   
         <div >
@@ -152,14 +152,14 @@ table
           <button type="reset" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
        </div>
               </div>
-   </div>
+  
               
-                </form>
-                </div>
-              </div>
-            </div>
-          </div>
+               
+                
+          
+        
          </section>
+     </form>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -226,6 +226,10 @@ table
            document.getElementById('Bamount').value = bal;
            document.getElementById('Bamount').innerHTML = bal;
        }
+
+
+
+
        function saveOrder(data) {
 
            return $.ajax({

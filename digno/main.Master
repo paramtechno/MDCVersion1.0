@@ -280,7 +280,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs"></span>
-                       <asp:label ID="Label2"    runat="server" text=""  Visible="false" ></asp:label>
+                     <%--  <asp:label ID="Label2"    runat="server" text=""  Visible="false" ></asp:label> --%>
                 <asp:Label ID="Label1" runat="server" Text="false"></asp:Label>
             </a>
             
@@ -323,7 +323,7 @@
       <ul class="sidebar-menu" data-widget="tree" >
         <li class="header">MAIN NAVIGATION</li>
         <li class="active ">
-          <a href="Billmaster.aspx">
+          <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
        <%--     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -332,13 +332,20 @@
        </li>
 
            <li>
-          <a href="Test.aspx?isupdate=false&billno=0">
-            <i class="fa fa-th"></i> <span>Add Bill</span>
+          <a href="dashboard.aspx">
+            <i class="fa fa-th"></i> <span>Home</span>
            
           </a>
           </li>
            <li>
-          <a href="Org_Creation.aspx?isupdate=false&billno=0">
+          <a href="patients.aspx">
+            <i class="fa fa-th"></i> <span>Patients</span>
+           
+          </a>
+          </li>
+
+           <li>
+          <a href="Bills.aspx">
             <i class="fa fa-th"></i> <span>Bill's</span>
            
           </a>
@@ -366,25 +373,17 @@
         </li>--%>
 
             <li id="testResultId" runat="server">
-          <a href="GetTestPage.aspx" >
-            <i class="fa fa-bars"></i> <span>LAB Test Result</span>
+          <a href="Reports.aspx" >
+            <i class="fa fa-bars"></i> <span>Reports</span>
            </a>
         </li>
-          <li>
-          <a href="Reports.aspx">
-            <i class="fa fa-bars"></i> <span>Amount Receved by myself</span>
-           </a>
-        </li>
+          
           <li>
           <a href="Reports.aspx">
             <i class="fa fa-bars"></i> <span>Test Report Status</span>
            </a>
         </li>
-         <li>
-          <a href="Reports.aspx">
-            <i class="fa fa-bars"></i> <span>Report</span>
-           </a>
-        </li>
+         
             <li class="treeview" runat="server" id="treeId">
           <a href="#">
             <i class="fa fa-pie-chart"></i>

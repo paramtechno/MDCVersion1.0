@@ -1,20 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="Billmaster.aspx.cs" Inherits="digno.Billmaster" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="bills.aspx.cs" Inherits="digno.bills" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
  <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
-     </asp:Content>
-
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
+     `
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     
-
-    <section class="content">
+     <section class="content">
       <div class="row">
-          <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        <hr />
+          <hr />
         <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:-29px">
           
           <!-- /.box -->
@@ -32,45 +29,50 @@
             <div class="box-header">
               
                 <div class="col-md-12 col-sm-12 col-sx-12" >
-                <h3 class="box-title">TODAY'S ORDERS</h3>
-               <a class="btn btn-success pull-right" href="../neworder.aspx" ><i class="fa fa-plus">Add New Bill</i></a>   
+                <h3 class="box-title">BILL'S LIST</h3>
+              <%-- <a class="btn btn-success pull-right" href="../neworder.aspx" ><i class="fa fa-plus">Add New Bill</i></a>   --%>
                     </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <asp:Repeater ID="Billrept" runat="server">
-                     <HeaderTemplate>
+              <%--  <asp:Repeater ID="Billrept" runat="server">
+                     <HeaderTemplate>--%>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Type</th>
-                  <th>Patient Details</th>
+                  <th>Name</th>
+                     
                   <th>Ref Dr.</th>
                   <th>Ref Center</th>
                     <th>Bill No</th>
-                    <th>Bill</th>
-                    <th>Bill Print</th>
-                    <th>Activity</th>
+                    <th>Bill Type</th>
+                    <th>Bill Date</th>
+                    <th>Paid/Due</th>
+                     <th>Status</th>
+                    <th>Total Amount</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
-                  </HeaderTemplate>
-            <ItemTemplate>  
+                 <%-- </HeaderTemplate>--%>
+            <%--<ItemTemplate>  --%>
                 <tbody>
                 <tr>
                   <td>1</td>
                   <td>OP </td>
-                  <td></td>
-                  <td> praveean</td>
-                  <td>dd</td>
-                    <td>10234
+                  <td>asdf</td>
+                  <td>asd</td>
+                  <td>aa</td>
+                    <td>aaa
                   </td>
                   <td>450.00</td>
                   <td> print</td>
                   <td>print</td>
+                    <td> print</td>
+                  <td>print</td>
                 </tr>
                 </tbody>
-                   </ItemTemplate>
+                  <%-- </ItemTemplate>--%>
                 <%--<tfoot>
                 <tr>
                   <th>No</th>
@@ -84,10 +86,10 @@
                     <th>Report Print</th>
                 </tr>
                 </tfoot>--%>
-                   <FooterTemplate>
+                  <%-- <FooterTemplate>--%>
         </table>
-    </FooterTemplate>
-                    </asp:Repeater>
+   <%-- </FooterTemplate>
+                    </asp:Repeater>--%>
             </div>
             <!-- /.box-body -->
           </div>
@@ -477,4 +479,3 @@
     })
 </script>--%>
 </asp:Content>
-

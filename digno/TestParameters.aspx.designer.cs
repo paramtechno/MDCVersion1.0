@@ -13,22 +13,22 @@ namespace digno {
     public partial class TestParameters {
         
         /// <summary>
-        /// Label1 control.
+        /// testid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect testid;
         
         /// <summary>
-        /// Label2 control.
+        /// productCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect productCategory;
         
         /// <summary>
         /// Testcateg control.
@@ -40,22 +40,22 @@ namespace digno {
         protected global::System.Web.UI.HtmlControls.HtmlSelect Testcateg;
         
         /// <summary>
-        /// Select3 control.
+        /// Gn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select3;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect Gn;
         
         /// <summary>
-        /// Select2 control.
+        /// units control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select2;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect units;
         
         /// <summary>
         /// rptCustomers control.
