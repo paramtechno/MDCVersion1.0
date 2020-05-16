@@ -48,6 +48,66 @@ namespace digno
             {
                 throw e;
             }
+
+        }
+        public string Saveparameter(TestCreationBLO saveinfo)
+        {
+            try
+            {
+                return tst.Saveparam(saveinfo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
+        
+
+public string Saveparametersranges(TestCreationBLO saveinfo)
+        {
+            try
+            {
+                return tst.Saveparametersranges(saveinfo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
+
+
+
+
+
+
+        public DataTable Getparameter(TestCreationBLO saveinfo)
+        {
+            try
+            {
+                return tst.Getparameter(saveinfo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+
+            }
+        }
+
+        public DataTable Getparameterranges(TestCreationBLO saveinfo)
+        {
+            try
+            {
+                return tst.Getparameterranges(saveinfo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+
+            }
         }
     }
 }

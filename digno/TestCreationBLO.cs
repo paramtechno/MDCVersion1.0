@@ -16,7 +16,53 @@ namespace digno
         private Int64 _categoryid;
         private string _testCategory;
         private int _Status;
+        public Int64 parid { get; set; }
+        public string Minval { get; set; }
+        
+          public string  Maxval { get; set; }
+           public string textval { get; set; }
+         
+        public string narval { get; set; }
+            public string SC { get; set; }
+            public Int64 minAg { get; set; }
+            public Int64 maxAg { get; set; }
+            public string agetype { get; set; }
 
+
+
+
+
+    public Int64 tid
+        {
+            get; set;
+        }
+        public string parname
+        {
+            get; set;
+        }
+        public string exmtd
+        {
+            get; set;
+        }
+        public string unit
+        {
+            get; set;
+        }
+        public string gender
+        {
+            get; set;
+
+        }
+        public string userid
+        {
+            get; set;
+
+        }
+        public string branchid
+        {
+            get; set;
+
+        }
         public int Status
         {
             get { return _Status; }
@@ -72,5 +118,6 @@ namespace digno
             get { return _testCategory; }
             set { _testCategory = value; }
         }
+
     }
 }

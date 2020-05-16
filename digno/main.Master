@@ -400,9 +400,10 @@
                <li><a href="BillPrint.aspx"><i class="fa fa-bars"></i>Bill Print Setting</a></li>
                <li><a href="package.aspx"><i class="fa fa-bars"></i>Package Creation</a></li>
               <li><a href="OrgUsers.aspx"><i class="fa fa-bars"></i>User Creation</a></li>
+              <li><a href="signature.aspx"><i class="fa fa-bars"></i>Signature Settings</a></li>
               <li><a href="Users.aspx"><i class="fa fa-bars"></i>User Page</a></li>
               <li><a href="BranchUsers.aspx"><i class="fa fa-bars"></i>Branch User Creation</a></li>
-              <li><a href="TestParameters.aspx"><i class="fa fa-bars"></i>Test Settings</a></li>
+              <li><a href="TestList.aspx"><i class="fa fa-bars"></i>Test Settings</a></li>
 
 
              </ul>

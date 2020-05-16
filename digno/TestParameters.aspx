@@ -1,5 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="TestParameters.aspx.cs" Inherits="digno.TestParameters" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="TestParameters.aspx.cs" Inherits="digno.TestParameters" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
        <style>
         body
 {
@@ -29,38 +31,24 @@ table
           <!-- general form elements -->
           <div class="box " >
             <div class="box-header with-border">
-              <h3 class="box-title">Patient Details </h3>
-                <div class="col-md-12">
-                 <div class="box " >
-                      <div class="box-header with-border">
-                 <div class="col-md-4">Test Ctegory:
-                     <select  id="testid" class="form-control" runat="server" onchange="LoadTEST(this.value)">
-                     <option>Select Test Category</option>
-                   
-                     </select>
-                </div>
-                 <div class="col-md-4">
-                     Test:
-                    <select id="productCategory" class="form-control" runat="server">
-                     <option>Select Test</option></select>
-                </div>
-                   <div class="col-md-4">
-                      <button type="button" class="btn btn-primary" id="Showid">Show</button>
-                </div>
-                 
-                </div>
-                     </div>
-          </div>
+              <h3 class="box-title">Parameters Details </h3>
+                
 
          <div class="col-md-12">
                  <div class="box " >
                       <div class="box-header with-border">
-                 <div class="col-md-6">Category Name:
-                       <label class="agile-label" for="Cat-name" id="a1"></label>
+                 
+                 <div class="col-md-6
+                  ">
+                     <h4>Test Name:</h4>
+                   <h4> <b> <asp:Label ID="Testname" class="agile-label"  runat="server" Text="Label"></asp:Label></b></h4>
+                    <%-- <label class="agile-label" for="test-name" ID="Testname" runat="server"></label>
+                 --%>    <asp:HiddenField ID="Testid" runat="server" />
                 </div>
-                 <div class="col-md-6">
-                     Test:
-                     <label class="agile-label" for="test-name" id="a2"></label>
+                          <div class="col-md-2">
+                              <div data-toggle="modal" data-target="#Drmodel" style="float:right"> 
+                                <a id="add" class="btn btn-primary" style="margin-top:25px">New Parametrs</a></div>
+                    
                 </div>
                  
                 </div>
@@ -72,15 +60,112 @@ table
 
                 <hr /> 
                   <section class="content" style="min-height:100px !important">
-      <div class="row" >
-         <div class="col-xs-12" style="border:0.5px solid #f39c12;border-radius:10px; ">
+      
+                
+              
+
+                  
+        <div >
+            
+           <asp:Repeater ID="Billrept" runat="server" >
+                     <HeaderTemplate>
+            <table class="table table-responsive" id="tb" style="width:100% ;">
+             <thead>
+                <tr>
+                 <th style="width:10%">Slno</th>
+                   
+                 <th style="width:10%">Parameter Name</th>
+                             
+                <%--<th style="width:10%">Add Parameters</th>--%>
+                <th style="width:10%">Method</th>
+                     <th style="width:10%">Gender</th>
+                     <th style="width:10%">Units</th>
+                     <th style="width:10%">Details</th>
+                      <th style="width:10% ;display:none">Pa ID</th>
+                
+               </tr>
+            </thead>
+       
+      </HeaderTemplate>
+                <ItemTemplate>
+                     <tbody>
+           <td><%# Container.ItemIndex + 1 %></td>
+                 
+                <td><%# Eval("Parameter_name") %></td>
+                <td><%# Eval("Exam_method") %></td>
+                <td><%# Eval("Gender") %></td>
+                <td><%# Eval("Units") %></td>
+
+
+                  <td>
+                      
+                       
+                               
+                      <div data-toggle="modal" data-target="#Testrangeid" style="float:right"  >
+                     
+                           <a class="btn btn-primary btn-xs"  runat="server" OnClientClick='Javascript:return setpid(<%# Eval("parameter_id") %>,<%# Eval("Parameter_name") %>);' >T Edit</a></div>
+                           </div>
+                      
+                            <div data-toggle="modal" data-target="#Drmodel" style="float:right">
+                        <a class="btn btn-primary btn-xs" > Edit</a></div>
+                  </td>
+
+
+
+                       <td style="display:none"><%# Eval("parameter_id") %></td>
+                  
+                  
+                  
+                 
+                  
+            
+                          </tbody></ItemTemplate>
+                <FooterTemplate>
+        </table>
+   </FooterTemplate>
+                </asp:Repeater>
+        </div>
+                
+         </section>
+                </form>
+              </div>
+   </div>
+              
+               
+                </div>
+              </div>
+            
+
+        <div class="modal fade" id="Drmodel"  >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:620px">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Test Parameters</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="box-body">
+          <div class="row">
+              <div class="row" >
+         <div class="col-xs-12"  ">
             <div class=" ">
             
                 <div class="col-md-12">
-                <div class="col-md-3">
+                
+                 <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Examintaion Type</label>
-                   <select id="Testcateg" class="form-control select2 " runat="server">
+                  <label for="exampleInputEmail1">Parameter Name</label>
+                   <input class="form-control input-sm" type="text" id="parname" placeholder="Parameter Name"/>
+                   
+                 </div>
+              </div>
+
+                    <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Examintaion Method</label>
+                   <select id="TC" class="form-control select2 " runat="server">
                      <option>Select Test</option>
                         <option>chemical exmition</option>
                         <option>Physical Ezmiation</option>
@@ -89,144 +174,213 @@ table
                    </select>
                  </div>
               </div>
-                 <div class="col-md-3">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Parameter Name</label>
-                   <input class="form-control input-sm" type="text" id="pn" placeholder="Parameter Name"/>
-                   
-                 </div>
-              </div>
-
-            <div class="col-md-3">
+                    </div>
+                 <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                   <label for="exampleInputEmail1">Gender</label>
-                   <select id="Gn" class="form-control select2 " runat="server">
+                   <select id="GN" class="form-control select2 " runat="server">
                      <option selected="">Male</option>
                        <option>Female</option>
                        <option>Both</option>
                    </select>
               </div>
             </div>
-                <div class="col-md-3">
+                     <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Normal Values</label>
-                   <input class="form-control input-sm" type="text" id="NV" placeholder="Normal Values"/>
+                  <label for="exampleInputEmail1">Units</label>
+                   <select id="UN" class="form-control select2 " runat="server">
+                     <option>Select Test</option>
+                   </select>
                  </div>
               </div>
+                
+</div>
+                
+              
 
+          </div>
                 </div>
+             </div>
+          </div>
+              </div>
+             
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="Javascript:return Savetestparameters(this)">Save changes</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+        <div class="modal fade" id="Testrange"  style="z-index: 1600;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:620px">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Test Parameters Ranges</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="box-body">
+          <div class="row">
+              <div class="row" >
+         <div class="col-xs-12"  ">
+            <div class=" ">
+            
                 <div class="col-md-12">
-                 <div class="col-md-3">
+                
+                 <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Minimum Range</label>
-                   <input class="form-control input-sm" type="text" id="MinR" placeholder="Minimum Range"/>
+                  <label for="exampleInputEmail1">Minmum Value</label>
+                   <input class="form-control input-sm" type="text" id="Minval" placeholder="Minmum Value"/>
                    
                  </div>
               </div>
 
-            <div class="col-md-3">
+                    <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Maxmum Value</label>
+                   <input class="form-control input-sm" type="text" id="Maxval" placeholder="Maxmum value"/>
+                  
+                 </div>
+              </div>
+                    <div>OR</div>
+                    <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Text Value</label>
+                   <input class="form-control input-sm" type="text" id="RTV" placeholder="Result"/>
+                   
+                 </div>
+              </div>
+                    </div>
+                 <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
-                    <label for="exampleInputEmail1">Maximum Range</label>
-                 <input type="text" class="form-control" id="MaxR" placeholder="Maximum Range" />
+                  <label for="exampleInputEmail1">Gender</label>
+                   <select id="Rsex" class="form-control select2 " runat="server">
+                     <option selected="">Male</option>
+                       <option>Female</option>
+                       <option>Both</option>
+                   </select>
               </div>
             </div>
-
-                <div class="col-md-3">
+                     <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Units</label>
-                   <select id="units" class="form-control select2 " runat="server">
+                   <select id="RUIN" class="form-control select2 " runat="server">
                      <option>Select Test</option>
                    </select>
                  </div>
               </div>
-    <%--             <div class="col-md-3">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Test</label>
-                   <select id="productCategory" class="form-control" onchange="LoadProduct(this.value)">
-                     <option>Select Test</option>
-                   </select>
-                 </div>
-              </div>
-
-            <div class="col-md-3">
-              <div class="form-group">
-                   <label for="exampleInputEmail1"><%# Eval("tid") %></label>
-                 <label for="exampleInputEmail1">Amount</label>
-                 <input type="text" class="form-control" id="AMT" placeholder="Amount">
-              </div>
-            </div>--%>
-
-                <div class="col-md-2">
-                <div class="form-group">
-                  <a id="add" class="btn btn-primary" style="margin-top:25px">add</a>
-               
-                </div>
-
-                </div>
-                </div>
-
-                     
-                </div>
-
-             </div>
-
-
-          </div></section>
-
-                  
-        <div >
-            <table class="table table-responsive" id="tb" style="width:100% ;">
-             <thead>
-                <tr>
-                 <th style="width:10%">Slno</th>
-                 <th style="width:10%">Examination Type</th>
-                 <th style="width:10%">Parameter Name</th>
-                 <th style="width:10%">Gender</th>
-                <th style="width:10%">Normal Value</th>
-                <th style="width:10%">Minimum Range</th>
-                <th style="width:10%">Maximum Range</th>
-                <th style="width:10%">Unit</th>
-                <th style="width:10%">Delete</th>
-               </tr>
-            </thead>
-        <tbody>
-            <asp:Repeater ID="rptCustomers" runat="server">
-    <HeaderTemplate>
-        </HeaderTemplate>
-                <ItemTemplate>
-            <tr style="visibility:visible">
-            <td></td>
-            <td></td>
-            <td></td>
-                <td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td>
-                </tr></ItemTemplate>
-                </asp:Repeater>
-   </tbody>
-
-
-
-            </table>
-            <span id="orderItemError" style="color:red"></span>
-        </div>
                 
-       <div class="col-md-3">  
-          <button id="saveOrder" type="submit" class="btn btn-success">Save</button>
-          <button type="reset" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
-       </div>
+</div>
+                <div class="col-md-12">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Noraml values</label>
+                    <input class="form-control input-sm" type="text" id="RNV" placeholder="Normal Value"/>
+                
               </div>
-   </div>
+            </div>
+                     <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Special Condition</label>
+                   <input class="form-control input-sm" type="text" id="RSC" placeholder="Special Condition"/>
+                 </div>
+              </div>
+                
+</div>
+                 <div class="col-md-12">
+                      <div class="col-md-4">
+                      <div class="form-group">
+                  <label for="exampleInputEmail1">Minmum Age</label>
+                   <input class="form-control input-sm" type="text" id="MinAg" placeholder="Minmum Age"/>
+                  
+                 </div>
+                          </div>
+                       <div class="col-md-4">
+                      <div class="form-group">
+                  <label for="exampleInputEmail1">Maxmum Age</label>
+                   <input class="form-control input-sm" type="text" id="MaxAg" placeholder="Maxmum Age"/>
+                  
+                 </div>
+                           </div>
+                       <div class="col-md-4">
+                     <div class="form-group">
+                  <label for="exampleInputEmail1">Age Type</label>
+                   <select id="AGETY" class="form-control select2 " runat="server">
+                     <option selected="">Days</option>
+                       <option>Month</option>
+                       <option>Years</option>
+                   </select>
+              </div>
+                           </div>
+                     </div>
+                
               
-               
+
+          </div>
                 </div>
+             </div>
+          </div>
               </div>
-            
+             
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  onclick="Javascript:return SavetestparametersRange(this)" >Save changes</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+        <div class="modal fade" id="Testrangeid" style="z-index: 1400;"  >
+            <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:620px">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel11">Test Parameters Ranges</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="box-body">
+          <div class="row">
+              <div class="row" >
+         <div class="col-xs-12"  ">
+  <iframe id="testrangesid" src="abc.html" ></iframe>
+             </div>
+                  </div>
+              </div>
+             </div>
+          </div>
+        </div>
+  </div>
+
+
+
+
+
+
+
+</div>
          
          </section>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
- 
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 
 
@@ -249,66 +403,93 @@ table
                    });
                }
            });
-           };
-     </script>  
+       }
 
-    <script type="text/javascript">
-    
-        $('#Showid').click(function () {
-            //validation and add order items
-            var sel = document.getElementById('<%=testid.ClientID%>');
-            var opt = sel.options[sel.selectedIndex];
-            var sel1 = document.getElementById('<%=productCategory.ClientID%>');
-            var opt1 = sel1.options[sel1.selectedIndex];
-            $('#a1').text(opt.text);
-            $('#a2').text(opt1.text);
+       function setpid(pid, pname)
+       {
+        var parname = pname;
+        var prid = pid;
+        var testname = '<%= Testname.ClientID %>';
+           var url = "testranges.aspx?pridval="+ prid +"&valparname="+ pname +"";
+       
+           $('#abc_frame').attr('src', url)
+           return false;
+<%--            $('#<%=btnSubmit.ClientID %>').click();--%>
+       }
 
-         
-           // cat.Text = opt.text;
-         //   test.Text = opt1.text;
+         function Savetestparameters(e) {
+
+             var parname = document.getElementById("parname").value;
+             var exmethod = '<%= TC.ClientID %>';
+             var unit = '<%= UN.ClientID %>';
+             var Gender = '<%= GN.ClientID %>';
 
 
 
 
+        submitOK = "true";
 
+        if (parname == "" ) {
+            alert("PLEASE ENTER Parameter Name ");
+            submitOK = "false";
+            document.getElementById("parname").focus();
+        }
+        else if ($('#' + exmethod).val() == "") {
+            alert("PLEASE ENTER TEST");
+            submitOK = "false";
+            document.getElementById("TC").focus();
+        }
+        else if ($('#' + unit).val() == "") {
+            alert("PLEASE ENTER Unit");
+            submitOK = "false";
+            document.getElementById("UN").focus();
+        }
+        else if ($('#' + Gender).val() == "") {
+            alert("PLEASE ENTER Gender");
+            submitOK = "false";
+            document.getElementById("GN").focus();
+        }
+        if (submitOK == "false") {
 
-        });
-
-        $('#add').click(function () {
-
-            var sel = document.getElementById('<%=Testcateg.ClientID%>');
-            var opt1 = sel.options[sel.selectedIndex];
-            var opt2 = document.getElementById('pn');
-             var sel2 = document.getElementById('<%=Gn.ClientID%>');
-            var opt3 = sel2.options[sel2.selectedIndex];
-           
-           
-            var opt4 = document.getElementById('NV');
-            var opt5 = document.getElementById('minval');
-            var opt6 = document.getElementById('maxval');
-            var sel1 = document.getElementById('<%=units.ClientID%>');
-            var opt7 = sel1.options[sel1.selectedIndex];
+            return false;
+        }
+        if (submitOK == "true") {
+            var cat = {};
+            var Testid = '<%= Testid.ClientID %>';
+            cat.tid = $('#' + Testid).val();
+            cat.parname = parname;
+            cat.exmtd = $('#' + exmethod).val();
+            cat.unit = $('#' + unit).val();
+            cat.gender = $('#' + Gender).val();
             
+            $.ajax({
+                type: 'POST',
+                url: 'TestParameters.aspx/Saveparameters',
+                data: '{cat: ' + JSON.stringify(cat) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (e) {
+                    alert("Record effected");
+                },
+                error: function (err) {
+                    alert("notok");
+                    console.log(err);
+                }
+            });
+            $('[id$=Actions]').val(0);
+        }
+    }
 
-            //cell1.innerHTML = opt.text;
-            //cell2.innerHTML = sel1.value;
+    
+
+  
+    
+
+       
 
 
-            var exmtype = opt1.text,
-                paramname = opt2.value,
-                gender = opt3.value,
-                normalvalues = opt4.value,
-                minmumval = opt5.value,
-                maxval = opt6.value,
-                unit=opt7.value
-                 
-
-
-            detailsTableBody = $("#tb tbody");
-            var productItem = '<tr><td></td><td>' + exmtype + '</td><td class="hi">' + paramname + '</td><td class="hi">' + gender + '</td><td class="hi">' + normalvalues + '</td><td class="hi">' + minmumval + '</td><td class="hi">' + maxval + '</td><td class="hi">' + unit + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td> <td style="display:none">' + tid + '</td></tr>';
-            detailsTableBody.append(productItem);
-        });
-
+       
+            
        </script>
 
 <%--        <script type="text/javascript">
